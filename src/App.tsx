@@ -9,6 +9,7 @@ import data from './data/data.json';
 // components
 import Row from './components/Row';
 import Seat from './components/Seat';
+import Stage from './components/Stage';
 import NewRow from './components/NewRow';
 import NewSeat from './components/NewSeat';
 
@@ -34,7 +35,7 @@ const App = (): React.JSX.Element => {
 
   return (
     <div className='container'>
-      <div className='stage'>SAHNE YÖNÜ</div>
+      <Stage />
 
       {Array.from(seatData.entries()).map(([row, seatsInRow]) => (
         <Row key={row} row={row}>
