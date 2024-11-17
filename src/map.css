@@ -62,6 +62,7 @@ button {
 .mini-button {
   border-radius: 5px;
   border: 1px solid #dadada;
+  background-color: #ffffff;
 }
 
 .mini-button:hover {
@@ -75,6 +76,11 @@ button {
 
 .mini-button.active {
   background-color: #dadada;
+}
+
+.mini-button span {
+  font-size: 1.5em;
+  color: #444444;
 }
 
 .button.gray {
@@ -144,7 +150,6 @@ button {
 
 .container {
   margin: 10px;
-  overflow: auto;
   user-select: none;
   white-space: nowrap;
   --webkit-user-select: none;
@@ -162,13 +167,21 @@ button {
   background-color: #7a0404;
 }
 
+.new-row {
+  margin-top: 10px;
+}
+
 .row {
-  margin-bottom: 10px;
+  padding: 6px 0;
+}
+
+.row:hover {
+  background-color: #f5f5f5;
 }
 
 .row-label {
   display: flex;
-  min-width: 30px;
+  min-width: 60px;
   min-height: 30px;
   font-weight: 600;
   align-items: center;
@@ -177,16 +190,13 @@ button {
 
 .seat {
   display: flex;
+  cursor: pointer;
   min-width: 30px;
   min-height: 30px;
   font-size: 0.7em;
-  cursor: pointer;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
 }
 
 .seat.empty {
@@ -225,11 +235,10 @@ button {
 }
 
 .dropdown {
-  top: 0;
+  top: 35px;
   z-index: 9999;
-  margin-left: 35px;
   position: absolute;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 1px solid #ffffff;
   background-color: #222222;
 }

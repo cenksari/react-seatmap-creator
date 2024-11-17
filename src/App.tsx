@@ -7,6 +7,7 @@ import './map.css';
 import data from './data/data.json';
 
 // components
+import Row from './components/Row';
 import Seat from './components/Seat';
 import NewRow from './components/NewRow';
 import NewSeat from './components/NewSeat';
@@ -49,8 +50,7 @@ const App = (): React.JSX.Element => {
       <div className='stage'>SAHNE YÖNÜ</div>
 
       {Array.from(seatData.entries()).map(([row, seatsInRow]) => (
-        <div key={row} data-row-id={row} className='flex flex-gap-small row'>
-          <div className='row-label'>{row}</div>
+        <Row key={row} row={row}>
           {seatsInRow.map((seat: ISeat) => (
             <Seat
               id={seat.id}
@@ -61,23 +61,10 @@ const App = (): React.JSX.Element => {
             />
           ))}
           <NewSeat row={row} />
-        </div>
+        </Row>
       ))}
-      <NewRow />
 
-      <div className='flex flex-space-between buttons'>
-        <div>
-          Toplam koltuk sayısı: <strong>200</strong>
-        </div>
-        <div className='flex flex-gap-medium'>
-          <button type='button' className='button gray'>
-            Vazgeç
-          </button>
-          <button type='button' className='button black'>
-            Kaydet
-          </button>
-        </div>
-      </div>
+      <NewRow />
     </div>
   );
 };

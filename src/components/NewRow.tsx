@@ -13,11 +13,11 @@ const NewRow = (): React.JSX.Element => {
   });
 
   return (
-    <div ref={ref} className='flex flex-gap-smallrow relative'>
+    <div ref={ref} className='flex flex-gap-smallrow relative new-row'>
       <button
         type='button'
         onClick={() => setMenuOpened(!menuOpened)}
-        className={menuOpened ? `seat mini-button active` : `seat mini-button`}
+        className={menuOpened ? `row-label mini-button active` : `row-label mini-button`}
       >
         <span className='material-symbols-outlined'>add</span>
       </button>
@@ -25,7 +25,7 @@ const NewRow = (): React.JSX.Element => {
       {menuOpened && (
         <div className='flex flex-gap flex-column dropdown'>
           <button type='button'>Sıra ekle</button>
-          <button type='button'>Boşluk ekle</button>
+          <button type='button'>Boş sıra ekle</button>
         </div>
       )}
     </div>
