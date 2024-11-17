@@ -8,23 +8,20 @@ interface IProps {
   row: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const NewSeat = ({ row }: IProps): React.JSX.Element => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
 
-  useClickOutside(ref, (): void => {
-    setMenuOpened(false);
-  });
-
-  console.log(row);
+  useClickOutside(ref, (): void => setMenuOpened(false));
 
   return (
     <div ref={ref} className='relative'>
       <button
         type='button'
-        onClick={() => setMenuOpened(!menuOpened)}
-        className={menuOpened ? `seat mini-button active` : `seat mini-button`}
+        onClick={() => setMenuOpened((prev) => !prev)}
+        className={`seat mini-button ${menuOpened ? 'active' : ''}`}
       >
         <span className='material-symbols-outlined'>add</span>
       </button>

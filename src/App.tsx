@@ -18,31 +18,18 @@ import type { ISeat } from './types/types';
 const App = (): React.JSX.Element => {
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
 
-  /**
-   * Takes an array of seat objects and groups them by row, returning a
-   * Map<string, ISeat[]> where the key is the row letter and the value is
-   * an array of seat objects in that row.
-   */
-  const groupSeatsByRow = (seats: ISeat[]): Map<string, ISeat[]> => {
-    const rowMap = new Map<string, ISeat[]>();
-
-    seats.forEach((seat) => {
-      if (!rowMap.has(seat.row)) {
-        rowMap.set(seat.row, []);
+  React.useEffect(() => {
+    const rowMap = data.reduce((map, seat) => {
+      if (!map.has(seat.row)) {
+        map.set(seat.row, []);
       }
 
-      rowMap.get(seat.row)!.push(seat);
-    });
+      map.get(seat.row)!.push(seat);
 
-    return rowMap;
-  };
+      return map;
+    }, new Map<string, ISeat[]>());
 
-  React.useEffect(() => {
-    const seats: ISeat[] = data;
-
-    const groupedSeats = groupSeatsByRow(seats);
-
-    setSeatData(groupedSeats);
+    setSeatData(rowMap);
   }, []);
 
   return (

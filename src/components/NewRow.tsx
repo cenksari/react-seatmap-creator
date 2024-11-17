@@ -8,16 +8,14 @@ const NewRow = (): React.JSX.Element => {
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
 
-  useClickOutside(ref, (): void => {
-    setMenuOpened(false);
-  });
+  useClickOutside(ref, (): void => setMenuOpened(false));
 
   return (
     <div ref={ref} className='flex flex-gap-smallrow relative new-row'>
       <button
         type='button'
-        onClick={() => setMenuOpened(!menuOpened)}
-        className={menuOpened ? `row-label mini-button active` : `row-label mini-button`}
+        onClick={() => setMenuOpened((prev) => !prev)}
+        className={`row-label mini-button ${menuOpened ? 'active' : ''}`}
       >
         <span className='material-symbols-outlined'>add</span>
       </button>
