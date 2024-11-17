@@ -51,7 +51,7 @@ section {
 
 button {
   cursor: pointer;
-  background-color: #f5f5f5;
+  background-color: transparent;
 }
 
 .button {
@@ -59,8 +59,22 @@ button {
   border-radius: 10px;
 }
 
-.button:active {
+.mini-button {
+  border-radius: 5px;
+  border: 1px solid #dadada;
+}
+
+.mini-button:hover {
+  background-color: #f5f5f5;
+}
+
+.button:active,
+.mini-button:active {
   opacity: 0.8;
+}
+
+.mini-button.active {
+  background-color: #dadada;
 }
 
 .button.gray {
@@ -124,6 +138,10 @@ button {
   justify-content: space-around;
 }
 
+.relative {
+  position: relative;
+}
+
 .container {
   margin: 10px;
   overflow: auto;
@@ -162,6 +180,7 @@ button {
   min-width: 30px;
   min-height: 30px;
   font-size: 0.7em;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   border-top-left-radius: 5px;
@@ -177,13 +196,55 @@ button {
 }
 
 .seat.available {
-  cursor: pointer;
   color: #111111;
   background-color: #ffffff;
   border: 1px solid #222222;
   border-bottom: 5px solid #222222;
 }
 
+.seat:hover {
+  background-color: #dadada;
+}
+
+.seat:active {
+  opacity: 0.8;
+}
+
+.seat.empty.active {
+  background-color: #dadada;
+}
+
+.seat.available.active {
+  color: #ffffff;
+  background-color: #7a0404;
+  border-bottom: 5px solid red;
+}
+
 .buttons {
   margin-top: 40px;
+}
+
+.dropdown {
+  top: 0;
+  z-index: 9999;
+  margin-left: 35px;
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid #ffffff;
+  background-color: #222222;
+}
+
+.dropdown button {
+  color: #ffffff;
+  font-size: 0.8em;
+  text-align: left;
+  padding: 5px 10px 5px 10px;;
+}
+
+.dropdown button:first-child {
+  padding-top: 10px;
+}
+
+.dropdown button:last-child {
+  padding-bottom: 10px;
 }

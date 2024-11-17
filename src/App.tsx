@@ -1,17 +1,27 @@
 import React from 'react';
 
+// styles
 import './map.css';
 
+// data
 import data from './data/data.json';
 
+// components
 import Seat from './components/Seat';
-// import Empty from './components/Empty';
+import NewRow from './components/NewRow';
+import NewSeat from './components/NewSeat';
 
+// types
 import type { ISeat } from './types/types';
 
 const App = (): React.JSX.Element => {
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
 
+  /**
+   * Takes an array of seat objects and groups them by row, returning a
+   * Map<string, ISeat[]> where the key is the row letter and the value is
+   * an array of seat objects in that row.
+   */
   const groupSeatsByRow = (seats: ISeat[]): Map<string, ISeat[]> => {
     const rowMap = new Map<string, ISeat[]>();
 
@@ -50,16 +60,10 @@ const App = (): React.JSX.Element => {
               status={seat.status}
             />
           ))}
-          <button type='button' className='row-label'>
-            <span className='material-symbols-outlined'>add</span>
-          </button>
+          <NewSeat row={row} />
         </div>
       ))}
-      <div className='flex flex-gap-smallrow'>
-        <button type='button' className='row-label'>
-          <span className='material-symbols-outlined'>add</span>
-        </button>
-      </div>
+      <NewRow />
 
       <div className='flex flex-space-between buttons'>
         <div>
