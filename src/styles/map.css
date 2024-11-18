@@ -49,6 +49,10 @@ section {
   font-variation-settings: 'wdth' 100;
 }
 
+a, button, div {
+  transition: all 0.2s ease-in-out;
+}
+
 button {
   cursor: pointer;
   background-color: transparent;
@@ -244,16 +248,61 @@ button {
 }
 
 .dropdown button {
+  display: flex;
   color: #ffffff;
   font-size: 0.8em;
   text-align: left;
-  padding: 5px 10px 5px 10px;;
+  align-items: center;
+  padding: 8px 15px 8px 10px;;
+}
+
+.dropdown button span {
+  font-size: 1.25em;
+  margin-right: 5px;
 }
 
 .dropdown button:first-child {
   padding-top: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .dropdown button:last-child {
   padding-bottom: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.dropdown button:hover {
+  background-color: #333333;
+}
+
+.dropdown button:active {
+  opacity: 0.6;
+}
+
+.dropdown button.active {
+  background-color: #333333;
+}
+
+.dropdown-form {
+  padding: 0 0 10px 10px;
+  background-color: #333333;
+}
+
+.dropdown-form input {
+  width: 130px;
+  font-size: 0.8em;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.dropdown-form button {
+  padding: 10px !important;
+  border-radius: 0 !important;
+  text-align: center !important;
+}
+
+.dropdown-form button:hover {
+  background-color: transparent;
 }

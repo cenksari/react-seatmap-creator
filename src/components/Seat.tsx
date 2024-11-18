@@ -6,17 +6,45 @@ import useClickOutside from '../hooks/useClickOutside';
 // types
 import type { ISeat } from '../types/types';
 
-const Seat = React.memo(({ id, row, label, status }: ISeat): React.JSX.Element => {
+// interfaces
+interface IProps {
+  seat: ISeat;
+  addEmptySeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
+}
+
+const Seat = React.memo(({ seat, addEmptySeat }: IProps): React.JSX.Element => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
 
   useClickOutside(ref, (): void => setMenuOpened(false));
 
+  /**
+   * Handles the click event on the seat by calling addEmptySeat function if it exists
+   * and toggling the menuOpened state.
+   *
+   * @param {string} direction The direction of the empty seat to be added.
+   */
+  const handleOnClick = (direction: 'left' | 'right') => {
+    if (addEmptySeat && typeof addEmptySeat === 'function') {
+      addEmptySeat(seat.row, seat.id, direction);
+    }
+
+    setMenuOpened((prev) => !prev);
+  };
+
   const renderDropdown = (): React.JSX.Element => (
     <div className='flex flex-gap flex-column dropdown'>
-      <button type='button'>Sağına boşluk ekle</button>
-      {status === 'available' && <button type='button'>Soluna boşluk ekle</button>}
+      {seat.status === 'available' && (
+        <button type='button' onClick={() => handleOnClick('left')}>
+          <span className='material-symbols-outlined'>arrow_back</span>
+          Soluna boşluk ekle
+        </button>
+      )}
+      <button type='button' onClick={() => handleOnClick('right')}>
+        <span className='material-symbols-outlined'>arrow_forward</span>
+        Sağına boşluk ekle
+      </button>
     </div>
   );
 
@@ -25,14 +53,13 @@ const Seat = React.memo(({ id, row, label, status }: ISeat): React.JSX.Element =
       <div
         tabIndex={0}
         role='button'
-        data-seat-id={id}
-        data-row-id={row}
+        data-seat-id={seat.id}
+        data-row-id={seat.row}
         onKeyDown={() => {}}
         onClick={() => setMenuOpened((prev) => !prev)}
-        aria-label={status === 'available' ? label : row}
-        className={`seat ${status} ${menuOpened ? 'active' : ''}`}
+        className={`seat ${seat.status} ${menuOpened ? 'active' : ''}`}
       >
-        {status === 'available' && label}
+        {seat.status === 'available' && seat.label}
       </div>
       {menuOpened && renderDropdown()}
     </div>
