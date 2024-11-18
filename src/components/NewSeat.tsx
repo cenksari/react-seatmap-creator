@@ -43,7 +43,7 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
         onClick={() => setMenuOpened((prev) => !prev)}
         className={`seat mini-button ${menuOpened ? 'active' : ''}`}
         data-tooltip-id='description'
-        data-tooltip-content='Yeni koltuk ekle'
+        data-tooltip-content='Add new seat'
       >
         <span className='material-symbols-outlined'>add</span>
       </button>
@@ -52,11 +52,11 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
         <div className='flex flex-gap flex-column dropdown'>
           <button type='button' onClick={() => handleSeatAction('right', addAvailableSeat)}>
             <span className='material-symbols-outlined'>event_seat</span>
-            Koltuk ekle
+            Add seat
           </button>
           <button type='button' onClick={() => handleSeatAction('right', addEmptySeat)}>
             <span className='material-symbols-outlined'>check_box_outline_blank</span>
-            Boşluk ekle
+            Add space
           </button>
         </div>
       )}

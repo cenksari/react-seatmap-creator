@@ -169,7 +169,7 @@ const App = (): React.JSX.Element => {
   const addSeatedRow = (name: string) => {
     if (seatData.has(name)) {
       // eslint-disable-next-line no-alert
-      alert(`Sıra adı ${name} zaten mevcut.`);
+      alert(`Row ${name} already exists.`);
 
       return;
     }
@@ -296,10 +296,10 @@ const App = (): React.JSX.Element => {
 
       <div className='flex flex-gap-medium flex-end buttons'>
         <button type='button' className='button gray'>
-          Önizleme
+          Preview
         </button>
         <button type='button' className='button black'>
-          Kaydet
+          Save chart
         </button>
       </div>
 

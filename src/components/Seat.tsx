@@ -48,17 +48,17 @@ const Seat = React.memo(({ seat, addEmptySeat, deleteSeat }: IProps): React.JSX.
       {seat.status === 'available' && (
         <button type='button' onClick={() => handleOnClick('left')}>
           <span className='material-symbols-outlined'>arrow_back</span>
-          Soluna boşluk ekle
+          Add space to the left
         </button>
       )}
       <button type='button' onClick={() => handleOnClick('right')}>
         <span className='material-symbols-outlined'>arrow_forward</span>
-        Sağına boşluk ekle
+        Add space to the right
       </button>
       {seat.status === 'empty' && (
         <button type='button' onClick={() => handleOnDelete()}>
           <span className='material-symbols-outlined'>delete</span>
-          Seçili boşluğu kaldır
+          Remove selected space
         </button>
       )}
     </div>

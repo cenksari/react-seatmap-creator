@@ -60,7 +60,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
         onClick={() => setMenuOpened((prev) => !prev)}
         className={`row-label mini-button ${menuOpened ? 'active' : ''}`}
         data-tooltip-id='description'
-        data-tooltip-content='Yeni sıra ekle'
+        data-tooltip-content='New row'
       >
         <span className='material-symbols-outlined'>add</span>
       </button>
@@ -73,7 +73,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
             className={formOpened ? 'active' : 'passive'}
           >
             <span className='material-symbols-outlined'>more_horiz</span>
-            Koltuklu sıra ekle
+            Add seated row
           </button>
           {formOpened && (
             <div className='flex flex-gap-small flex-column flex-v-center dropdown-form'>
@@ -85,17 +85,17 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
                 maxLength={3}
                 name='rowName'
                 value={formValues.name}
-                placeholder='Sıra adı girin'
+                placeholder='Enter row name'
                 onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
               />
               <button type='button' onClick={() => handleSeatedRowAdd()}>
-                Ekle
+                Add
               </button>
             </div>
           )}
           <button type='button' onClick={() => handleButtonClick(addEmptyRow)}>
             <span className='material-symbols-outlined'>expand</span>
-            Boş sıra / koridor ekle
+            Add empty row / hallway
           </button>
         </div>
       )}

@@ -51,7 +51,7 @@ const Row = React.memo(({ row, empty, children, editRowName }: IProps): React.JS
               type='button'
               className='seat mini-button'
               data-tooltip-id='description'
-              data-tooltip-content='Sırayı düzenle'
+              data-tooltip-content='Edit row'
               onClick={() => setMenuOpened((prev) => !prev)}
             >
               <span className='material-symbols-outlined'>draw</span>
@@ -61,7 +61,7 @@ const Row = React.memo(({ row, empty, children, editRowName }: IProps): React.JS
               <div className='flex flex-gap flex-column dropdown'>
                 <button type='button' className='active'>
                   <span className='material-symbols-outlined'>draw</span>
-                  Sırayı düzenle
+                  Edit row
                 </button>
                 <div className='flex flex-gap-small flex-column flex-v-center dropdown-form'>
                   <input
@@ -72,16 +72,16 @@ const Row = React.memo(({ row, empty, children, editRowName }: IProps): React.JS
                     maxLength={3}
                     name='rowName'
                     value={formValues.name}
-                    placeholder='Sıra adı girin'
+                    placeholder='Enter row name'
                     onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
                   />
                   <button type='button' onClick={() => handleEditRowName()}>
-                    Değiştir
+                    Update
                   </button>
                 </div>
                 <button type='button' onClick={() => setMenuOpened(false)}>
                   <span className='material-symbols-outlined'>close</span>
-                  Düzenlemeden çık
+                  Exit editing
                 </button>
               </div>
             )}
