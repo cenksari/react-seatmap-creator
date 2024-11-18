@@ -16,9 +16,6 @@ const Row = React.memo(({ row, empty, children }: IProps): React.JSX.Element => 
           <button type='button' className='seat mini-button'>
             <span className='material-symbols-outlined'>draw</span>
           </button>
-          <button type='button' className='seat mini-button'>
-            <span className='material-symbols-outlined'>drag_indicator</span>
-          </button>
           {children}
         </>
       ) : (

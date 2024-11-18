@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
+import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
 // styles
 import './styles/map.css';
@@ -155,28 +157,79 @@ const App = (): React.JSX.Element => {
     });
   };
 
+  /**
+   * Handles the onDragEnd event, updating the seat data with the new row order.
+   * This function is called whenever a row is dragged and dropped into a new position.
+   *
+   * @param {object} result - The result object from react-beautiful-dnd's onDragEnd event.
+   * @param {object} result.source - The source object containing the index of the row that was dragged.
+   * @param {object} result.destination - The destination object containing the index where the row was dropped.
+   */
+  const handleOnDragEnd = (result: DropResult) => {
+    const { source, destination } = result;
+
+    if (!destination) return;
+
+    const sourceIndex = source.index;
+
+    const destinationIndex = destination.index;
+
+    if (sourceIndex === destinationIndex) return;
+
+    const rows = Array.from(seatData.keys());
+
+    const [movedRow] = rows.splice(sourceIndex, 1);
+
+    rows.splice(destinationIndex, 0, movedRow);
+
+    const updatedSeatData = new Map();
+
+    rows.forEach((row) => {
+      updatedSeatData.set(row, seatData.get(row) || []);
+    });
+
+    setSeatData(updatedSeatData);
+  };
+
   return (
     <div className='container'>
       <Stage />
 
-      {Array.from(seatData?.entries())?.map(([row, seatsInRow]) => (
-        <React.Fragment key={row}>
-          {row.startsWith('empty-') ? (
-            <Row empty />
-          ) : (
-            <Row row={row}>
-              {seatsInRow.map((seat) => (
-                <Seat seat={seat} key={seat.id} addEmptySeat={addEmptySeat} />
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId='rows' direction='vertical'>
+          {(droppableProvided) => (
+            <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
+              {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
+                <Draggable key={row} draggableId={row} index={index}>
+                  {(draggableProvided) => (
+                    <div
+                      ref={draggableProvided.innerRef}
+                      {...draggableProvided.draggableProps}
+                      {...draggableProvided.dragHandleProps}
+                    >
+                      {row.startsWith('empty-') ? (
+                        <Row empty />
+                      ) : (
+                        <Row row={row}>
+                          {seatsInRow.map((seat) => (
+                            <Seat seat={seat} key={seat.id} addEmptySeat={addEmptySeat} />
+                          ))}
+                          <NewSeat
+                            addEmptySeat={addEmptySeat}
+                            addAvailableSeat={addAvailableSeat}
+                            seat={seatsInRow[seatsInRow.length - 1]}
+                          />
+                        </Row>
+                      )}
+                    </div>
+                  )}
+                </Draggable>
               ))}
-              <NewSeat
-                addEmptySeat={addEmptySeat}
-                addAvailableSeat={addAvailableSeat}
-                seat={seatsInRow[seatsInRow.length - 1]}
-              />
-            </Row>
+              {droppableProvided.placeholder}
+            </div>
           )}
-        </React.Fragment>
-      ))}
+        </Droppable>
+      </DragDropContext>
 
       <NewRow addEmptyRow={addEmptyRow} addSeatedRow={addSeatedRow} />
 
