@@ -116,6 +116,33 @@ const App = (): React.JSX.Element => {
   };
 
   /**
+   * Deletes a seat from the seat data.
+   * Finds the row of the specified seatId and removes the seat from the row.
+   *
+   * @param {string} row - The row identifier where the seat will be deleted.
+   * @param {string} seatId - The seat identifier to delete.
+   */
+  const deleteSeat = (row: string, seatId: string) => {
+    setSeatData((prevSeatData) => {
+      const newSeatData = new Map(prevSeatData);
+
+      const seatsInRow = newSeatData.get(row);
+
+      if (!seatsInRow) return prevSeatData;
+
+      const updatedSeatsInRow = seatsInRow.filter((seat) => seat.id !== seatId);
+
+      if (updatedSeatsInRow.length === 0) {
+        newSeatData.delete(row);
+      } else {
+        newSeatData.set(row, updatedSeatsInRow);
+      }
+
+      return newSeatData;
+    });
+  };
+
+  /**
    * Adds a new empty row to the seat data.
    * Generates a unique row identifier and inserts an empty row into the seat data state.
    */
@@ -159,29 +186,30 @@ const App = (): React.JSX.Element => {
   };
 
   /**
-   * Deletes a seat from the seat data.
-   * Finds the row of the specified seatId and removes the seat from the row.
+   * Updates the row name in the seat data.
+   * This function is called whenever the user edits the name of an existing row.
    *
-   * @param {string} row - The row identifier where the seat will be deleted.
-   * @param {string} seatId - The seat identifier to delete.
+   * @param {string} name - The new name for the row.
+   * @param {string} oldName - The old name for the row.
    */
-  const deleteSeat = (row: string, seatId: string) => {
+  const editRowName = (name: string, oldName: string) => {
+    if (seatData.has(name)) return;
+
     setSeatData((prevSeatData) => {
-      const newSeatData = new Map(prevSeatData);
+      const updatedSeatData = new Map<string, ISeat[]>();
 
-      const seatsInRow = newSeatData.get(row);
+      Array.from(prevSeatData.entries()).forEach(([row, seats]) => {
+        if (row === oldName) {
+          updatedSeatData.set(
+            name,
+            seats.map((seat) => ({ ...seat, row: name }))
+          );
+        } else {
+          updatedSeatData.set(row, seats);
+        }
+      });
 
-      if (!seatsInRow) return prevSeatData;
-
-      const updatedSeatsInRow = seatsInRow.filter((seat) => seat.id !== seatId);
-
-      if (updatedSeatsInRow.length === 0) {
-        newSeatData.delete(row);
-      } else {
-        newSeatData.set(row, updatedSeatsInRow);
-      }
-
-      return newSeatData;
+      return updatedSeatData;
     });
   };
 
@@ -238,7 +266,7 @@ const App = (): React.JSX.Element => {
                       {row.startsWith('empty-') ? (
                         <Row empty />
                       ) : (
-                        <Row row={row}>
+                        <Row row={row} editRowName={editRowName}>
                           {seatsInRow.map((seat) => (
                             <Seat
                               seat={seat}

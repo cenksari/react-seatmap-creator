@@ -76,8 +76,10 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
             Koltuklu sıra ekle
           </button>
           {formOpened && (
-            <div className='flex flex-gap dropdown-form'>
+            <div className='flex flex-gap-small flex-column flex-v-center dropdown-form'>
               <input
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                autoFocus
                 type='text'
                 id='rowName'
                 maxLength={3}

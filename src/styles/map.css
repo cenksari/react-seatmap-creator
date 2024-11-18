@@ -286,25 +286,31 @@ button {
 }
 
 .dropdown-form {
-  padding: 0 0 10px 10px;
+  padding: 10px;
   background-color: #333333;
+  border-top: 1px solid #111111;
 }
 
 .dropdown-form input {
-  width: 130px;
+  padding: 10px;
+  max-width: 170px;
   font-size: 0.8em;
+  font-weight: 600;
   text-align: center;
   border-radius: 5px;
 }
 
 .dropdown-form button {
-  padding: 10px !important;
-  border-radius: 0 !important;
-  text-align: center !important;
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  justify-content: center;
+  background-color: #000000;
 }
 
 .dropdown-form button:hover {
-  background-color: transparent;
+  background-color: #222222;
 }
 
 .react-tooltip {
