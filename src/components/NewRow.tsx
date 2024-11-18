@@ -59,6 +59,8 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
         type='button'
         onClick={() => setMenuOpened((prev) => !prev)}
         className={`row-label mini-button ${menuOpened ? 'active' : ''}`}
+        data-tooltip-id='description'
+        data-tooltip-content='Yeni sıra ekle'
       >
         <span className='material-symbols-outlined'>add</span>
       </button>

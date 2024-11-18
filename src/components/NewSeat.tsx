@@ -42,6 +42,8 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
         type='button'
         onClick={() => setMenuOpened((prev) => !prev)}
         className={`seat mini-button ${menuOpened ? 'active' : ''}`}
+        data-tooltip-id='description'
+        data-tooltip-content='Yeni koltuk ekle'
       >
         <span className='material-symbols-outlined'>add</span>
       </button>

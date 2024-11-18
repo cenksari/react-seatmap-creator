@@ -9,10 +9,11 @@ import type { ISeat } from '../types/types';
 // interfaces
 interface IProps {
   seat: ISeat;
+  deleteSeat?: (row: string, seatId: string) => void;
   addEmptySeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
 }
 
-const Seat = React.memo(({ seat, addEmptySeat }: IProps): React.JSX.Element => {
+const Seat = React.memo(({ seat, addEmptySeat, deleteSeat }: IProps): React.JSX.Element => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
@@ -33,6 +34,15 @@ const Seat = React.memo(({ seat, addEmptySeat }: IProps): React.JSX.Element => {
     setMenuOpened((prev) => !prev);
   };
 
+  /**
+   * Handles the delete event on the seat by calling deleteSeat function if it exists.
+   */
+  const handleOnDelete = () => {
+    deleteSeat?.(seat.row, seat.id);
+
+    setMenuOpened((prev) => !prev);
+  };
+
   const renderDropdown = (): React.JSX.Element => (
     <div className='flex flex-gap flex-column dropdown'>
       {seat.status === 'available' && (
@@ -45,6 +55,12 @@ const Seat = React.memo(({ seat, addEmptySeat }: IProps): React.JSX.Element => {
         <span className='material-symbols-outlined'>arrow_forward</span>
         Sağına boşluk ekle
       </button>
+      {seat.status === 'empty' && (
+        <button type='button' onClick={() => handleOnDelete()}>
+          <span className='material-symbols-outlined'>delete</span>
+          Seçili boşluğu kaldır
+        </button>
+      )}
     </div>
   );
 

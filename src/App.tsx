@@ -2,6 +2,7 @@
 import React from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
+import { Tooltip } from 'react-tooltip';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
 // styles
@@ -158,6 +159,33 @@ const App = (): React.JSX.Element => {
   };
 
   /**
+   * Deletes a seat from the seat data.
+   * Finds the row of the specified seatId and removes the seat from the row.
+   *
+   * @param {string} row - The row identifier where the seat will be deleted.
+   * @param {string} seatId - The seat identifier to delete.
+   */
+  const deleteSeat = (row: string, seatId: string) => {
+    setSeatData((prevSeatData) => {
+      const newSeatData = new Map(prevSeatData);
+
+      const seatsInRow = newSeatData.get(row);
+
+      if (!seatsInRow) return prevSeatData;
+
+      const updatedSeatsInRow = seatsInRow.filter((seat) => seat.id !== seatId);
+
+      if (updatedSeatsInRow.length === 0) {
+        newSeatData.delete(row);
+      } else {
+        newSeatData.set(row, updatedSeatsInRow);
+      }
+
+      return newSeatData;
+    });
+  };
+
+  /**
    * Handles the onDragEnd event, updating the seat data with the new row order.
    * This function is called whenever a row is dragged and dropped into a new position.
    *
@@ -212,7 +240,12 @@ const App = (): React.JSX.Element => {
                       ) : (
                         <Row row={row}>
                           {seatsInRow.map((seat) => (
-                            <Seat seat={seat} key={seat.id} addEmptySeat={addEmptySeat} />
+                            <Seat
+                              seat={seat}
+                              key={seat.id}
+                              deleteSeat={deleteSeat}
+                              addEmptySeat={addEmptySeat}
+                            />
                           ))}
                           <NewSeat
                             addEmptySeat={addEmptySeat}
@@ -241,6 +274,8 @@ const App = (): React.JSX.Element => {
           Kaydet
         </button>
       </div>
+
+      <Tooltip id='description' />
     </div>
   );
 };

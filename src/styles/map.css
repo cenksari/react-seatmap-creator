@@ -306,3 +306,7 @@ button {
 .dropdown-form button:hover {
   background-color: transparent;
 }
+
+.react-tooltip {
+  font-size: 0.7em !important;
+}

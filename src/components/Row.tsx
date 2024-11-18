@@ -13,7 +13,12 @@ const Row = React.memo(({ row, empty, children }: IProps): React.JSX.Element => 
       {!empty ? (
         <>
           <div className='row-label'>{row}</div>
-          <button type='button' className='seat mini-button'>
+          <button
+            type='button'
+            className='seat mini-button'
+            data-tooltip-id='description'
+            data-tooltip-content='Sırayı düzenle'
+          >
             <span className='material-symbols-outlined'>draw</span>
           </button>
           {children}
