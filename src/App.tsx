@@ -24,25 +24,14 @@ import type { ISeat } from './types/types';
 const App = (): React.JSX.Element => {
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
 
-  /**
-   * Takes an array of seat objects and groups them by row identifier.
-   * Returns a Map with the row identifier as the key and an array of seat objects as the value.
-   *
-   * @param {ISeat[]} dataToGroup The array of seat objects to group.
-   */
-  const groupByRow = (dataToGroup: ISeat[]) => {
-    return dataToGroup.reduce((map, seat) => {
-      if (!map.has(seat.row)) {
-        map.set(seat.row, []);
-      }
-
-      map.get(seat.row)!.push(seat);
-
-      return map;
-    }, new Map<string, ISeat[]>());
-  };
-
   React.useEffect(() => {
+    const groupByRow = (dataToGroup: ISeat[]) =>
+      dataToGroup.reduce((map, seat) => {
+        map.set(seat.row, [...(map.get(seat.row) || []), seat]);
+
+        return map;
+      }, new Map<string, ISeat[]>());
+
     setSeatData(groupByRow(data));
   }, []);
 
@@ -150,9 +139,11 @@ const App = (): React.JSX.Element => {
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
-      const rowId = uuidv4().replace(/-/g, '').slice(0, 12);
+      const id = uuidv4();
 
-      const emptyRow: ISeat = { id: '', row: `empty-${rowId}`, label: '', status: '' };
+      const rowId = id.replace(/-/g, '').slice(0, 12);
+
+      const emptyRow: ISeat = { id, row: `empty-${rowId}`, label: '0', status: 'empty' };
 
       newSeatData.set(emptyRow.row, [emptyRow]);
 
@@ -214,38 +205,26 @@ const App = (): React.JSX.Element => {
   };
 
   /**
-   * Handles the onDragEnd event, updating the seat data with the new row order.
-   * This function is called whenever a row is dragged and dropped into a new position.
+   * Handles the drag end event by updating the seat data with the new row order.
    *
-   * @param {object} result - The result object from react-beautiful-dnd's onDragEnd event.
-   * @param {object} result.source - The source object containing the index of the row that was dragged.
-   * @param {object} result.destination - The destination object containing the index where the row was dropped.
+   * @param {DropResult} result - The result of the drag end event.
    */
-  const handleOnDragEnd = (result: DropResult) => {
-    const { source, destination } = result;
-
-    if (!destination) return;
-
-    const sourceIndex = source.index;
-
-    const destinationIndex = destination.index;
-
-    if (sourceIndex === destinationIndex) return;
+  const handleOnDragEnd = ({ source, destination }: DropResult) => {
+    if (!destination || source.index === destination.index) return;
 
     const rows = Array.from(seatData.keys());
 
-    const [movedRow] = rows.splice(sourceIndex, 1);
+    const [movedRow] = rows.splice(source.index, 1);
 
-    rows.splice(destinationIndex, 0, movedRow);
+    rows.splice(destination.index, 0, movedRow);
 
-    const updatedSeatData = new Map();
-
-    rows.forEach((row) => {
-      updatedSeatData.set(row, seatData.get(row) || []);
-    });
+    const updatedSeatData = new Map(rows.map((row) => [row, seatData.get(row) || []]));
 
     setSeatData(updatedSeatData);
   };
+
+  // eslint-disable-next-line no-console
+  const setPreview = () => console.log(Array.from(seatData.values()).flat());
 
   return (
     <div className='container'>
@@ -295,7 +274,7 @@ const App = (): React.JSX.Element => {
       <NewRow addEmptyRow={addEmptyRow} addSeatedRow={addSeatedRow} />
 
       <div className='flex flex-gap-medium flex-end buttons'>
-        <button type='button' className='button gray'>
+        <button type='button' className='button gray' onClick={() => setPreview()}>
           Preview
         </button>
         <button type='button' className='button black'>
