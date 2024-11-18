@@ -49,7 +49,7 @@ section {
   font-variation-settings: 'wdth' 100;
 }
 
-a, button, div {
+a, button {
   transition: all 0.2s ease-in-out;
 }
 
@@ -201,6 +201,7 @@ button {
   border-radius: 5px;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease-in-out;
 }
 
 .seat.empty {
@@ -293,7 +294,7 @@ button {
 
 .dropdown-form input {
   padding: 10px;
-  max-width: 170px;
+  max-width: 190px;
   font-size: 0.8em;
   font-weight: 600;
   text-align: center;

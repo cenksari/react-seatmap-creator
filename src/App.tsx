@@ -157,13 +157,8 @@ const App = (): React.JSX.Element => {
    *
    * @param {string} name - The row identifier where the seats will be added.
    */
-  const addSeatedRow = (name: string) => {
-    if (seatData.has(name)) {
-      // eslint-disable-next-line no-alert
-      alert(`Row ${name} already exists.`);
-
-      return;
-    }
+  const addSeatedRow = (name: string): boolean => {
+    if (seatData.has(name)) return false;
 
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
@@ -174,6 +169,8 @@ const App = (): React.JSX.Element => {
 
       return newSeatData;
     });
+
+    return true;
   };
 
   /**
@@ -224,7 +221,7 @@ const App = (): React.JSX.Element => {
   };
 
   // eslint-disable-next-line no-console
-  const setPreview = () => console.log(Array.from(seatData.values()).flat());
+  const saveData = () => console.log(Array.from(seatData.values()).flat());
 
   return (
     <div className='container'>
@@ -235,7 +232,7 @@ const App = (): React.JSX.Element => {
           {(droppableProvided) => (
             <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
               {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
-                <Draggable key={row} draggableId={row} index={index}>
+                <Draggable key={row} index={index} draggableId={row}>
                   {(draggableProvided) => (
                     <div
                       ref={draggableProvided.innerRef}
@@ -274,10 +271,10 @@ const App = (): React.JSX.Element => {
       <NewRow addEmptyRow={addEmptyRow} addSeatedRow={addSeatedRow} />
 
       <div className='flex flex-gap-medium flex-end buttons'>
-        <button type='button' className='button gray' onClick={() => setPreview()}>
+        <button type='button' className='button gray' onClick={() => {}}>
           Preview
         </button>
-        <button type='button' className='button black'>
+        <button type='button' className='button black' onClick={() => saveData()}>
           Save chart
         </button>
       </div>

@@ -6,7 +6,7 @@ import useClickOutside from '../hooks/useClickOutside';
 // interfaces
 interface IProps {
   addEmptyRow?: () => void;
-  addSeatedRow?: (name: string) => void;
+  addSeatedRow?: (name: string) => boolean;
 }
 
 interface IFormProps {
@@ -31,13 +31,11 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
   /**
    * Handles the click event on the button by calling the callback function if it exists
    * and toggling the menuOpened state.
-   *
-   * @param {() => void} [callback] The callback function to call when the button is clicked.
    */
-  const handleButtonClick = (callback?: () => void) => {
-    if (callback) callback();
+  const handleEmptyRowAdd = () => {
+    addEmptyRow?.();
 
-    setMenuOpened((prev) => !prev);
+    setMenuOpened(false);
   };
 
   /**
@@ -48,19 +46,23 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
 
     if (!name || name.trim() === '') return;
 
-    handleButtonClick(() => addSeatedRow?.(name));
+    const add = addSeatedRow?.(name);
 
-    setFormValues({ ...formValues, name: '' });
+    if (add) {
+      setFormValues({ ...formValues, name: '' });
+
+      setMenuOpened(false);
+    }
   };
 
   return (
     <div ref={ref} className='flex flex-gap-smallrow relative new-row'>
       <button
         type='button'
-        onClick={() => setMenuOpened((prev) => !prev)}
-        className={`row-label mini-button ${menuOpened ? 'active' : ''}`}
         data-tooltip-id='description'
         data-tooltip-content='New row'
+        onClick={() => setMenuOpened((prev) => !prev)}
+        className={`row-label mini-button ${menuOpened ? 'active' : ''}`}
       >
         <span className='material-symbols-outlined'>add</span>
       </button>
@@ -93,7 +95,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
               </button>
             </div>
           )}
-          <button type='button' onClick={() => handleButtonClick(addEmptyRow)}>
+          <button type='button' onClick={() => handleEmptyRowAdd()}>
             <span className='material-symbols-outlined'>expand</span>
             Add empty row / hallway
           </button>

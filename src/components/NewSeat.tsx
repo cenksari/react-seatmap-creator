@@ -40,10 +40,10 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
     <div ref={ref} className='relative'>
       <button
         type='button'
-        onClick={() => setMenuOpened((prev) => !prev)}
-        className={`seat mini-button ${menuOpened ? 'active' : ''}`}
         data-tooltip-id='description'
         data-tooltip-content='Add new seat'
+        onClick={() => setMenuOpened((prev) => !prev)}
+        className={`seat mini-button ${menuOpened ? 'active' : ''}`}
       >
         <span className='material-symbols-outlined'>add</span>
       </button>

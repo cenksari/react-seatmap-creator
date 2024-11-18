@@ -27,9 +27,7 @@ const Seat = React.memo(({ seat, addEmptySeat, deleteSeat }: IProps): React.JSX.
    * @param {string} direction The direction of the empty seat to be added.
    */
   const handleOnClick = (direction: 'left' | 'right') => {
-    if (addEmptySeat && typeof addEmptySeat === 'function') {
-      addEmptySeat(seat.row, seat.id, direction);
-    }
+    addEmptySeat?.(seat.row, seat.id, direction);
 
     setMenuOpened((prev) => !prev);
   };
