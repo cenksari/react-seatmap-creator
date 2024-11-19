@@ -113,6 +113,39 @@ const App = (): React.JSX.Element => {
   };
 
   /**
+   * Updates the label of the seat with the given seat ID in the specified row.
+   * Checks if the new name already exists in the row and prevents the update if so.
+   *
+   * @param {string} row - The row identifier where the seat label will be updated.
+   * @param {string} seatId - The seat identifier of the seat to update.
+   * @param {string} name - The new label for the seat.
+   */
+  const editSeatName = (row: string, seatId: string, name: string) => {
+    setSeatData((prevSeatData) => {
+      const newSeatData = new Map(prevSeatData);
+      const seatsInRow = newSeatData.get(row) || [];
+
+      const isDuplicate = seatsInRow.some((seat) => seat.label === name && seat.id !== seatId);
+
+      if (isDuplicate) {
+        toast.error(`Seat name "${name}" already exists in row "${row}".`);
+
+        return prevSeatData;
+      }
+
+      const updatedSeats = seatsInRow.map((seat) =>
+        seat.id === seatId ? { ...seat, label: name } : seat
+      );
+
+      newSeatData.set(row, updatedSeats);
+
+      toast.success(`Seat name updated to "${name}".`);
+
+      return newSeatData;
+    });
+  };
+
+  /**
    * Deletes a seat from the seat data.
    * Finds the row of the specified seatId and removes the seat from the row.
    *
@@ -337,6 +370,7 @@ const App = (): React.JSX.Element => {
                               key={seat.id}
                               deleteSeat={deleteSeat}
                               addEmptySeat={addEmptySeat}
+                              editSeatName={editSeatName}
                             />
                           ))}
                           <NewSeat

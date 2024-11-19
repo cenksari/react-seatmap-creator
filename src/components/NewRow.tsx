@@ -92,7 +92,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
         <div className='flex flex-gap flex-column dropdown'>
           <button
             type='button'
-            onClick={() => setFormOpened(!formOpened)}
+            onClick={() => setFormOpened((prev) => !prev)}
             className={formOpened ? 'active' : 'passive'}
           >
             <span className='material-symbols-outlined'>more_horiz</span>
