@@ -89,7 +89,9 @@ const Row = React.memo(({ row, empty, children, editRowName }: IProps): React.JS
           {children}
         </>
       ) : (
-        <div className='row-label'>&bull;</div>
+        <div className='row-label'>
+          <span className='material-symbols-outlined'>arrow_forward</span>
+        </div>
       )}
     </div>
   );

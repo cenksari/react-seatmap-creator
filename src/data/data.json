@@ -630,6 +630,12 @@
     "status": "available"
   },
   {
+    "id": "719cc5e9-e7ea-4740-b8c6-7467cd4fd231",
+    "row": "empty-7467cd4fd231",
+    "label": "0",
+    "status": "empty"
+  },
+  {
     "id": "2ad9b992-e2c7-471e-8b57-94e482eabbd6",
     "row": "F",
     "label": "1",
@@ -1258,11 +1264,5 @@
     "row": "J",
     "label": "20",
     "status": "available"
-  },
-  {
-    "id": "719cc5e9-e7ea-4740-b8c6-7467cd4fd231",
-    "row": "empty-7467cd4fd231",
-    "label": "0",
-    "status": "empty"
   }
 ]
