@@ -59,6 +59,10 @@ button {
   background-color: transparent;
 }
 
+strong {
+  font-weight: 600;
+}
+
 .button {
   padding: 10px 20px;
   border-radius: 10px;

@@ -26,10 +26,10 @@ const App = (): React.JSX.Element => {
 
   React.useEffect(() => {
     const groupByRow = (dataToGroup: ISeat[]) =>
-      dataToGroup.reduce((map, seat) => {
-        map.set(seat.row, [...(map.get(seat.row) || []), seat]);
+      dataToGroup.reduce((acc, seat) => {
+        const currentRow = acc.get(seat.row) || [];
 
-        return map;
+        return new Map(acc).set(seat.row, [...currentRow, seat]);
       }, new Map<string, ISeat[]>());
 
     setSeatData(groupByRow(data));
@@ -220,6 +220,19 @@ const App = (): React.JSX.Element => {
     setSeatData(updatedSeatData);
   };
 
+  /**
+   * Calculates the total number of available seats across all rows.
+   */
+  const getTotalAvailableSeats = () => {
+    let totalAvailableSeats = 0;
+
+    seatData.forEach((seatsInRow) => {
+      totalAvailableSeats += seatsInRow.filter((seat) => seat.status === 'available').length;
+    });
+
+    return totalAvailableSeats;
+  };
+
   // eslint-disable-next-line no-console
   const saveData = () => console.log(Array.from(seatData.values()).flat());
 
@@ -233,33 +246,45 @@ const App = (): React.JSX.Element => {
             <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
               {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
                 <Draggable key={row} index={index} draggableId={row}>
-                  {(draggableProvided) => (
-                    <div
-                      ref={draggableProvided.innerRef}
-                      {...draggableProvided.draggableProps}
-                      {...draggableProvided.dragHandleProps}
-                    >
-                      {row.startsWith('empty-') ? (
-                        <Row empty />
-                      ) : (
-                        <Row row={row} editRowName={editRowName}>
-                          {seatsInRow.map((seat) => (
-                            <Seat
-                              seat={seat}
-                              key={seat.id}
-                              deleteSeat={deleteSeat}
+                  {(draggableProvided) => {
+                    const style = {
+                      ...(draggableProvided.draggableProps.style as React.CSSProperties),
+                    } as React.CSSProperties;
+
+                    if (style.transform) {
+                      const t = style.transform.split(',')[1];
+
+                      style.transform = `translate(0px,${t}`;
+                    }
+
+                    return (
+                      <div
+                        ref={draggableProvided.innerRef}
+                        {...draggableProvided.draggableProps}
+                        {...{ ...draggableProvided.dragHandleProps, style }}
+                      >
+                        {row.startsWith('empty-') ? (
+                          <Row empty />
+                        ) : (
+                          <Row row={row} editRowName={editRowName}>
+                            {seatsInRow.map((seat) => (
+                              <Seat
+                                seat={seat}
+                                key={seat.id}
+                                deleteSeat={deleteSeat}
+                                addEmptySeat={addEmptySeat}
+                              />
+                            ))}
+                            <NewSeat
                               addEmptySeat={addEmptySeat}
+                              addAvailableSeat={addAvailableSeat}
+                              seat={seatsInRow[seatsInRow.length - 1]}
                             />
-                          ))}
-                          <NewSeat
-                            addEmptySeat={addEmptySeat}
-                            addAvailableSeat={addAvailableSeat}
-                            seat={seatsInRow[seatsInRow.length - 1]}
-                          />
-                        </Row>
-                      )}
-                    </div>
-                  )}
+                          </Row>
+                        )}
+                      </div>
+                    );
+                  }}
                 </Draggable>
               ))}
               {droppableProvided.placeholder}
@@ -270,13 +295,18 @@ const App = (): React.JSX.Element => {
 
       <NewRow addEmptyRow={addEmptyRow} addSeatedRow={addSeatedRow} />
 
-      <div className='flex flex-gap-medium flex-end buttons'>
-        <button type='button' className='button gray' onClick={() => {}}>
-          Preview
-        </button>
-        <button type='button' className='button black' onClick={() => saveData()}>
-          Save chart
-        </button>
+      <div className='flex flex-space-between flex-v-center buttons'>
+        <div>
+          Toplam koltuk adedi: <strong>{getTotalAvailableSeats()}</strong>
+        </div>
+        <div className='flex flex-gap-medium'>
+          <button type='button' className='button gray' onClick={() => {}}>
+            Preview
+          </button>
+          <button type='button' className='button black' onClick={() => saveData()}>
+            Save chart
+          </button>
+        </div>
       </div>
 
       <Tooltip id='description' />
