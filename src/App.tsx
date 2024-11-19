@@ -297,7 +297,7 @@ const App = (): React.JSX.Element => {
 
       <div className='flex flex-space-between flex-v-center buttons'>
         <div>
-          Toplam koltuk adedi: <strong>{getTotalAvailableSeats()}</strong>
+          Total seats: <strong>{getTotalAvailableSeats()}</strong>
         </div>
         <div className='flex flex-gap-medium'>
           <button type='button' className='button gray' onClick={() => {}}>
