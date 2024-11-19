@@ -37,7 +37,7 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
   };
 
   return (
-    <div ref={ref} className='relative'>
+    <div ref={ref} className='relative seat-buttons'>
       <button
         type='button'
         data-tooltip-id='description'
