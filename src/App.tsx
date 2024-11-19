@@ -158,7 +158,13 @@ const App = (): React.JSX.Element => {
    * @param {string} name - The row identifier where the seats will be added.
    */
   const addSeatedRow = (name: string): boolean => {
-    if (seatData.has(name)) return false;
+    const normalizedInput = name.toLowerCase();
+
+    const existingRow = Array.from(seatData.keys()).some(
+      (row) => row.toLowerCase() === normalizedInput
+    );
+
+    if (existingRow) return false;
 
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
@@ -181,7 +187,14 @@ const App = (): React.JSX.Element => {
    * @param {string} oldName - The old name for the row.
    */
   const editRowName = (name: string, oldName: string) => {
-    if (seatData.has(name)) return;
+    const normalizedInput = name.toLowerCase();
+
+    // Check if any existing row matches (case insensitive)
+    const existingRow = Array.from(seatData.keys()).some(
+      (row) => row.toLowerCase() === normalizedInput
+    );
+
+    if (existingRow) return;
 
     setSeatData((prevSeatData) => {
       const updatedSeatData = new Map<string, ISeat[]>();
