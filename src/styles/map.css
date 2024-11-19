@@ -201,8 +201,8 @@ strong {
 .seat {
   display: flex;
   cursor: pointer;
-  min-width: 30px;
-  min-height: 30px;
+  min-width: 35px;
+  min-height: 35px;
   font-size: 0.7em;
   border-radius: 5px;
   align-items: center;
@@ -246,8 +246,9 @@ strong {
 }
 
 .dropdown {
-  top: 35px;
+  top: 40px;
   z-index: 9999;
+  min-width: 180px;
   position: absolute;
   border-radius: 5px;
   border: 1px solid #ffffff;
@@ -299,8 +300,8 @@ strong {
 }
 
 .dropdown-form input {
+  width: 100%;
   padding: 10px;
-  max-width: 190px;
   font-size: 0.8em;
   font-weight: 600;
   text-align: center;

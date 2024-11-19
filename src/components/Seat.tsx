@@ -53,12 +53,10 @@ const Seat = React.memo(({ seat, addEmptySeat, deleteSeat }: IProps): React.JSX.
         <span className='material-symbols-outlined'>arrow_forward</span>
         Add space to the right
       </button>
-      {seat.status === 'empty' && (
-        <button type='button' onClick={() => handleOnDelete()}>
-          <span className='material-symbols-outlined'>delete</span>
-          Remove selected space
-        </button>
-      )}
+      <button type='button' onClick={() => handleOnDelete()}>
+        <span className='material-symbols-outlined'>delete</span>
+        Delete selected {seat.status === 'empty' ? 'space' : 'seat'}
+      </button>
     </div>
   );
 
@@ -67,11 +65,12 @@ const Seat = React.memo(({ seat, addEmptySeat, deleteSeat }: IProps): React.JSX.
       <div
         tabIndex={0}
         role='button'
-        data-seat-id={seat.id}
-        data-row-id={seat.row}
         onKeyDown={() => {}}
+        data-row-id={seat.row}
+        data-seat-id={seat.id}
         onClick={() => setMenuOpened((prev) => !prev)}
         className={`seat ${seat.status} ${menuOpened ? 'active' : ''}`}
+        title={seat.status === 'available' ? `${seat.row} ${seat.label}` : ''}
       >
         {seat.status === 'available' && seat.label}
       </div>

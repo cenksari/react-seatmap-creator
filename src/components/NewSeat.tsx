@@ -52,11 +52,11 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
         <div className='flex flex-gap flex-column dropdown'>
           <button type='button' onClick={() => handleSeatAction('right', addAvailableSeat)}>
             <span className='material-symbols-outlined'>event_seat</span>
-            Add seat
+            Add new seat
           </button>
           <button type='button' onClick={() => handleSeatAction('right', addEmptySeat)}>
             <span className='material-symbols-outlined'>check_box_outline_blank</span>
-            Add space
+            Add new space
           </button>
         </div>
       )}

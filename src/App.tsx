@@ -24,14 +24,14 @@ import type { ISeat } from './types/types';
 const App = (): React.JSX.Element => {
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
 
+  const groupByRow = (dataToGroup: ISeat[]) =>
+    dataToGroup.reduce((acc, seat) => {
+      const currentRow = acc.get(seat.row) || [];
+
+      return new Map(acc).set(seat.row, [...currentRow, seat]);
+    }, new Map<string, ISeat[]>());
+
   React.useEffect(() => {
-    const groupByRow = (dataToGroup: ISeat[]) =>
-      dataToGroup.reduce((acc, seat) => {
-        const currentRow = acc.get(seat.row) || [];
-
-        return new Map(acc).set(seat.row, [...currentRow, seat]);
-      }, new Map<string, ISeat[]>());
-
     setSeatData(groupByRow(data));
   }, []);
 
@@ -174,7 +174,7 @@ const App = (): React.JSX.Element => {
   };
 
   /**
-   * Updates the row name in the seat data.
+   * Updates the row label in the seat data.
    * This function is called whenever the user edits the name of an existing row.
    *
    * @param {string} name - The new name for the row.
@@ -198,6 +198,24 @@ const App = (): React.JSX.Element => {
       });
 
       return updatedSeatData;
+    });
+  };
+
+  /**
+   * Deletes a row from the seat data.
+   * Finds the row of the specified row and removes it from the seat data state.
+   *
+   * @param {string} row - The row identifier to delete.
+   */
+  const deleteRow = (row: string) => {
+    setSeatData((prevSeatData) => {
+      const newSeatData = new Map(prevSeatData);
+
+      if (newSeatData.has(row)) {
+        newSeatData.delete(row);
+      }
+
+      return newSeatData;
     });
   };
 
@@ -233,8 +251,16 @@ const App = (): React.JSX.Element => {
     return totalAvailableSeats;
   };
 
+  /**
+   * Saves the seat data.
+   */
   // eslint-disable-next-line no-console
   const saveData = () => console.log(Array.from(seatData.values()).flat());
+
+  /**
+   * Resets the seat data to the initial state.
+   */
+  const resetData = () => setSeatData(groupByRow(data));
 
   return (
     <div className='container'>
@@ -264,9 +290,9 @@ const App = (): React.JSX.Element => {
                         {...{ ...draggableProvided.dragHandleProps, style }}
                       >
                         {row.startsWith('empty-') ? (
-                          <Row empty />
+                          <Row row={row} deleteRow={deleteRow} empty />
                         ) : (
-                          <Row row={row} editRowName={editRowName}>
+                          <Row row={row} deleteRow={deleteRow} editRowName={editRowName}>
                             {seatsInRow.map((seat) => (
                               <Seat
                                 seat={seat}
@@ -302,6 +328,9 @@ const App = (): React.JSX.Element => {
         <div className='flex flex-gap-medium'>
           <button type='button' className='button gray' onClick={() => {}}>
             Preview
+          </button>
+          <button type='button' className='button gray' onClick={() => resetData()}>
+            Reset
           </button>
           <button type='button' className='button black' onClick={() => saveData()}>
             Save chart

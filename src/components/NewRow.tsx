@@ -40,8 +40,12 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
 
   /**
    * Handles the click event on the "Add Seated Row" button.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e
    */
-  const handleSeatedRowAdd = () => {
+  const handleSeatedRowAdd = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const { name } = formValues;
 
     if (!name || name.trim() === '') return;
@@ -75,10 +79,13 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
             className={formOpened ? 'active' : 'passive'}
           >
             <span className='material-symbols-outlined'>more_horiz</span>
-            Add seated row
+            Add new seated row
           </button>
           {formOpened && (
-            <div className='flex flex-gap-small flex-column flex-v-center dropdown-form'>
+            <form
+              onSubmit={handleSeatedRowAdd}
+              className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
+            >
               <input
                 // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
@@ -87,17 +94,15 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
                 maxLength={3}
                 name='rowName'
                 value={formValues.name}
-                placeholder='Enter row name'
+                placeholder='Enter row label'
                 onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
               />
-              <button type='button' onClick={() => handleSeatedRowAdd()}>
-                Add
-              </button>
-            </div>
+              <button type='submit'>Add</button>
+            </form>
           )}
           <button type='button' onClick={() => handleEmptyRowAdd()}>
             <span className='material-symbols-outlined'>expand</span>
-            Add empty row / hallway
+            Add new empty row / hallway
           </button>
         </div>
       )}
