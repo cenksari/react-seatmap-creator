@@ -272,45 +272,31 @@ const App = (): React.JSX.Element => {
             <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
               {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
                 <Draggable key={row} index={index} draggableId={row}>
-                  {(draggableProvided) => {
-                    const style = {
-                      ...(draggableProvided.draggableProps.style as React.CSSProperties),
-                    } as React.CSSProperties;
-
-                    if (style.transform) {
-                      const t = style.transform.split(',')[1];
-
-                      style.transform = `translate(0px,${t}`;
-                    }
-
-                    return (
-                      <div
-                        ref={draggableProvided.innerRef}
-                        {...draggableProvided.draggableProps}
-                        {...{ ...draggableProvided.dragHandleProps, style }}
+                  {(draggableProvided) => (
+                    <div ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>
+                      <Row
+                        row={row}
+                        deleteRow={deleteRow}
+                        editRowName={editRowName}
+                        empty={row.startsWith('empty-')}
+                        dragHandleProps={draggableProvided.dragHandleProps}
                       >
-                        {row.startsWith('empty-') ? (
-                          <Row row={row} deleteRow={deleteRow} empty />
-                        ) : (
-                          <Row row={row} deleteRow={deleteRow} editRowName={editRowName}>
-                            {seatsInRow.map((seat) => (
-                              <Seat
-                                seat={seat}
-                                key={seat.id}
-                                deleteSeat={deleteSeat}
-                                addEmptySeat={addEmptySeat}
-                              />
-                            ))}
-                            <NewSeat
-                              addEmptySeat={addEmptySeat}
-                              addAvailableSeat={addAvailableSeat}
-                              seat={seatsInRow[seatsInRow.length - 1]}
-                            />
-                          </Row>
-                        )}
-                      </div>
-                    );
-                  }}
+                        {seatsInRow.map((seat) => (
+                          <Seat
+                            seat={seat}
+                            key={seat.id}
+                            deleteSeat={deleteSeat}
+                            addEmptySeat={addEmptySeat}
+                          />
+                        ))}
+                        <NewSeat
+                          addEmptySeat={addEmptySeat}
+                          addAvailableSeat={addAvailableSeat}
+                          seat={seatsInRow[seatsInRow.length - 1]}
+                        />
+                      </Row>
+                    </div>
+                  )}
                 </Draggable>
               ))}
               {droppableProvided.placeholder}

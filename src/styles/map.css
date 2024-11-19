@@ -324,3 +324,11 @@ strong {
 .react-tooltip {
   font-size: 0.7em !important;
 }
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}

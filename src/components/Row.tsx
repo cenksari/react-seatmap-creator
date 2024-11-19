@@ -1,4 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
+import { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
 
 // hooks
 import useClickOutside from '../hooks/useClickOutside';
@@ -6,10 +9,11 @@ import useClickOutside from '../hooks/useClickOutside';
 // interfaces
 interface IProps {
   row: string;
-  empty?: boolean;
+  empty: boolean;
   children?: React.ReactNode;
   deleteRow?: (row: string) => void;
   editRowName?: (row: string, oldName: string) => void;
+  dragHandleProps: DraggableProvidedDragHandleProps | null;
 }
 
 interface IFormProps {
@@ -18,7 +22,14 @@ interface IFormProps {
 }
 
 const Row = React.memo(
-  ({ row, empty, children, deleteRow, editRowName }: IProps): React.JSX.Element => {
+  ({
+    row,
+    empty,
+    children,
+    deleteRow,
+    editRowName,
+    dragHandleProps,
+  }: IProps): React.JSX.Element => {
     const ref = React.useRef<HTMLDivElement>(null);
 
     const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
@@ -64,15 +75,29 @@ const Row = React.memo(
           <>
             <div className='row-label'>{row}</div>
             <div ref={ref} className='relative'>
-              <button
-                type='button'
-                className='seat mini-button'
-                data-tooltip-id='description'
-                data-tooltip-content='Edit row'
-                onClick={() => setMenuOpened((prev) => !prev)}
-              >
-                <span className='material-symbols-outlined'>draw</span>
-              </button>
+              <div className='flex flex-gap-small'>
+                <button
+                  type='button'
+                  className='seat mini-button'
+                  data-tooltip-id='description'
+                  data-tooltip-content='Edit row'
+                  onClick={() => setMenuOpened((prev) => !prev)}
+                >
+                  <span className='material-symbols-outlined'>draw</span>
+                </button>
+                <div
+                  tabIndex={0}
+                  role='button'
+                  {...dragHandleProps}
+                  aria-label={`Drag row ${row}`}
+                  data-tooltip-id='description'
+                  data-tooltip-content='Order row'
+                  className='seat mini-button drag-handle'
+                  onMouseDown={(e) => e.preventDefault()}
+                >
+                  <span className='material-symbols-outlined'>menu</span>
+                </div>
+              </div>
 
               {menuOpened && (
                 <div className='flex flex-gap flex-column dropdown'>
@@ -124,6 +149,18 @@ const Row = React.memo(
             >
               <span className='material-symbols-outlined'>delete</span>
             </button>
+            <div
+              tabIndex={0}
+              role='button'
+              {...dragHandleProps}
+              aria-label={`Drag row ${row}`}
+              data-tooltip-id='description'
+              data-tooltip-content='Order row'
+              className='seat mini-button drag-handle'
+              onMouseDown={(e) => e.preventDefault()}
+            >
+              <span className='material-symbols-outlined'>menu</span>
+            </div>
           </>
         )}
       </div>
