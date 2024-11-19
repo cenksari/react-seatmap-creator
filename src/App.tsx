@@ -3,7 +3,7 @@ import React from 'react';
 
 import toast, { Toaster } from 'react-hot-toast';
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 } from 'uuid';
 import { Tooltip } from 'react-tooltip';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
@@ -22,22 +22,37 @@ import NewSeat from './components/NewSeat';
 import Preview from './components/Preview';
 
 // types
-import type { ISeat } from './types/types';
+import type { ISeat, ISeatMap } from './types/types';
 
 const App = (): React.JSX.Element => {
   const [preview, setPreview] = React.useState<boolean>(false);
+  const [seatMap, setSeatMap] = React.useState<ISeatMap | null>(null);
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
 
-  const groupByRow = (dataToGroup: ISeat[]) =>
-    dataToGroup.reduce((acc, seat) => {
+  /**
+   * Given an array of seat objects, groups the seats by their row and returns
+   * a new Map where each key is a row name and each value is an array of seats
+   * in that row.
+   *
+   * @param {ISeat[]} dataToGroup The array of seat objects to group.
+   */
+  const groupByRow = React.useCallback((seats: ISeat[]) => {
+    return seats.reduce((acc, seat) => {
       const currentRow = acc.get(seat.row) || [];
 
-      return new Map(acc).set(seat.row, [...currentRow, seat]);
+      acc.set(seat.row, [...currentRow, seat]);
+
+      return acc;
     }, new Map<string, ISeat[]>());
+  }, []);
 
   React.useEffect(() => {
-    setSeatData(groupByRow(data));
-  }, []);
+    const { seatMapData, ...restData } = data;
+
+    setSeatMap(restData);
+
+    setSeatData(groupByRow(seatMapData));
+  }, [groupByRow]);
 
   /**
    * Adds a new seat to the seat data.
@@ -48,43 +63,43 @@ const App = (): React.JSX.Element => {
    * @param {'left' | 'right'} direction The direction of the insertion.
    * @param {'empty' | 'available'} seatType The type of the new seat.
    */
-  const addSeat = (
-    row: string,
-    seatId: string,
-    direction: 'left' | 'right',
-    seatType: 'empty' | 'available'
-  ) => {
-    setSeatData((prevSeatData) => {
-      const newSeatData = new Map(prevSeatData);
-      const seatsInRow = newSeatData.get(row) || [];
-      const seatIndex = seatsInRow.findIndex((seat) => seat.id === seatId);
+  const addSeat = React.useCallback(
+    (row: string, seatId: string, direction: 'left' | 'right', seatType: 'empty' | 'available') => {
+      setSeatData((prevSeatData) => {
+        const newSeatData = new Map(prevSeatData);
+        const seatsInRow = newSeatData.get(row) || [];
+        const seatIndex = seatsInRow.findIndex((seat) => seat.id === seatId);
 
-      if (seatIndex === -1) return prevSeatData;
+        if (seatIndex === -1) return prevSeatData;
 
-      const newSeat: ISeat = {
-        id: uuidv4(),
-        row,
-        label:
-          seatType === 'available'
-            ? (
-                Math.max(
-                  ...seatsInRow
-                    .filter((seat) => seat.status === 'available')
-                    .map((seat) => parseInt(seat.label, 10)),
-                  0
-                ) + 1
-              ).toString()
-            : '0',
-        status: seatType,
-      };
+        const newSeat: ISeat = {
+          id: v4(),
+          row,
+          label:
+            seatType === 'available'
+              ? (
+                  Math.max(
+                    ...seatsInRow
+                      .filter((seat) => seat.status === 'available')
+                      .map((seat) => parseInt(seat.label, 10)),
+                    0
+                  ) + 1
+                ).toString()
+              : '0',
+          status: seatType,
+        };
 
-      seatsInRow.splice(seatIndex + (direction === 'right' ? 1 : 0), 0, newSeat);
+        seatsInRow.splice(seatIndex + (direction === 'right' ? 1 : 0), 0, newSeat);
 
-      newSeatData.set(row, [...seatsInRow]);
+        newSeatData.set(row, [...seatsInRow]);
 
-      return newSeatData;
-    });
-  };
+        return newSeatData;
+      });
+
+      toast.success(`${seatType === 'available' ? 'Seat' : 'Space'} added successfully`);
+    },
+    []
+  );
 
   /**
    * Adds a new empty seat to the specified row and seat ID in the given direction.
@@ -93,11 +108,12 @@ const App = (): React.JSX.Element => {
    * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
    * @param {'left' | 'right'} direction - The direction relative to the specified seat ID to add the new seat.
    */
-  const addEmptySeat = (row: string, seatId: string, direction: 'left' | 'right') => {
-    addSeat(row, seatId, direction, 'empty');
-
-    toast.success('Space added successfully');
-  };
+  const addEmptySeat = React.useCallback(
+    (row: string, seatId: string, direction: 'left' | 'right') => {
+      addSeat(row, seatId, direction, 'empty');
+    },
+    [addSeat]
+  );
 
   /**
    * Adds a new available seat to the specified row and seat ID in the given direction.
@@ -106,11 +122,12 @@ const App = (): React.JSX.Element => {
    * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
    * @param {'left' | 'right'} direction - The direction relative to the specified seat ID to add the new seat.
    */
-  const addAvailableSeat = (row: string, seatId: string, direction: 'left' | 'right') => {
-    addSeat(row, seatId, direction, 'available');
-
-    toast.success('Seat added successfully');
-  };
+  const addAvailableSeat = React.useCallback(
+    (row: string, seatId: string, direction: 'left' | 'right') => {
+      addSeat(row, seatId, direction, 'available');
+    },
+    [addSeat]
+  );
 
   /**
    * Updates the label of the seat with the given seat ID in the specified row.
@@ -120,30 +137,28 @@ const App = (): React.JSX.Element => {
    * @param {string} seatId - The seat identifier of the seat to update.
    * @param {string} name - The new label for the seat.
    */
-  const editSeatName = (row: string, seatId: string, name: string) => {
-    setSeatData((prevSeatData) => {
-      const newSeatData = new Map(prevSeatData);
-      const seatsInRow = newSeatData.get(row) || [];
+  const editSeatName = React.useCallback((row: string, seatId: string, name: string) => {
+    setSeatData((prev) => {
+      const updated = new Map(prev);
 
-      const isDuplicate = seatsInRow.some((seat) => seat.label === name && seat.id !== seatId);
+      const seats = updated.get(row) || [];
 
-      if (isDuplicate) {
-        toast.error(`Seat name "${name}" already exists in row "${row}".`);
+      if (seats.some((seat) => seat.label === name && seat.id !== seatId)) {
+        toast.error(`Seat name ${name} already exists in row ${row}`);
 
-        return prevSeatData;
+        return prev;
       }
 
-      const updatedSeats = seatsInRow.map((seat) =>
-        seat.id === seatId ? { ...seat, label: name } : seat
+      updated.set(
+        row,
+        seats.map((seat) => (seat.id === seatId ? { ...seat, label: name } : seat))
       );
 
-      newSeatData.set(row, updatedSeats);
+      toast.success(`Seat name updated to ${name}`);
 
-      toast.success(`Seat name updated to "${name}".`);
-
-      return newSeatData;
+      return updated;
     });
-  };
+  }, []);
 
   /**
    * Deletes a seat from the seat data.
@@ -152,37 +167,33 @@ const App = (): React.JSX.Element => {
    * @param {string} row - The row identifier where the seat will be deleted.
    * @param {string} seatId - The seat identifier to delete.
    */
-  const deleteSeat = (row: string, seatId: string) => {
-    setSeatData((prevSeatData) => {
-      const newSeatData = new Map(prevSeatData);
+  const deleteSeat = React.useCallback((row: string, seatId: string) => {
+    setSeatData((prev) => {
+      const updated = new Map(prev);
 
-      const seatsInRow = newSeatData.get(row);
+      const seats = updated.get(row)?.filter((seat) => seat.id !== seatId) || [];
 
-      if (!seatsInRow) return prevSeatData;
-
-      const updatedSeatsInRow = seatsInRow.filter((seat) => seat.id !== seatId);
-
-      if (updatedSeatsInRow.length === 0) {
-        newSeatData.delete(row);
+      if (seats.length === 0) {
+        updated.delete(row);
       } else {
-        newSeatData.set(row, updatedSeatsInRow);
+        updated.set(row, seats);
       }
 
-      return newSeatData;
+      return updated;
     });
 
     toast.success('Item deleted successfully');
-  };
+  }, []);
 
   /**
    * Adds a new empty row to the seat data.
    * Generates a unique row identifier and inserts an empty row into the seat data state.
    */
-  const addEmptyRow = () => {
+  const addEmptyRow = React.useCallback(() => {
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
-      const id = uuidv4();
+      const id = v4();
 
       const rowId = id.replace(/-/g, '').slice(0, 12);
 
@@ -194,7 +205,7 @@ const App = (): React.JSX.Element => {
     });
 
     toast.success('New row added successfully');
-  };
+  }, []);
 
   /**
    * Adds a new seated row to the seat data.
@@ -219,7 +230,7 @@ const App = (): React.JSX.Element => {
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
-      const emptyRow: ISeat = { id: uuidv4(), row: name, label: '1', status: 'available' };
+      const emptyRow: ISeat = { id: v4(), row: name, label: '1', status: 'available' };
 
       newSeatData.set(emptyRow.row, [emptyRow]);
 
@@ -278,19 +289,21 @@ const App = (): React.JSX.Element => {
    *
    * @param {string} row - The row identifier to delete.
    */
-  const deleteRow = (row: string) => {
+  const deleteRow = React.useCallback((row: string) => {
     setSeatData((prevSeatData) => {
-      const newSeatData = new Map(prevSeatData);
+      const updatedSeatData = new Map(prevSeatData);
 
-      if (newSeatData.has(row)) {
-        newSeatData.delete(row);
+      if (!updatedSeatData.delete(row)) {
+        toast.error(`Row ${row} does not exist`);
+
+        return prevSeatData;
       }
 
-      return newSeatData;
-    });
+      toast.success(`Row deleted successfully`);
 
-    toast.success('Row deleted successfully');
-  };
+      return updatedSeatData;
+    });
+  }, []);
 
   /**
    * Handles the drag end event by updating the seat data with the new row order.
@@ -314,39 +327,46 @@ const App = (): React.JSX.Element => {
   /**
    * Calculates the total number of available seats across all rows.
    */
-  const getTotalAvailableSeats = () => {
-    let totalAvailableSeats = 0;
-
-    seatData.forEach((seatsInRow) => {
-      totalAvailableSeats += seatsInRow.filter((seat) => seat.status === 'available').length;
-    });
-
-    return totalAvailableSeats;
-  };
+  const getTotalAvailableSeats = React.useMemo(
+    () =>
+      Array.from(seatData.values())
+        .flat()
+        .filter((seat) => seat.status === 'available').length,
+    [seatData]
+  );
 
   /**
    * Saves the seat data.
    */
-  // eslint-disable-next-line no-console
-  const saveData = () => console.log(Array.from(seatData.values()).flat());
+  const saveData = () => {
+    const newSeatData = Array.from(seatData.values()).flat();
+
+    const mergeSeatMap: ISeatMap = { ...seatMap!, seatMapData: newSeatData };
+
+    // eslint-disable-next-line no-console
+    console.log(mergeSeatMap);
+  };
 
   /**
    * Resets the seat data to the initial state.
    */
-  const resetData = () => setSeatData(groupByRow(data));
+  const resetData = React.useCallback(
+    () => setSeatData(groupByRow(data.seatMapData)),
+    [groupByRow]
+  );
 
   /**
    * Toggles the preview mode on or off.
    */
-  const openPreview = () => setPreview(!preview);
+  const togglePreview = React.useCallback(() => setPreview((prev) => !prev), []);
 
   if (preview) {
-    return <Preview seatData={seatData} closePreview={openPreview} />;
+    return <Preview seatData={seatData} text={seatMap?.stageText} togglePreview={togglePreview} />;
   }
 
   return (
     <div className='container'>
-      <Stage />
+      <Stage text={seatMap?.stageText} />
 
       <div className='seatmap'>
         <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -394,10 +414,10 @@ const App = (): React.JSX.Element => {
 
       <div className='flex flex-space-between flex-v-center buttons'>
         <div className='totals'>
-          Total seats: <strong>{getTotalAvailableSeats()}</strong>
+          Total seats: <strong>{getTotalAvailableSeats}</strong>
         </div>
         <div className='flex flex-gap-medium'>
-          <button type='button' className='button gray' onClick={() => openPreview()}>
+          <button type='button' className='button gray' onClick={() => togglePreview()}>
             Preview
           </button>
           <button type='button' className='button gray' onClick={() => resetData()}>

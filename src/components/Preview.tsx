@@ -10,14 +10,15 @@ import type { ISeat } from '../types/types';
 
 // interfaces
 interface IProps {
+  text?: string;
   seatData: Map<string, ISeat[]>;
-  closePreview: () => void;
+  togglePreview: () => void;
 }
 
-const Preview = ({ seatData, closePreview }: IProps): React.JSX.Element => {
+const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element => {
   return (
     <div className='container'>
-      <Stage />
+      <Stage text={text} />
 
       <div className='seatmap'>
         {Array.from(seatData?.entries())?.map(([row, seatsInRow]) => (
@@ -30,7 +31,7 @@ const Preview = ({ seatData, closePreview }: IProps): React.JSX.Element => {
       </div>
 
       <div className='flex flex-end buttons'>
-        <button type='button' className='button black' onClick={() => closePreview()}>
+        <button type='button' className='button black' onClick={() => togglePreview()}>
           Close preview
         </button>
       </div>

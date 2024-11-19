@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Stage = (): React.JSX.Element => {
-  return <div className='stage'>STAGE</div>;
+// interfaces
+interface IProps {
+  text?: string;
+}
+
+const Stage = ({ text }: IProps): React.JSX.Element => {
+  return <div className='stage'>{text}</div>;
 };
 
 export default Stage;
