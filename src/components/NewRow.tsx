@@ -59,6 +59,17 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
     }
   };
 
+  /**
+   * Handles a key press event to close open dropdown.
+   *
+   * @param {React.KeyboardEvent<HTMLInputElement>} e - The event object from the key press.
+   */
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Escape') {
+      setMenuOpened(false);
+    }
+  };
+
   return (
     <div ref={ref} className='flex flex-gap-smallrow relative new-row'>
       <button
@@ -82,23 +93,31 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
             Add new seated row
           </button>
           {formOpened && (
-            <form
-              onSubmit={handleSeatedRowAdd}
-              className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
-            >
-              <input
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus
-                type='text'
-                id='rowName'
-                maxLength={3}
-                name='rowName'
-                value={formValues.name}
-                placeholder='Enter row label'
-                onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
-              />
-              <button type='submit'>Add</button>
-            </form>
+            <>
+              <form
+                onSubmit={handleSeatedRowAdd}
+                className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
+              >
+                <input
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
+                  autoFocus
+                  type='text'
+                  id='rowName'
+                  maxLength={3}
+                  name='rowName'
+                  value={formValues.name}
+                  onKeyDown={handleKeyDown}
+                  placeholder='Enter row label'
+                  onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
+                />
+                <button type='submit'>Add</button>
+              </form>
+
+              <button type='button' onClick={() => setMenuOpened(false)}>
+                <span className='material-symbols-outlined'>close</span>
+                Exit adding
+              </button>
+            </>
           )}
           <button type='button' onClick={() => handleEmptyRowAdd()}>
             <span className='material-symbols-outlined'>expand</span>

@@ -101,6 +101,10 @@ strong {
   background-color: #222222;
 }
 
+.no-pointer-events {
+  pointer-events: none;
+}
+
 .flex {
   display: flex;
 }
@@ -158,10 +162,14 @@ strong {
 }
 
 .container {
-  margin: 10px;
+  margin: 20px;
   user-select: none;
   white-space: nowrap;
   --webkit-user-select: none;
+}
+
+.seatmap {
+  padding-bottom: 10px;
 }
 
 .stage {
@@ -171,7 +179,7 @@ strong {
   font-size: 1.2em;
   text-align: center;
   border-radius: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   letter-spacing: 20px;
   background-color: #7a0404;
 }
@@ -242,7 +250,7 @@ strong {
 }
 
 .buttons {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .dropdown {
@@ -253,6 +261,10 @@ strong {
   border-radius: 5px;
   border: 1px solid #ffffff;
   background-color: #222222;
+}
+
+.dropdown.right {
+  right: 0;
 }
 
 .dropdown button {
@@ -331,4 +343,18 @@ strong {
 
 .drag-handle:active {
   cursor: grabbing;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons .totals {
+    margin-bottom: 20px;
+  }
 }

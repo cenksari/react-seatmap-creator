@@ -42,7 +42,7 @@ const Seat = React.memo(({ seat, addEmptySeat, deleteSeat }: IProps): React.JSX.
   };
 
   const renderDropdown = (): React.JSX.Element => (
-    <div className='flex flex-gap flex-column dropdown'>
+    <div className='flex flex-gap flex-column dropdown right'>
       {seat.status === 'available' && (
         <button type='button' onClick={() => handleOnClick('left')}>
           <span className='material-symbols-outlined'>arrow_back</span>

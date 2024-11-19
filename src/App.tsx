@@ -279,49 +279,51 @@ const App = (): React.JSX.Element => {
     <div className='container'>
       <Stage />
 
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId='rows' direction='vertical'>
-          {(droppableProvided) => (
-            <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
-              {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
-                <Draggable key={row} index={index} draggableId={row}>
-                  {(draggableProvided) => (
-                    <div ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>
-                      <Row
-                        row={row}
-                        deleteRow={deleteRow}
-                        editRowName={editRowName}
-                        empty={row.startsWith('empty-')}
-                        dragHandleProps={draggableProvided.dragHandleProps}
-                      >
-                        {seatsInRow.map((seat) => (
-                          <Seat
-                            seat={seat}
-                            key={seat.id}
-                            deleteSeat={deleteSeat}
+      <div className='seatmap'>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId='rows' direction='vertical'>
+            {(droppableProvided) => (
+              <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
+                {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
+                  <Draggable key={row} index={index} draggableId={row}>
+                    {(draggableProvided) => (
+                      <div ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>
+                        <Row
+                          row={row}
+                          deleteRow={deleteRow}
+                          editRowName={editRowName}
+                          empty={row.startsWith('empty-')}
+                          dragHandleProps={draggableProvided.dragHandleProps}
+                        >
+                          {seatsInRow.map((seat) => (
+                            <Seat
+                              seat={seat}
+                              key={seat.id}
+                              deleteSeat={deleteSeat}
+                              addEmptySeat={addEmptySeat}
+                            />
+                          ))}
+                          <NewSeat
                             addEmptySeat={addEmptySeat}
+                            addAvailableSeat={addAvailableSeat}
+                            seat={seatsInRow[seatsInRow.length - 1]}
                           />
-                        ))}
-                        <NewSeat
-                          addEmptySeat={addEmptySeat}
-                          addAvailableSeat={addAvailableSeat}
-                          seat={seatsInRow[seatsInRow.length - 1]}
-                        />
-                      </Row>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {droppableProvided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                        </Row>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {droppableProvided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
 
       <NewRow addEmptyRow={addEmptyRow} addSeatedRow={addSeatedRow} />
 
       <div className='flex flex-space-between flex-v-center buttons'>
-        <div>
+        <div className='totals'>
           Total seats: <strong>{getTotalAvailableSeats()}</strong>
         </div>
         <div className='flex flex-gap-medium'>

@@ -49,7 +49,7 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
       </button>
 
       {menuOpened && (
-        <div className='flex flex-gap flex-column dropdown'>
+        <div className='flex flex-gap flex-column dropdown right'>
           <button type='button' onClick={() => handleSeatAction('right', addAvailableSeat)}>
             <span className='material-symbols-outlined'>event_seat</span>
             Add new seat

@@ -69,6 +69,17 @@ const Row = React.memo(
       setMenuOpened(false);
     };
 
+    /**
+     * Handles a key press event to close open dropdown.
+     *
+     * @param {React.KeyboardEvent<HTMLInputElement>} e - The event object from the key press.
+     */
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+      if (e.key === 'Escape') {
+        setMenuOpened(false);
+      }
+    };
+
     return (
       <div data-row-id={row} className='flex flex-gap-small row'>
         {!empty ? (
@@ -101,7 +112,7 @@ const Row = React.memo(
 
               {menuOpened && (
                 <div className='flex flex-gap flex-column dropdown'>
-                  <button type='button' className='active'>
+                  <button type='button' className='active no-pointer-events'>
                     <span className='material-symbols-outlined'>draw</span>
                     Edit row label
                   </button>
@@ -117,6 +128,7 @@ const Row = React.memo(
                       maxLength={3}
                       name='rowName'
                       value={formValues.name}
+                      onKeyDown={handleKeyDown}
                       placeholder='Enter row label'
                       onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
                     />
