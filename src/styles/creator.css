@@ -169,6 +169,7 @@ strong {
 }
 
 .seatmap {
+  overflow: auto;
   padding-bottom: 10px;
 }
 
@@ -253,8 +254,16 @@ strong {
   border-bottom: 5px solid red;
 }
 
+.seat.preview {
+  cursor: default;
+}
+
+.seat:hover {
+  background-color: unset;
+}
+
 .buttons {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .dropdown {
@@ -359,6 +368,6 @@ strong {
   }
 
   .buttons .totals {
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
 }

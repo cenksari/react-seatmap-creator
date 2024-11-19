@@ -10,6 +10,7 @@ import useClickOutside from '../hooks/useClickOutside';
 interface IProps {
   row: string;
   empty: boolean;
+  preview?: boolean;
   children?: React.ReactNode;
   deleteRow?: (row: string) => void;
   editRowName?: (row: string, oldName: string) => void;
@@ -25,6 +26,7 @@ const Row = React.memo(
   ({
     row,
     empty,
+    preview,
     children,
     deleteRow,
     editRowName,
@@ -87,70 +89,72 @@ const Row = React.memo(
     };
 
     return (
-      <div data-row-id={row} className='flex flex-gap-small row'>
+      <div className='flex flex-gap-small row'>
         {!empty ? (
           <>
             <div className='row-label'>{row}</div>
-            <div ref={ref} className='relative'>
-              <div className='flex flex-gap-small row-buttons'>
-                <button
-                  type='button'
-                  className='seat mini-button'
-                  data-tooltip-id='description'
-                  data-tooltip-content='Edit row'
-                  onClick={() => setMenuOpened((prev) => !prev)}
-                >
-                  <span className='material-symbols-outlined'>draw</span>
-                </button>
-                <div
-                  tabIndex={0}
-                  role='button'
-                  {...dragHandleProps}
-                  aria-label={`Drag row ${row}`}
-                  data-tooltip-id='description'
-                  data-tooltip-content='Move row'
-                  className='seat mini-button drag-handle'
-                  onMouseDown={(e) => e.preventDefault()}
-                >
-                  <span className='material-symbols-outlined'>menu</span>
-                </div>
-              </div>
-
-              {menuOpened && (
-                <div className='flex flex-gap flex-column dropdown'>
-                  <button type='button' className='active no-pointer-events'>
-                    <span className='material-symbols-outlined'>draw</span>
-                    Edit row label
-                  </button>
-                  <form
-                    onSubmit={handleEditRowName}
-                    className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
+            {!preview && (
+              <div ref={ref} className='relative'>
+                <div className='flex flex-gap-small row-buttons'>
+                  <button
+                    type='button'
+                    className='seat mini-button'
+                    data-tooltip-id='description'
+                    data-tooltip-content='Edit row'
+                    onClick={() => setMenuOpened((prev) => !prev)}
                   >
-                    <input
-                      // eslint-disable-next-line jsx-a11y/no-autofocus
-                      autoFocus
-                      type='text'
-                      id='rowName'
-                      maxLength={3}
-                      name='rowName'
-                      value={formValues.name}
-                      onKeyDown={handleKeyDown}
-                      placeholder='Enter row label'
-                      onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
-                    />
-                    <button type='submit'>Update</button>
-                  </form>
-                  <button type='button' onClick={() => handleDeleteRow()}>
-                    <span className='material-symbols-outlined'>delete</span>
-                    Delete row
+                    <span className='material-symbols-outlined'>draw</span>
                   </button>
-                  <button type='button' onClick={() => resetAll()}>
-                    <span className='material-symbols-outlined'>close</span>
-                    Exit editing
-                  </button>
+                  <div
+                    tabIndex={0}
+                    role='button'
+                    {...dragHandleProps}
+                    aria-label={`Drag row ${row}`}
+                    data-tooltip-id='description'
+                    data-tooltip-content='Move row'
+                    className='seat mini-button drag-handle'
+                    onMouseDown={(e) => e.preventDefault()}
+                  >
+                    <span className='material-symbols-outlined'>menu</span>
+                  </div>
                 </div>
-              )}
-            </div>
+
+                {menuOpened && (
+                  <div className='flex flex-gap flex-column dropdown'>
+                    <button type='button' className='active no-pointer-events'>
+                      <span className='material-symbols-outlined'>draw</span>
+                      Edit row label
+                    </button>
+                    <form
+                      onSubmit={handleEditRowName}
+                      className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
+                    >
+                      <input
+                        // eslint-disable-next-line jsx-a11y/no-autofocus
+                        autoFocus
+                        type='text'
+                        id='rowName'
+                        maxLength={3}
+                        name='rowName'
+                        value={formValues.name}
+                        onKeyDown={handleKeyDown}
+                        placeholder='Enter row label'
+                        onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
+                      />
+                      <button type='submit'>Update</button>
+                    </form>
+                    <button type='button' onClick={() => handleDeleteRow()}>
+                      <span className='material-symbols-outlined'>delete</span>
+                      Delete row
+                    </button>
+                    <button type='button' onClick={() => resetAll()}>
+                      <span className='material-symbols-outlined'>close</span>
+                      Exit editing
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
             {children}
           </>
         ) : (
@@ -158,27 +162,31 @@ const Row = React.memo(
             <div className='row-label'>
               <span className='material-symbols-outlined'>arrow_forward</span>
             </div>
-            <button
-              type='button'
-              className='seat mini-button'
-              data-tooltip-id='description'
-              data-tooltip-content='Delete row'
-              onClick={() => handleDeleteRow()}
-            >
-              <span className='material-symbols-outlined'>delete</span>
-            </button>
-            <div
-              tabIndex={0}
-              role='button'
-              {...dragHandleProps}
-              aria-label={`Drag row ${row}`}
-              data-tooltip-id='description'
-              data-tooltip-content='Order row'
-              className='seat mini-button drag-handle'
-              onMouseDown={(e) => e.preventDefault()}
-            >
-              <span className='material-symbols-outlined'>menu</span>
-            </div>
+            {!preview && (
+              <>
+                <button
+                  type='button'
+                  className='seat mini-button'
+                  data-tooltip-id='description'
+                  data-tooltip-content='Delete row'
+                  onClick={() => handleDeleteRow()}
+                >
+                  <span className='material-symbols-outlined'>delete</span>
+                </button>
+                <div
+                  tabIndex={0}
+                  role='button'
+                  {...dragHandleProps}
+                  aria-label={`Drag row ${row}`}
+                  data-tooltip-id='description'
+                  data-tooltip-content='Order row'
+                  className='seat mini-button drag-handle'
+                  onMouseDown={(e) => e.preventDefault()}
+                >
+                  <span className='material-symbols-outlined'>menu</span>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

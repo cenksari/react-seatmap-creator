@@ -8,7 +8,7 @@ import { Tooltip } from 'react-tooltip';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
 // styles
-import './styles/map.css';
+import './styles/creator.css';
 
 // data
 import data from './data/data.json';
@@ -19,11 +19,13 @@ import Seat from './components/Seat';
 import Stage from './components/Stage';
 import NewRow from './components/NewRow';
 import NewSeat from './components/NewSeat';
+import Preview from './components/Preview';
 
 // types
 import type { ISeat } from './types/types';
 
 const App = (): React.JSX.Element => {
+  const [preview, setPreview] = React.useState<boolean>(false);
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
 
   const groupByRow = (dataToGroup: ISeat[]) =>
@@ -300,6 +302,15 @@ const App = (): React.JSX.Element => {
    */
   const resetData = () => setSeatData(groupByRow(data));
 
+  /**
+   * Toggles the preview mode on or off.
+   */
+  const openPreview = () => setPreview(!preview);
+
+  if (preview) {
+    return <Preview seatData={seatData} closePreview={openPreview} />;
+  }
+
   return (
     <div className='container'>
       <Stage />
@@ -352,7 +363,7 @@ const App = (): React.JSX.Element => {
           Total seats: <strong>{getTotalAvailableSeats()}</strong>
         </div>
         <div className='flex flex-gap-medium'>
-          <button type='button' className='button gray' onClick={() => {}}>
+          <button type='button' className='button gray' onClick={() => openPreview()}>
             Preview
           </button>
           <button type='button' className='button gray' onClick={() => resetData()}>
