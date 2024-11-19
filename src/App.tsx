@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 import { v4 as uuidv4 } from 'uuid';
 import { Tooltip } from 'react-tooltip';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
@@ -91,6 +93,8 @@ const App = (): React.JSX.Element => {
    */
   const addEmptySeat = (row: string, seatId: string, direction: 'left' | 'right') => {
     addSeat(row, seatId, direction, 'empty');
+
+    toast.success('Space added successfully');
   };
 
   /**
@@ -102,6 +106,8 @@ const App = (): React.JSX.Element => {
    */
   const addAvailableSeat = (row: string, seatId: string, direction: 'left' | 'right') => {
     addSeat(row, seatId, direction, 'available');
+
+    toast.success('Seat added successfully');
   };
 
   /**
@@ -129,6 +135,8 @@ const App = (): React.JSX.Element => {
 
       return newSeatData;
     });
+
+    toast.success('Item deleted successfully');
   };
 
   /**
@@ -149,6 +157,8 @@ const App = (): React.JSX.Element => {
 
       return newSeatData;
     });
+
+    toast.success('New row added successfully');
   };
 
   /**
@@ -164,8 +174,13 @@ const App = (): React.JSX.Element => {
       (row) => row.toLowerCase() === normalizedInput
     );
 
-    if (existingRow) return false;
+    if (existingRow) {
+      toast.error(`Row with name ${name} already exists`, {
+        icon: '😮',
+      });
 
+      return false;
+    }
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
@@ -175,6 +190,8 @@ const App = (): React.JSX.Element => {
 
       return newSeatData;
     });
+
+    toast.success(`Row ${name} added successfully`);
 
     return true;
   };
@@ -194,24 +211,30 @@ const App = (): React.JSX.Element => {
       (row) => row.toLowerCase() === normalizedInput
     );
 
-    if (existingRow) return;
-
-    setSeatData((prevSeatData) => {
-      const updatedSeatData = new Map<string, ISeat[]>();
-
-      Array.from(prevSeatData.entries()).forEach(([row, seats]) => {
-        if (row === oldName) {
-          updatedSeatData.set(
-            name,
-            seats.map((seat) => ({ ...seat, row: name }))
-          );
-        } else {
-          updatedSeatData.set(row, seats);
-        }
+    if (existingRow) {
+      toast.error(`Row with name ${name} already exists`, {
+        icon: '😮',
       });
+    } else {
+      setSeatData((prevSeatData) => {
+        const updatedSeatData = new Map<string, ISeat[]>();
 
-      return updatedSeatData;
-    });
+        Array.from(prevSeatData.entries()).forEach(([row, seats]) => {
+          if (row === oldName) {
+            updatedSeatData.set(
+              name,
+              seats.map((seat) => ({ ...seat, row: name }))
+            );
+          } else {
+            updatedSeatData.set(row, seats);
+          }
+        });
+
+        toast.success(`Row ${name} edited successfully`);
+
+        return updatedSeatData;
+      });
+    }
   };
 
   /**
@@ -230,6 +253,8 @@ const App = (): React.JSX.Element => {
 
       return newSeatData;
     });
+
+    toast.success('Row deleted successfully');
   };
 
   /**
@@ -340,6 +365,17 @@ const App = (): React.JSX.Element => {
       </div>
 
       <Tooltip id='description' />
+
+      <Toaster
+        position='bottom-center'
+        toastOptions={{
+          style: {
+            color: '#ffffff',
+            borderRadius: '10px',
+            background: '#333333',
+          },
+        }}
+      />
     </div>
   );
 };
