@@ -216,7 +216,7 @@ strong {
   cursor: pointer;
   min-width: 35px;
   min-height: 35px;
-  font-size: 0.7em;
+  font-size: 0.6em;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
@@ -258,7 +258,7 @@ strong {
   cursor: default;
 }
 
-.seat:hover {
+.seat.preview:hover {
   background-color: unset;
 }
 
