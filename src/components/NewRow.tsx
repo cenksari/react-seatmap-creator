@@ -23,10 +23,18 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
     name: '',
   });
 
-  useClickOutside(ref, (): void => {
+  /**
+   * Resets the state of the NewRow component back to its initial state.
+   * This includes setting the menu and form to be closed, and resetting the form
+   * values to their initial state.
+   */
+  const resetAll = () => {
     setMenuOpened(false);
     setFormOpened(false);
-  });
+    setFormValues({ ...formValues, name: '' });
+  };
+
+  useClickOutside(ref, (): void => resetAll());
 
   /**
    * Handles the click event on the button by calling the callback function if it exists
@@ -35,7 +43,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
   const handleEmptyRowAdd = () => {
     addEmptyRow?.();
 
-    setMenuOpened(false);
+    resetAll();
   };
 
   /**
@@ -53,9 +61,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
     const add = addSeatedRow?.(name);
 
     if (add) {
-      setFormValues({ ...formValues, name: '' });
-
-      setMenuOpened(false);
+      resetAll();
     }
   };
 
@@ -66,12 +72,12 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
    */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Escape') {
-      setMenuOpened(false);
+      resetAll();
     }
   };
 
   return (
-    <div ref={ref} className='flex flex-gap-smallrow relative new-row'>
+    <div ref={ref} className='flex relative new-row'>
       <button
         type='button'
         data-tooltip-id='description'
@@ -113,7 +119,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
                 <button type='submit'>Add</button>
               </form>
 
-              <button type='button' onClick={() => setMenuOpened(false)}>
+              <button type='button' onClick={() => resetAll()}>
                 <span className='material-symbols-outlined'>close</span>
                 Exit adding
               </button>

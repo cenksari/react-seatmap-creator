@@ -39,9 +39,15 @@ const Row = React.memo(
       oldName: row || '',
     });
 
-    useClickOutside(ref, (): void => {
+    /**
+     * Resets the state of the Row component back to its initial state.
+     * This includes setting the menu to be closed.
+     */
+    const resetAll = () => {
       setMenuOpened(false);
-    });
+    };
+
+    useClickOutside(ref, (): void => resetAll());
 
     /**
      * Handles the click event on the "Edit row" button.
@@ -66,7 +72,7 @@ const Row = React.memo(
     const handleDeleteRow = () => {
       deleteRow?.(row);
 
-      setMenuOpened(false);
+      resetAll();
     };
 
     /**
@@ -76,7 +82,7 @@ const Row = React.memo(
      */
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
       if (e.key === 'Escape') {
-        setMenuOpened(false);
+        resetAll();
       }
     };
 
@@ -86,7 +92,7 @@ const Row = React.memo(
           <>
             <div className='row-label'>{row}</div>
             <div ref={ref} className='relative'>
-              <div className='flex flex-gap-small'>
+              <div className='flex flex-gap-small row-buttons'>
                 <button
                   type='button'
                   className='seat mini-button'
@@ -102,7 +108,7 @@ const Row = React.memo(
                   {...dragHandleProps}
                   aria-label={`Drag row ${row}`}
                   data-tooltip-id='description'
-                  data-tooltip-content='Order row'
+                  data-tooltip-content='Move row'
                   className='seat mini-button drag-handle'
                   onMouseDown={(e) => e.preventDefault()}
                 >
@@ -138,7 +144,7 @@ const Row = React.memo(
                     <span className='material-symbols-outlined'>delete</span>
                     Delete row
                   </button>
-                  <button type='button' onClick={() => setMenuOpened(false)}>
+                  <button type='button' onClick={() => resetAll()}>
                     <span className='material-symbols-outlined'>close</span>
                     Exit editing
                   </button>

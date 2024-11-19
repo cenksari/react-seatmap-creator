@@ -206,6 +206,10 @@ strong {
   font-size: 1.1em;
 }
 
+.row-buttons {
+  margin-right: 10px;
+}
+
 .seat {
   display: flex;
   cursor: pointer;
