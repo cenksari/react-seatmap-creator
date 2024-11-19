@@ -193,11 +193,9 @@ const App = (): React.JSX.Element => {
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
-      const id = v4();
+      const rowId = v4().replace(/-/g, '').slice(0, 12);
 
-      const rowId = id.replace(/-/g, '').slice(0, 12);
-
-      const emptyRow: ISeat = { id, row: `empty-${rowId}`, label: '0', status: 'empty' };
+      const emptyRow: ISeat = { id: v4(), row: `empty-${rowId}`, label: '0', status: 'empty' };
 
       newSeatData.set(emptyRow.row, [emptyRow]);
 
@@ -227,6 +225,7 @@ const App = (): React.JSX.Element => {
 
       return false;
     }
+
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
@@ -252,7 +251,6 @@ const App = (): React.JSX.Element => {
   const editRowName = (name: string, oldName: string) => {
     const normalizedInput = name.toLowerCase();
 
-    // Check if any existing row matches (case insensitive)
     const existingRow = Array.from(seatData.keys()).some(
       (row) => row.toLowerCase() === normalizedInput
     );
@@ -313,15 +311,13 @@ const App = (): React.JSX.Element => {
   const handleOnDragEnd = ({ source, destination }: DropResult) => {
     if (!destination || source.index === destination.index) return;
 
-    const rows = Array.from(seatData.keys());
+    const updatedRows = Array.from(seatData.keys());
 
-    const [movedRow] = rows.splice(source.index, 1);
+    const [movedRow] = updatedRows.splice(source.index, 1);
 
-    rows.splice(destination.index, 0, movedRow);
+    updatedRows.splice(destination.index, 0, movedRow);
 
-    const updatedSeatData = new Map(rows.map((row) => [row, seatData.get(row) || []]));
-
-    setSeatData(updatedSeatData);
+    setSeatData(new Map(updatedRows.map((row) => [row, seatData.get(row) ?? []])));
   };
 
   /**
