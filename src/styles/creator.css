@@ -63,7 +63,19 @@ strong {
   font-weight: 600;
 }
 
+header {
+  margin-bottom: 20px;
+}
+
+header input {
+  padding: 10px;
+  max-width: 210px;
+  border-radius: 10px;
+  border: 1px solid #dadada;
+}
+
 .button {
+  color: #000000;
   padding: 10px 20px;
   border-radius: 10px;
 }
@@ -172,6 +184,11 @@ strong {
   padding-bottom: 10px;
 }
 
+.seatmap.scroll {
+  overflow: auto;
+  white-space: nowrap;
+}
+
 .stage {
   padding: 10px;
   color: #ffffff;
@@ -213,6 +230,7 @@ strong {
 
 .seat-buttons {
   margin-left: 10px;
+  padding-right: 20px;
 }
 
 .seat {
@@ -267,7 +285,7 @@ strong {
 }
 
 .buttons {
-  margin-top: 10px;
+  margin: 10px 0 20px 0;
 }
 
 .dropdown {

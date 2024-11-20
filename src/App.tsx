@@ -17,6 +17,7 @@ import data from './data/data.json';
 import Row from './components/Row';
 import Seat from './components/Seat';
 import Stage from './components/Stage';
+import Header from './components/Header';
 import NewRow from './components/NewRow';
 import NewSeat from './components/NewSeat';
 import Preview from './components/Preview';
@@ -25,6 +26,8 @@ import Preview from './components/Preview';
 import type { ISeat, ISeatMap } from './types/types';
 
 const App = (): React.JSX.Element => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [loading, setLoading] = React.useState<boolean>(true);
   const [preview, setPreview] = React.useState<boolean>(false);
   const [seatMap, setSeatMap] = React.useState<ISeatMap | null>(null);
   const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
@@ -52,6 +55,8 @@ const App = (): React.JSX.Element => {
     setSeatMap(restData);
 
     setSeatData(groupByRow(seatMapData));
+
+    setLoading(false);
   }, [groupByRow]);
 
   /**
@@ -356,12 +361,18 @@ const App = (): React.JSX.Element => {
    */
   const togglePreview = React.useCallback(() => setPreview((prev) => !prev), []);
 
+  if (loading) {
+    return <div className='container'>Loading seat map. Please wait...</div>;
+  }
+
   if (preview) {
     return <Preview seatData={seatData} text={seatMap?.stageText} togglePreview={togglePreview} />;
   }
 
   return (
     <div className='container'>
+      <Header seatMap={seatMap} />
+
       <Stage text={seatMap?.stageText} />
 
       <div className='seatmap'>

@@ -136,6 +136,7 @@ const Row = React.memo(
                         id='rowName'
                         maxLength={3}
                         name='rowName'
+                        autoComplete='off'
                         value={formValues.name}
                         onKeyDown={handleKeyDown}
                         placeholder='Enter row label'

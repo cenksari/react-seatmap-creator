@@ -123,6 +123,7 @@ const Seat = React.memo(
                     id='seatName'
                     maxLength={3}
                     name='seatName'
+                    autoComplete='off'
                     value={formValues.name}
                     onKeyDown={handleKeyDown}
                     placeholder='Enter seat label'

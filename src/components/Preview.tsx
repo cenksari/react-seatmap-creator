@@ -20,7 +20,7 @@ const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element =
     <div className='container'>
       <Stage text={text} />
 
-      <div className='seatmap'>
+      <div className='seatmap scroll'>
         {Array.from(seatData?.entries())?.map(([row, seatsInRow]) => (
           <Row preview row={row} key={row} dragHandleProps={null} empty={row.startsWith('empty-')}>
             {seatsInRow.map((seat) => (

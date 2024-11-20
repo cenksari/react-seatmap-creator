@@ -111,6 +111,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
                   id='rowName'
                   maxLength={3}
                   name='rowName'
+                  autoComplete='off'
                   value={formValues.name}
                   onKeyDown={handleKeyDown}
                   placeholder='Enter row label'
