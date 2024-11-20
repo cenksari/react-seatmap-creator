@@ -32,6 +32,10 @@ const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element =
 
   const [props, setProps] = React.useState(defaultValues);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className='close-button'>
