@@ -68,8 +68,24 @@ const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element =
           onChange={(val: any) => setProps(val)}
           btnClass='button circle flex flex-v-center flex-h-center'
           translationBounds={{ xMax: width - 50, yMax: height - 50 }}
-          plusBtnContents={<span className='material-symbols-outlined'>zoom_in</span>}
-          minusBtnContents={<span className='material-symbols-outlined'>zoom_out</span>}
+          plusBtnContents={
+            <span
+              data-tooltip-id='description'
+              data-tooltip-content='Zoom in'
+              className='material-symbols-outlined'
+            >
+              zoom_in
+            </span>
+          }
+          minusBtnContents={
+            <span
+              data-tooltip-id='description'
+              data-tooltip-content='Zoom out'
+              className='material-symbols-outlined'
+            >
+              zoom_out
+            </span>
+          }
         >
           <Stage preview text={text} />
 

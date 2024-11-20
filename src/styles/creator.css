@@ -431,7 +431,7 @@ header input {
 }
 
 .close-button {
-  top: 45px;
+  top: 60px;
   right: 17px;
   z-index: 999999;
   position: absolute;
@@ -442,7 +442,7 @@ header input {
 }
 
 .controls {
-  top: 130px;
+  top: 145px;
   right: 17px;
   z-index: 99999;
   position: absolute;
