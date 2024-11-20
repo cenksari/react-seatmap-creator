@@ -34,7 +34,7 @@ const Header = ({ seatMap, editMapName }: IProps): React.JSX.Element => {
   };
 
   return (
-    <header className='flex flex-gap flex-space-between flex-v-center'>
+    <header className='flex flex-space-between flex-v-center'>
       <form noValidate className='flex flex-gap-medium' onSubmit={handleOnSubmit}>
         <input
           id='name'
