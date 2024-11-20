@@ -372,6 +372,12 @@ header input {
   font-size: 0.7em !important;
 }
 
+.react-tooltip * {
+  font-size: 1.05em;
+  line-height: 160%;
+  text-align: center;
+}
+
 .drag-handle {
   cursor: grab;
 }

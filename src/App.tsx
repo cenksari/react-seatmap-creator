@@ -326,6 +326,17 @@ const App = (): React.JSX.Element => {
   };
 
   /**
+   * Updates the name of the current seat map.
+   *
+   * @param {string} name - The new name for the seat map.
+   */
+  const editMapName = (name: string) => {
+    setSeatMap({ ...seatMap!, name });
+
+    toast.success(`Map name edited successfully`);
+  };
+
+  /**
    * Calculates the total number of available seats across all rows.
    */
   const getTotalAvailableSeats = React.useMemo(
@@ -362,7 +373,7 @@ const App = (): React.JSX.Element => {
   const togglePreview = React.useCallback(() => setPreview((prev) => !prev), []);
 
   if (loading) {
-    return <div className='container'>Loading seat map. Please wait...</div>;
+    return <div className='container'>Loading... Please wait.</div>;
   }
 
   if (preview) {
@@ -371,7 +382,7 @@ const App = (): React.JSX.Element => {
 
   return (
     <div className='container'>
-      <Header seatMap={seatMap} />
+      <Header seatMap={seatMap} editMapName={editMapName} />
 
       <Stage text={seatMap?.stageText} />
 

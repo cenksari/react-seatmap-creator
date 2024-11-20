@@ -54,7 +54,7 @@ const Header = ({ seatMap, editMapName }: IProps): React.JSX.Element => {
           type='button'
           data-tooltip-id='description'
           className='flex flex-gap-small flex-v-center button gray'
-          data-tooltip-html={`<p><strong>Venue name</strong>: ${seatMap?.venueName}</p><p><strong>Block name</strong>: ${seatMap?.blockName}</p>`}
+          data-tooltip-html={`<p><strong>Venue name</strong><br />${seatMap?.venueName}</p><p>&nbsp;</p><p><strong>Block name</strong><br />${seatMap?.blockName}</p>`}
         >
           <span className='material-symbols-outlined'>info</span>
         </button>
