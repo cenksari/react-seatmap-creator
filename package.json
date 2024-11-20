@@ -1,6 +1,6 @@
 {
   "name": "react-seatmap-creator",
-  "version": "0.1.42",
+  "version": "0.1.44",
   "private": true,
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
