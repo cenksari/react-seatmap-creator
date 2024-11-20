@@ -105,8 +105,6 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
                 className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
               >
                 <input
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus
                   type='text'
                   id='rowName'
                   maxLength={3}

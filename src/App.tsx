@@ -337,6 +337,17 @@ const App = (): React.JSX.Element => {
   };
 
   /**
+   * Updates the stage label of the current seat map.
+   *
+   * @param {string} name - The new stage name for the seat map.
+   */
+  const editStageName = (name: string) => {
+    setSeatMap({ ...seatMap!, stageText: name });
+
+    toast.success(`Stage label edited successfully`);
+  };
+
+  /**
    * Calculates the total number of available seats across all rows.
    */
   const getTotalAvailableSeats = React.useMemo(
@@ -384,7 +395,7 @@ const App = (): React.JSX.Element => {
     <div className='container'>
       <Header seatMap={seatMap} editMapName={editMapName} />
 
-      <Stage text={seatMap?.stageText} />
+      <Stage text={seatMap?.stageText} editStageName={editStageName} />
 
       <div className='seatmap'>
         <DragDropContext onDragEnd={handleOnDragEnd}>

@@ -18,7 +18,7 @@ interface IProps {
 const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element => {
   return (
     <div className='container'>
-      <Stage text={text} />
+      <Stage preview text={text} />
 
       <div className='seatmap scroll'>
         {Array.from(seatData?.entries())?.map(([row, seatsInRow]) => (
