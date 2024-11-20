@@ -69,16 +69,17 @@ const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element =
         >
           <Stage preview text={text} />
 
-          {Array.from(seatData?.entries())?.map(([row, seatsInRow]) => (
+          {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
             <Row
               preview
               row={row}
               key={row}
+              rowIndex={index}
               dragHandleProps={null}
               empty={row.startsWith('empty-')}
             >
               {seatsInRow.map((seat) => (
-                <Seat preview seat={seat} key={seat.id} />
+                <Seat preview seat={seat} key={seat.id} rowIndex={index} />
               ))}
             </Row>
           ))}

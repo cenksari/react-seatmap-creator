@@ -195,6 +195,8 @@ header input {
 }
 
 .seatmap {
+  overflow: auto;
+  white-space: nowrap;
   padding-bottom: 10px;
 }
 
@@ -233,7 +235,7 @@ header input {
 
 .row-label {
   display: flex;
-  min-width: 60px;
+  min-width: 70px;
   min-height: 30px;
   font-weight: 600;
   align-items: center;
@@ -251,7 +253,6 @@ header input {
 
 .seat-buttons {
   margin-left: 10px;
-  padding-right: 20px;
 }
 
 .seat {
@@ -300,7 +301,7 @@ header input {
 }
 
 .seat.preview {
-  cursor: default;
+  cursor: inherit;
 }
 
 .seat.preview:hover {
@@ -317,7 +318,6 @@ header input {
 }
 
 .dropdown {
-  top: 40px;
   z-index: 9999;
   min-width: 180px;
   position: absolute;
@@ -326,8 +326,24 @@ header input {
   background-color: #222222;
 }
 
-.dropdown.right {
+.dropdown.top-left {
   right: 0;
+  bottom: 41px;
+}
+
+.dropdown.top-right {
+  left: 0;
+  bottom: 41px;
+}
+
+.dropdown.bottom-left {
+  top: 40px;
+  right: 0;
+}
+
+.dropdown.bottom-right {
+  left: 0;
+  top: 40px;
 }
 
 .dropdown button {
@@ -437,20 +453,11 @@ header input {
 }
 
 @media (max-width: 600px) {
-  .container {
-    margin: 10px;
-  }
-
   .buttons {
     flex-direction: column;
   }
 
   .buttons .totals {
     margin: 20px 0;
-  }
-
-  .seatmap {
-    overflow: auto;
-    white-space: nowrap;
   }
 }

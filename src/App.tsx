@@ -408,6 +408,7 @@ const App = (): React.JSX.Element => {
                       <div ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>
                         <Row
                           row={row}
+                          rowIndex={index}
                           deleteRow={deleteRow}
                           editRowName={editRowName}
                           empty={row.startsWith('empty-')}
@@ -417,12 +418,14 @@ const App = (): React.JSX.Element => {
                             <Seat
                               seat={seat}
                               key={seat.id}
+                              rowIndex={index}
                               deleteSeat={deleteSeat}
                               addEmptySeat={addEmptySeat}
                               editSeatName={editSeatName}
                             />
                           ))}
                           <NewSeat
+                            rowIndex={index}
                             addEmptySeat={addEmptySeat}
                             addAvailableSeat={addAvailableSeat}
                             seat={seatsInRow[seatsInRow.length - 1]}

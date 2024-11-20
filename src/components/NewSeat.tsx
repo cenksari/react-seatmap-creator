@@ -9,11 +9,12 @@ import type { ISeat } from '../types/types';
 // interfaces
 interface IProps {
   seat: ISeat;
+  rowIndex: number;
   addEmptySeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
   addAvailableSeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
 }
 
-const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.Element => {
+const NewSeat = ({ seat, rowIndex, addEmptySeat, addAvailableSeat }: IProps): React.JSX.Element => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
@@ -49,7 +50,13 @@ const NewSeat = ({ seat, addEmptySeat, addAvailableSeat }: IProps): React.JSX.El
       </button>
 
       {menuOpened && (
-        <div className='flex flex-gap flex-column dropdown right'>
+        <div
+          className={
+            rowIndex > 8
+              ? 'flex flex-gap flex-column dropdown top-left'
+              : 'flex flex-gap flex-column dropdown bottom-left'
+          }
+        >
           <button type='button' onClick={() => handleSeatAction('right', addAvailableSeat)}>
             <span className='material-symbols-outlined'>event_seat</span>
             Add new seat

@@ -10,6 +10,7 @@ import type { ISeat } from '../types/types';
 interface IProps {
   seat: ISeat;
   preview?: boolean;
+  rowIndex: number;
   deleteSeat?: (row: string, seatId: string) => void;
   editSeatName?: (row: string, seatId: string, name: string) => void;
   addEmptySeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
@@ -21,7 +22,14 @@ interface IFormProps {
 }
 
 const Seat = React.memo(
-  ({ seat, preview, addEmptySeat, editSeatName, deleteSeat }: IProps): React.JSX.Element => {
+  ({
+    seat,
+    preview,
+    rowIndex,
+    addEmptySeat,
+    editSeatName,
+    deleteSeat,
+  }: IProps): React.JSX.Element => {
     const ref = React.useRef<HTMLDivElement>(null);
 
     const [formOpened, setFormOpened] = React.useState<boolean>(false);
@@ -103,7 +111,13 @@ const Seat = React.memo(
     };
 
     const renderDropdown = (): React.JSX.Element => (
-      <div className='flex flex-gap flex-column dropdown right'>
+      <div
+        className={
+          rowIndex > 4
+            ? 'flex flex-gap flex-column dropdown top-left'
+            : 'flex flex-gap flex-column dropdown bottom-left'
+        }
+      >
         {seat.status === 'available' && (
           <>
             <button type='button' onClick={() => setFormOpened((prev) => !prev)}>

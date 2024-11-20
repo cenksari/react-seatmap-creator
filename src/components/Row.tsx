@@ -10,6 +10,7 @@ import useClickOutside from '../hooks/useClickOutside';
 interface IProps {
   row: string;
   empty: boolean;
+  rowIndex: number;
   preview?: boolean;
   children?: React.ReactNode;
   deleteRow?: (row: string) => void;
@@ -27,6 +28,7 @@ const Row = React.memo(
     row,
     empty,
     preview,
+    rowIndex,
     children,
     deleteRow,
     editRowName,
@@ -98,10 +100,10 @@ const Row = React.memo(
                 <div className='flex flex-gap-small row-buttons'>
                   <button
                     type='button'
-                    className='seat mini-button'
                     data-tooltip-id='description'
                     data-tooltip-content='Edit row'
                     onClick={() => setMenuOpened((prev) => !prev)}
+                    className={menuOpened ? 'seat mini-button active' : 'seat mini-button'}
                   >
                     <span className='material-symbols-outlined'>draw</span>
                   </button>
@@ -120,7 +122,13 @@ const Row = React.memo(
                 </div>
 
                 {menuOpened && (
-                  <div className='flex flex-gap flex-column dropdown'>
+                  <div
+                    className={
+                      rowIndex > 4
+                        ? 'flex flex-gap flex-column dropdown top-right'
+                        : 'flex flex-gap flex-column dropdown bottom-right'
+                    }
+                  >
                     <button type='button' className='active no-pointer-events'>
                       <span className='material-symbols-outlined'>draw</span>
                       Edit row label
