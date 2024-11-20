@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Seat Map",
+  "name": "React Seat Map Creator",
   "icons": [
     {
       "src": "favicon.ico",
