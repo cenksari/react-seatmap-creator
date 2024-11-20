@@ -431,7 +431,7 @@ header input {
 }
 
 .close-button {
-  top: 60px;
+  top: 65px;
   right: 17px;
   z-index: 999999;
   position: absolute;
@@ -442,7 +442,7 @@ header input {
 }
 
 .controls {
-  top: 145px;
+  top: 150px;
   right: 17px;
   z-index: 99999;
   position: absolute;
@@ -450,6 +450,11 @@ header input {
 
 .controls button {
   margin-top: 5px;
+}
+
+.controls button:active,
+.close-button button:active {
+  opacity: 0.7;
 }
 
 @media (max-width: 600px) {
