@@ -201,7 +201,7 @@ header input {
 }
 
 .stage {
-  padding: 10px;
+  padding: 10px 0;
   color: #ffffff;
   font-weight: 600;
   font-size: 1.6em;
@@ -314,7 +314,7 @@ header input {
 }
 
 .buttons {
-  margin: 10px 0 20px 0;
+  margin: 10px 0 40px 0;
 }
 
 .dropdown {
