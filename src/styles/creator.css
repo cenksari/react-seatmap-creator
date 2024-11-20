@@ -113,6 +113,14 @@ header input {
   background-color: #222222;
 }
 
+.button.circle {
+  width: 40px;
+  height: 40px;
+  padding: unset;
+  border-radius: 50em;
+  background-color: #ffffff;
+}
+
 .no-pointer-events {
   pointer-events: none;
 }
@@ -178,6 +186,12 @@ header input {
   user-select: none;
   white-space: nowrap;
   --webkit-user-select: none;
+}
+
+.canvas {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .seatmap {
@@ -251,9 +265,11 @@ header input {
   min-width: 35px;
   min-height: 35px;
   font-size: 0.6em;
+  user-select: none;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
+  --webkit-user-select: none;
   transition: all 0.2s ease-in-out;
 }
 
@@ -293,7 +309,12 @@ header input {
 }
 
 .seat.preview:hover {
-  background-color: unset;
+  background-color: #ffffff !important;
+}
+
+.seat.preview:active {
+  opacity: 1;
+  background-color: #ffffff !important;
 }
 
 .buttons {
@@ -396,6 +417,28 @@ header input {
 
 .drag-handle:active {
   cursor: grabbing;
+}
+
+.close-button {
+  top: 17px;
+  right: 17px;
+  z-index: 999999;
+  position: absolute;
+}
+
+.close-button button {
+  margin-bottom: 5px;
+}
+
+.controls {
+  top: 103px;
+  right: 17px;
+  z-index: 99999;
+  position: absolute;
+}
+
+.controls button {
+  margin-top: 5px;
 }
 
 @media (max-width: 600px) {
