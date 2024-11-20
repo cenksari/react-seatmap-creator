@@ -198,11 +198,6 @@ header input {
   padding-bottom: 10px;
 }
 
-.seatmap.scroll {
-  overflow: auto;
-  white-space: nowrap;
-}
-
 .stage {
   padding: 10px;
   color: #ffffff;
@@ -452,5 +447,10 @@ header input {
 
   .buttons .totals {
     margin: 20px 0;
+  }
+
+  .seatmap {
+    overflow: auto;
+    white-space: nowrap;
   }
 }
