@@ -44,7 +44,7 @@ const NewSeat = ({ seat, rowIndex, addEmptySeat, addAvailableSeat }: IProps): Re
         data-tooltip-id='description'
         data-tooltip-content='Add new seat'
         onClick={() => setMenuOpened((prev) => !prev)}
-        className={`seat mini-button ${menuOpened ? 'active' : ''}`}
+        className={`mini-button ${menuOpened ? 'active' : ''}`}
       >
         <span className='material-symbols-outlined'>add</span>
       </button>

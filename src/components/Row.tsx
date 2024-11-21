@@ -103,7 +103,7 @@ const Row = React.memo(
                     data-tooltip-id='description'
                     data-tooltip-content='Edit row'
                     onClick={() => setMenuOpened((prev) => !prev)}
-                    className={menuOpened ? 'seat mini-button active' : 'seat mini-button'}
+                    className={menuOpened ? 'mini-button active' : 'mini-button'}
                   >
                     <span className='material-symbols-outlined'>draw</span>
                   </button>
@@ -114,7 +114,7 @@ const Row = React.memo(
                     aria-label={`Drag row ${row}`}
                     data-tooltip-id='description'
                     data-tooltip-content='Move row'
-                    className='seat mini-button drag-handle'
+                    className='mini-button drag-handle'
                     onMouseDown={(e) => e.preventDefault()}
                   >
                     <span className='material-symbols-outlined'>menu</span>
@@ -173,7 +173,7 @@ const Row = React.memo(
               <>
                 <button
                   type='button'
-                  className='seat mini-button'
+                  className='mini-button'
                   data-tooltip-id='description'
                   data-tooltip-content='Delete row'
                   onClick={() => handleDeleteRow()}
@@ -187,7 +187,7 @@ const Row = React.memo(
                   aria-label={`Drag row ${row}`}
                   data-tooltip-id='description'
                   data-tooltip-content='Order row'
-                  className='seat mini-button drag-handle'
+                  className='mini-button drag-handle'
                   onMouseDown={(e) => e.preventDefault()}
                 >
                   <span className='material-symbols-outlined'>menu</span>

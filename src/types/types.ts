@@ -12,6 +12,6 @@ export interface ISeatMap {
 export interface ISeat {
   id: string;
   row: string;
+  type: string;
   label: string;
-  status: string;
 }

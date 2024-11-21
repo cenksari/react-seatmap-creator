@@ -11,1267 +11,1267 @@
       "id": "a55086a6-7d32-4ea0-87fc-b65bcc142bb9",
       "row": "A",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5469265f-7a8b-43c6-ad87-11de9b1ef0e0",
       "row": "A",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "926ebeec-60ee-4a52-b3ff-5a0aceddfda3",
       "row": "A",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "0cec2a62-0e1b-45c7-b498-925556f8187f",
       "row": "A",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "d704effe-7f70-497b-a303-50f9cad904ef",
       "row": "A",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "07730f69-4195-44a6-8f89-35534ba25d68",
       "row": "A",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "30e95043-1823-4bed-b3ce-01a11a48e79e",
       "row": "A",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2de5d35a-fec3-4a56-a349-c4a89ba66fd7",
       "row": "A",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "bebc3749-16cc-4d12-975e-ca243cdac36f",
       "row": "A",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "0970ba1d-4c40-4cda-9d29-68505ece74be",
       "row": "A",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5fb8753b-be09-4b58-adda-93e0809f96f3",
       "row": "A",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "37010698-37e8-4651-a232-27df8526aa77",
       "row": "A",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "5dbd6159-1373-4d40-9a9a-a1c5e7002d27",
       "row": "A",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "290dc06a-46d9-45a9-a511-a4934f45e7b2",
       "row": "A",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6922732c-2bfc-4326-8294-bf62ef3b23cf",
       "row": "A",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "788d87d4-73d2-4926-b1f7-c7cde054ff46",
       "row": "A",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c1e90112-7344-4472-8d6c-57d308726ee5",
       "row": "A",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "dc00d545-a689-4fbb-b84c-67daef0fe5a9",
       "row": "A",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "adc0beab-fab3-4e64-9b9a-76c479406191",
       "row": "A",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6635ba08-c57a-4552-a64b-ecc00d4fdd73",
       "row": "A",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ffeb1251-6e54-4fb4-887d-a814d547095a",
       "row": "A",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "a5ca1b9f-7e1b-4ae3-858f-3de717e62bac",
       "row": "B",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "1941f1e2-4cf7-4c7e-a8e4-de87bfb77038",
       "row": "B",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4c068277-1be5-45f5-8505-2b897d493dc5",
       "row": "B",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "1be57f5f-a0a9-4990-86de-5e62d1c52001",
       "row": "B",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "3d4e9275-77a5-4b8e-a690-ba512fb2bf1f",
       "row": "B",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "517aa773-29dc-4771-ab30-38dba1967324",
       "row": "B",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5a0e0a83-8be0-4887-a0d2-8ca238237ded",
       "row": "B",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9e288da9-f233-452c-b294-6b60d22311b7",
       "row": "B",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "48b3724e-0f7f-4cfb-9052-81e59bba38e4",
       "row": "B",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "dedbd4eb-b11b-4023-8ff4-3c789fd535cd",
       "row": "B",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "1bdd9ef7-b74e-45ab-afa8-489ab4e5fb4e",
       "row": "B",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "7361a082-4b5f-4339-a953-3266202e7e64",
       "row": "B",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "56c9786c-1603-4b6a-976e-c925eca1b801",
       "row": "B",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "268f417e-739c-4380-ad56-aaed5e173520",
       "row": "B",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "34cdd9c8-23fd-44d8-80e8-1e818ab86368",
       "row": "B",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "83ebd121-e7be-4108-9841-f768ba6ee547",
       "row": "B",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2ff678a0-d11a-41a1-af36-c15e39160fa8",
       "row": "B",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "37240b3b-991b-4916-8b7b-32a819e98e0d",
       "row": "B",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "76f2b100-ace0-4c89-975e-72475691ddaf",
       "row": "B",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "8319c8b6-a17c-4701-8177-49ad8e2bbf89",
       "row": "B",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "204712de-5fc5-4d3b-8efd-5e94ad91b9b7",
       "row": "B",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9506c499-9345-4a9d-aa7a-c51d330a6045",
       "row": "C",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "8d11082a-7b2b-4ad1-bb51-ebece521c1ad",
       "row": "C",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "864849b0-372d-4201-9e20-b011a0d09a3a",
       "row": "C",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "eda553a1-b3e1-44dc-a849-ebcd6a84f16f",
       "row": "C",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "72e0601b-127a-42f7-b64c-8dbf05683721",
       "row": "C",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "91504e88-51aa-4d97-8e11-d3b8e419d6af",
       "row": "C",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "674db12f-967d-4303-960a-56e55b4fd254",
       "row": "C",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9630a8c6-6bfb-4748-abf6-513ad75a8cf9",
       "row": "C",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "38d905f4-1864-4554-a079-423506b48c47",
       "row": "C",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "cf6c7429-7bc0-480b-ba5c-26d4183ceb15",
       "row": "C",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "fc7a8a14-b51e-44d1-a273-bce917f737d5",
       "row": "C",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "7df68dce-b9ab-4ef0-84d8-e7ddd2f4ca7f",
       "row": "C",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "949a3a91-d834-410f-8606-6b1220466fea",
       "row": "C",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "298e4463-d592-4c9e-85f4-7e4b1c2b8257",
       "row": "C",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "53f0579d-da2a-4964-8256-24f297fe1a27",
       "row": "C",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ebcc8b2b-3cad-4135-ac68-597a631660d6",
       "row": "C",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "e08d07f6-d7d7-49c8-8f77-1b27c54c8510",
       "row": "C",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4d873312-3a8c-4ef5-b8e0-0accf8234267",
       "row": "C",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "7187f912-25f0-4def-bb85-1a2ecb800943",
       "row": "C",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "a390a96e-2a9d-4b5b-ac1d-7e3318d360df",
       "row": "C",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "b26bde7f-bc6d-46a8-8321-8b7e3cbfd4e7",
       "row": "C",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "fa6f9b66-bee0-4dcd-a941-d974948d2256",
       "row": "D",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "16668efe-5de6-4756-ab87-97b7298ed4c5",
       "row": "D",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ef16fda7-e8af-4f8c-8c48-a87c34d2846c",
       "row": "D",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2a700a92-31f0-4139-891b-0818ade86c51",
       "row": "D",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9220b1f5-0121-4d66-a789-7c20e08c85c7",
       "row": "D",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "dff6a1f8-d154-499e-b6e7-3141da988fe3",
       "row": "D",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "eb21a417-caa1-4be8-af8e-49e081e409f2",
       "row": "D",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6a5ef1be-dc52-4362-b624-02382248501c",
       "row": "D",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "f8e62d90-7f11-4116-9094-6e23fa7064da",
       "row": "D",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "fb255c90-f1ed-4506-bb68-00489a95bceb",
       "row": "D",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c552a2e1-e0cf-4510-9af1-1b341c8d9128",
       "row": "D",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "edadba09-eb56-42cf-99c9-d496b8ef73a7",
       "row": "D",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "95f92650-cdad-43f6-bf14-cee42cd20cb9",
       "row": "D",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2e790314-a8a3-4a18-8aef-a5bcfe0ebd80",
       "row": "D",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "069b2237-995d-480d-85c5-ef5a6f255713",
       "row": "D",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "e27db7a5-2446-400c-a15c-f1e387d65453",
       "row": "D",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "d34dad64-c6f5-41ff-abcc-1b06395f9505",
       "row": "D",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "0cdd85e8-6ab8-42a7-958e-e20d2ab1835c",
       "row": "D",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "a4305994-90ba-48af-b70f-0d5d5db9994c",
       "row": "D",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "7701bed2-90f2-4d48-80d0-2e4056694231",
       "row": "D",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "17eed18e-160a-43e6-8071-e76b157106e0",
       "row": "D",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "f4f31e85-baf2-4341-b975-806e71b24375",
       "row": "E",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "206e879c-4599-4698-84c2-00f5c35db7a7",
       "row": "E",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "44b6f178-76a8-478a-8f32-014c26e2b657",
       "row": "E",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "a138f47b-37ae-4b76-9ecf-c8fccb0fb8b6",
       "row": "E",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "3b4c398d-f752-4a36-bc62-f15b54f74153",
       "row": "E",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5540828e-8959-4b2c-80b4-5e3c174dbdac",
       "row": "E",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "3409a265-5c97-43a7-bbf3-72aeb74bee3b",
       "row": "E",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "eb6e8bf7-02bb-4ee6-a932-2c107a5338a1",
       "row": "E",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5324dd13-e287-4f65-825b-57bb998d140c",
       "row": "E",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "b7e8aae5-ea1c-44eb-b375-62f35f875827",
       "row": "E",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5a82d8ee-e4bb-47f6-9373-1ad4b3c50ff3",
       "row": "E",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2d58cf3b-b116-4fe4-bd70-7606d2ca9954",
       "row": "E",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "1c9a21ba-d796-409c-840d-04ce45bca37e",
       "row": "E",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c6880314-d303-4afa-a6fe-eb0dfd6ed343",
       "row": "E",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "e8c1fe91-5d92-4575-aa92-5d4070cd02ea",
       "row": "E",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "fcc02036-9e21-4b6f-977a-882202fea038",
       "row": "E",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6728713f-50fb-4c23-ac31-43d919bdcf71",
       "row": "E",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "347c65a0-06f8-4105-bde6-1b1276e3d938",
       "row": "E",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "197c36a8-10c4-42e3-b548-d61c8b154b3e",
       "row": "E",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2976ad7a-f818-4f79-8614-e5e72b4b72f9",
       "row": "E",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "a83628db-0661-4896-81fd-b179b234d6f7",
       "row": "E",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "719cc5e9-e7ea-4740-b8c6-7467cd4fd231",
       "row": "empty-7467cd4fd231",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "2ad9b992-e2c7-471e-8b57-94e482eabbd6",
       "row": "F",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "8a3ae85c-b651-45af-bde6-ab40ee85fbe0",
       "row": "F",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c8b997c7-3902-4147-8d7f-e6ed0dbb94d1",
       "row": "F",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "68c3a5d7-9867-43cf-b8d2-b80fd33444dc",
       "row": "F",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "377eff41-d9aa-435b-b3b2-aed11698999a",
       "row": "F",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4fa80122-8d84-4323-9ee9-ab135a513d57",
       "row": "F",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "8b50a0dd-32e2-445c-a7b8-0cb334ce58c6",
       "row": "F",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "dded7fbd-e32a-4b3c-bd11-d82384906a6d",
       "row": "F",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "aa6385e2-4be2-4f01-811e-aef03a39b6df",
       "row": "F",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "d6d244e4-1520-4895-99a3-aa642e0da475",
       "row": "F",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4474a3f3-b68a-4d2a-8735-88deacfb70c1",
       "row": "F",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "579d9c28-a241-4243-8456-b9f5097578fa",
       "row": "F",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "e5f11c2a-ef5a-4688-803e-ee339654b3de",
       "row": "F",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ec3adeea-700c-4daf-bd8f-baaaa00db951",
       "row": "F",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6254afcd-7d88-4406-91a1-e3ca77f17a33",
       "row": "F",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2c25a11d-ab63-45f0-ac49-da3b09b2719a",
       "row": "F",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "d86435dc-0730-4dbd-b5ab-7dace1b273de",
       "row": "F",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "39fcec50-9894-41e1-89df-32469ebc6be8",
       "row": "F",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "861b3bdb-803b-45d5-bd45-1eff4fedc780",
       "row": "F",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "d42624d9-874e-4d84-a5a5-0164c5d7a252",
       "row": "F",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "52bd8a01-fa19-4d28-bb29-21acb6ec9684",
       "row": "F",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6b970249-027e-4ee2-ba98-ee4965d5c3b5",
       "row": "G",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "acdf9393-57ae-48be-9db0-6fc4d794f5d5",
       "row": "G",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "1e78f86a-6136-4723-8076-dbbaeb3d6dee",
       "row": "G",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "932749b5-2f90-4170-9d9b-f587df3aea55",
       "row": "G",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "fa78a7de-8f40-4265-9a51-392cc07dff18",
       "row": "G",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "796d8f35-b8d5-4720-9879-cd9ee277f281",
       "row": "G",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9a0939e2-cbf6-4469-a5c0-d55d8d7939f7",
       "row": "G",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "69b265c2-fae2-4f28-b3d9-3564ea396d50",
       "row": "G",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "998144a0-2e47-4219-8105-ba2bb057f4ce",
       "row": "G",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "eb4abe38-0f2d-4628-9608-7821f4723434",
       "row": "G",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "0b896f33-1153-469c-bc3c-ad4e1474945f",
       "row": "G",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c6c0641a-0dc4-4dfd-8842-8232b778895c",
       "row": "G",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "34f2a590-115a-48a7-8216-33083660226f",
       "row": "G",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "142ae975-e12a-453f-a438-9f89659ae6e6",
       "row": "G",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "41ad1ffc-9e63-45e6-bc3f-92eecd748afb",
       "row": "G",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "548adfa4-6978-41c8-b60a-5ae438a3d87b",
       "row": "G",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "f8f40cca-a362-461c-abb9-235f3143c8d2",
       "row": "G",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "db37ffe4-9e03-4b72-87c6-6c7e62c2e177",
       "row": "G",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "1c7a746a-dd9d-42f9-980d-128d5e8a57da",
       "row": "G",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "00be53dd-7812-4949-90aa-bce583b5c59e",
       "row": "G",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "b4eb43bb-667a-4bb6-a2ae-229884e7b9c7",
       "row": "G",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "bc2c579c-2e03-415e-8e4e-c9eb3c788c11",
       "row": "H",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "68f7e236-e503-40e9-87a0-7b62ba1f4b84",
       "row": "H",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9bcb0ceb-53da-41fe-93c5-fc2dc5f1e1ed",
       "row": "H",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "def5bf77-0a15-40c1-a34a-32fec6c7b0fc",
       "row": "H",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "637e0945-ce57-47b2-821d-d2b7a081df96",
       "row": "H",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "dca918b7-64dd-4bf3-9a7f-2718226931e3",
       "row": "H",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "52e16a75-48ab-46d6-8793-d28639ef2fc0",
       "row": "H",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "e6520d97-b513-40ad-885e-b177feb85bfa",
       "row": "H",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c200d29f-6c66-4b51-9820-5ff3eec33530",
       "row": "H",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4eea58c2-5410-4de9-8e34-3b4d47cd8c3f",
       "row": "H",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "bcd47047-8e77-4a80-b616-e78ad6e03162",
       "row": "H",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "705fe742-b082-490c-b05f-c02d10b36ac0",
       "row": "H",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "05537af9-9194-4365-9950-c7fc91362d50",
       "row": "H",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "f3d37a41-94b3-484d-ba53-565b3b029a73",
       "row": "H",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "986136a8-14f5-45ae-9759-94bdb27c10bd",
       "row": "H",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "a82ed344-0aec-4fd2-b573-9d2d4c67b792",
       "row": "H",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4d8190f3-ee68-431c-ab77-3d1f12c9b10f",
       "row": "H",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "de8a15b4-5790-4266-937b-42168e7a9ab4",
       "row": "H",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "4a5bfc37-e9eb-4b6f-ae4d-72349209b1f7",
       "row": "H",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6bf7e150-2514-4d22-bb1b-012bd98886da",
       "row": "H",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "1c168728-c41f-450b-b378-9eba021f1b5c",
       "row": "H",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "59c93df6-c12d-453b-ae7a-f39d087d66c4",
       "row": "I",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "33c49f85-de50-49ba-9358-1695cdd9f99d",
       "row": "I",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9d1b2f16-0e0d-45e6-8917-349801700276",
       "row": "I",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "f0bb9a67-6576-4092-af1a-92cd89a61377",
       "row": "I",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2bffb1a7-83b7-4f95-a699-a559eb43b62c",
       "row": "I",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "b6bbd3c7-b565-476d-a030-898f899d89c3",
       "row": "I",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "57e61b05-4106-4cd4-b4ab-e4637bbf5e9a",
       "row": "I",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "65f1859f-7f75-4c80-9785-5d7dd22e79ac",
       "row": "I",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6d9e2500-a807-43a8-acd2-25391807cc88",
       "row": "I",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "8ed579af-afda-47a6-8e8a-2bf5effbe616",
       "row": "I",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9b3dd3ed-e059-4b3d-9568-7911b5801f5e",
       "row": "I",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "8d205af0-6654-4a33-ba9c-21d693168aec",
       "row": "I",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "1e4a094e-3873-486f-9c88-28b16ea540a2",
       "row": "I",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "57e59ba3-bbf4-48ff-a3cf-17bd891ed43d",
       "row": "I",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "046621bf-e2f9-4e4e-aeb9-f71aab2ddc5a",
       "row": "I",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "45fab12e-9673-418e-b65b-09ce2138255b",
       "row": "I",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "bd78bc39-f186-4d00-b2fb-79cf442882e8",
       "row": "I",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "3622f602-da95-449b-8ac2-1e140e4e5c34",
       "row": "I",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "b9461817-a1d3-47ce-94a6-aca7a88adcd8",
       "row": "I",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "aa8474e3-d25e-4d8e-bdb7-78ae0c9df677",
       "row": "I",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5c50a09e-89cf-40dd-811d-75aa50848cb3",
       "row": "I",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "9572790a-3f7b-4d23-a2a0-7fd4eb759bfc",
       "row": "J",
       "label": "1",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6446f6db-7f7b-4e14-ac6c-5c5397739d80",
       "row": "J",
       "label": "2",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ee9f4d34-48eb-4eb9-bba7-9c69a0a4c22e",
       "row": "J",
       "label": "3",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "401ba63b-5570-4907-91cb-3da3ffaa05df",
       "row": "J",
       "label": "4",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "5da2cb78-7983-450b-9a44-76c17a3853f8",
       "row": "J",
       "label": "5",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "22f0ff8e-9b98-46a4-81f0-cb0102ab2603",
       "row": "J",
       "label": "6",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "aeb012f8-3570-4361-aa79-415ad06394b6",
       "row": "J",
       "label": "7",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "093ba2f0-8b5e-4aa6-8eed-e641eebaa86e",
       "row": "J",
       "label": "8",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ec8bdc61-46b0-4cad-b312-a2e84e184ce7",
       "row": "J",
       "label": "9",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "93c99160-f765-4d5e-97ba-994ba4734068",
       "row": "J",
       "label": "10",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "6ae6f864-c7b0-4a27-be00-8b544e049b37",
       "row": "J",
       "label": "11",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "77058c80-2440-45b8-a84b-2defdd65e277",
       "row": "J",
       "label": "0",
-      "status": "empty"
+      "type": "space"
     },
     {
       "id": "cf3c5b49-3bf2-400d-b8e1-daad089dbcc9",
       "row": "J",
       "label": "12",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "baf467d0-5eca-4354-9f1c-de54b5b5d21c",
       "row": "J",
       "label": "13",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "97b9de98-277e-45c4-8bdb-c1a776e93b08",
       "row": "J",
       "label": "14",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "ba238e66-9751-4c05-bde3-75c806f92cee",
       "row": "J",
       "label": "15",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "0e4b2f63-8733-4a2e-834e-ccab3c5710d1",
       "row": "J",
       "label": "16",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "06964305-8819-4ac7-9b6d-ad0e94b06bf6",
       "row": "J",
       "label": "17",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "2be6cb88-0ede-49f9-b002-bed934eb8fef",
       "row": "J",
       "label": "18",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "74617a78-f39f-4be6-82c2-d511ca995f17",
       "row": "J",
       "label": "19",
-      "status": "available"
+      "type": "seat"
     },
     {
       "id": "c48afd45-3c8b-4b2d-8a4c-4a905e084fb1",
       "row": "J",
       "label": "20",
-      "status": "available"
+      "type": "seat"
     }
   ]
 }

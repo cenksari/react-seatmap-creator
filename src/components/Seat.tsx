@@ -118,7 +118,7 @@ const Seat = React.memo(
             : 'flex flex-gap flex-column dropdown bottom-left'
         }
       >
-        {seat.status === 'available' && (
+        {seat.type === 'seat' && (
           <>
             <button type='button' onClick={() => setFormOpened((prev) => !prev)}>
               <span className='material-symbols-outlined'>draw</span>
@@ -162,7 +162,7 @@ const Seat = React.memo(
         </button>
         <button type='button' onClick={() => handleOnDelete()}>
           <span className='material-symbols-outlined'>delete</span>
-          Delete selected {seat.status === 'empty' ? 'space' : 'seat'}
+          Delete selected {seat.type === 'space' ? 'space' : 'seat'}
         </button>
       </div>
     );
@@ -171,10 +171,10 @@ const Seat = React.memo(
       <div ref={ref} className='relative'>
         {preview ? (
           <div
-            className={`seat preview ${seat.status}`}
-            title={seat.status === 'available' ? `${seat.row} ${seat.label}` : ''}
+            className={`preview ${seat.type}`}
+            title={seat.type === 'seat' ? `${seat.row} ${seat.label}` : ''}
           >
-            {seat.status === 'available' && seat.label}
+            {seat.type === 'seat' && seat.label}
           </div>
         ) : (
           <div
@@ -183,10 +183,10 @@ const Seat = React.memo(
             onKeyDown={() => {}}
             onContextMenu={handleRightClick}
             onClick={() => setMenuOpened((prev) => !prev)}
-            className={`seat ${seat.status} ${menuOpened ? 'active' : ''}`}
-            title={seat.status === 'available' ? `${seat.row} ${seat.label}` : ''}
+            className={`${seat.type} ${menuOpened ? 'active' : ''}`}
+            title={seat.type === 'seat' ? `${seat.row} ${seat.label}` : ''}
           >
-            {seat.status === 'available' && seat.label}
+            {seat.type === 'seat' && seat.label}
           </div>
         )}
         {menuOpened && renderDropdown()}

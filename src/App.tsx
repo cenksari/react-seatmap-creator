@@ -69,7 +69,7 @@ const App = (): React.JSX.Element => {
    * @param {'empty' | 'available'} seatType The type of the new seat.
    */
   const addSeat = React.useCallback(
-    (row: string, seatId: string, direction: 'left' | 'right', seatType: 'empty' | 'available') => {
+    (row: string, seatId: string, direction: 'left' | 'right', seatType: 'space' | 'seat') => {
       setSeatData((prevSeatData) => {
         const newSeatData = new Map(prevSeatData);
         const seatsInRow = newSeatData.get(row) || [];
@@ -81,17 +81,17 @@ const App = (): React.JSX.Element => {
           id: v4(),
           row,
           label:
-            seatType === 'available'
+            seatType === 'seat'
               ? (
                   Math.max(
                     ...seatsInRow
-                      .filter((seat) => seat.status === 'available')
+                      .filter((seat) => seat.type === 'seat')
                       .map((seat) => parseInt(seat.label, 10)),
                     0
                   ) + 1
                 ).toString()
               : '0',
-          status: seatType,
+          type: seatType,
         };
 
         seatsInRow.splice(seatIndex + (direction === 'right' ? 1 : 0), 0, newSeat);
@@ -101,7 +101,7 @@ const App = (): React.JSX.Element => {
         return newSeatData;
       });
 
-      toast.success(`${seatType === 'available' ? 'Seat' : 'Space'} added successfully`);
+      toast.success(`${seatType === 'seat' ? 'Seat' : 'Space'} added successfully`);
     },
     []
   );
@@ -115,7 +115,7 @@ const App = (): React.JSX.Element => {
    */
   const addEmptySeat = React.useCallback(
     (row: string, seatId: string, direction: 'left' | 'right') => {
-      addSeat(row, seatId, direction, 'empty');
+      addSeat(row, seatId, direction, 'space');
     },
     [addSeat]
   );
@@ -129,7 +129,7 @@ const App = (): React.JSX.Element => {
    */
   const addAvailableSeat = React.useCallback(
     (row: string, seatId: string, direction: 'left' | 'right') => {
-      addSeat(row, seatId, direction, 'available');
+      addSeat(row, seatId, direction, 'seat');
     },
     [addSeat]
   );
@@ -200,7 +200,7 @@ const App = (): React.JSX.Element => {
 
       const rowId = v4().replace(/-/g, '').slice(0, 12);
 
-      const emptyRow: ISeat = { id: v4(), row: `empty-${rowId}`, label: '0', status: 'empty' };
+      const emptyRow: ISeat = { id: v4(), row: `empty-${rowId}`, label: '0', type: 'space' };
 
       newSeatData.set(emptyRow.row, [emptyRow]);
 
@@ -234,7 +234,7 @@ const App = (): React.JSX.Element => {
     setSeatData((prevSeatData) => {
       const newSeatData = new Map(prevSeatData);
 
-      const emptyRow: ISeat = { id: v4(), row: name, label: '1', status: 'available' };
+      const emptyRow: ISeat = { id: v4(), row: name, label: '1', type: 'seat' };
 
       newSeatData.set(emptyRow.row, [emptyRow]);
 
@@ -354,7 +354,7 @@ const App = (): React.JSX.Element => {
     () =>
       Array.from(seatData.values())
         .flat()
-        .filter((seat) => seat.status === 'available').length,
+        .filter((seat) => seat.type === 'seat').length,
     [seatData]
   );
 

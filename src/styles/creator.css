@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+:root {
+  --seatWidth: 35px;
+  --hoverColor: #dadada;
+  --stageColor: #7a0404;
+  --backgroundColor: #ffffff;
+}
+
 html,
 body,
 input,
@@ -71,9 +78,10 @@ header input {
   padding: 10px;
   max-width: 350px;
   border-radius: 10px;
-  border: 1px solid #dadada;
+  border: 1px solid var(--hoverColor);
 }
 
+/* Buttons */
 .button {
   color: #000000;
   padding: 10px 20px;
@@ -81,13 +89,24 @@ header input {
 }
 
 .mini-button {
+  display: flex;
+  cursor: pointer;
+  min-width: var(--seatWidth);
+  min-height: var(--seatWidth);
+  font-size: 0.6em;
+  color: var(--backgroundColor);
+  user-select: none;
   border-radius: 5px;
-  border: 1px solid #dadada;
-  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  --webkit-user-select: none;
+  background-color: var(--backgroundColor);
+  border: 1px solid var(--hoverColor);
+  transition: all 0.2s ease-in-out;
 }
 
 .mini-button:hover {
-  background-color: #f5f5f5;
+  background-color: var(--hoverColor);
 }
 
 .button:active,
@@ -96,7 +115,7 @@ header input {
 }
 
 .mini-button.active {
-  background-color: #dadada;
+  background-color: var(--hoverColor);
 }
 
 .mini-button span {
@@ -105,11 +124,11 @@ header input {
 }
 
 .button.gray {
-  background-color: #dadada;
+  background-color: var(--hoverColor);
 }
 
 .button.black {
-  color: #ffffff;
+  color: var(--backgroundColor);
   background-color: #222222;
 }
 
@@ -118,9 +137,11 @@ header input {
   height: 40px;
   padding: unset;
   border-radius: 50em;
-  background-color: #ffffff;
+  background-color: var(--backgroundColor);
 }
+/* End Buttons */
 
+/* Helpers */
 .no-pointer-events {
   pointer-events: none;
 }
@@ -187,7 +208,9 @@ header input {
   white-space: nowrap;
   --webkit-user-select: none;
 }
+/* End Helpers */
 
+/* Seatmap */
 .canvas {
   width: 100vw;
   height: 100vh;
@@ -202,28 +225,30 @@ header input {
 
 .stage {
   padding: 10px 0;
-  color: #ffffff;
+  color: var(--backgroundColor);
   font-weight: 600;
   font-size: 1.6em;
   text-align: center;
   border-radius: 10px;
   margin-bottom: 20px;
   letter-spacing: 20px;
-  background-color: #7a0404;
+  background-color: var(--stageColor);
 }
 
 .stage input {
   padding: 10px;
   border-radius: 5px;
   text-align: center;
-  background-color: #ffffff;
+  background-color: var(--backgroundColor);
 }
 
 .stage button {
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color: var(--backgroundColor);
 }
+/* End Seatmap */
 
+/* Row */
 .new-row {
   margin-top: 10px;
 }
@@ -254,75 +279,86 @@ header input {
 .seat-buttons {
   margin-left: 10px;
 }
+/* End Row */
 
-.seat {
+/* Seat */
+.seat,
+.space {
   display: flex;
   cursor: pointer;
-  min-width: 35px;
-  min-height: 35px;
+  min-width: var(--seatWidth);
+  min-height: var(--seatWidth);
   font-size: 0.6em;
   user-select: none;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
   --webkit-user-select: none;
+  background-color: var(--backgroundColor);
   transition: all 0.2s ease-in-out;
 }
 
-.seat.empty {
-  color: #ffffff;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-}
-
-.seat.available {
+.seat {
   color: #111111;
-  background-color: #ffffff;
   border: 1px solid #222222;
   border-bottom: 5px solid #222222;
 }
 
 .seat:hover {
-  background-color: #dadada;
+  background-color: var(--hoverColor);
 }
 
 .seat:active {
   opacity: 0.8;
 }
 
-.seat.empty.active {
-  background-color: #dadada;
-}
-
-.seat.available.active {
-  color: #ffffff;
-  background-color: #7a0404;
+.seat.active {
+  color: var(--backgroundColor);
+  background-color: var(--stageColor);
   border-bottom: 5px solid red;
 }
 
-.seat.preview {
+.space {
+  color: var(--backgroundColor);
+  border: 1px solid var(--backgroundColor);
+}
+
+.space:hover {
+  background-color: var(--hoverColor);
+}
+
+.space:active {
+  opacity: 0.8;
+}
+
+.space.active {
+  background-color: var(--hoverColor);
+}
+
+.seat.preview,
+.space.preview {
   cursor: inherit;
 }
 
-.seat.preview:hover {
-  background-color: #ffffff !important;
+.seat.preview:hover,
+.space.preview:hover {
+  background-color: var(--backgroundColor);
 }
 
-.seat.preview:active {
+.seat.preview:active,
+.space.preview:active {
   opacity: 1;
-  background-color: #ffffff !important;
+  background-color: var(--backgroundColor);
 }
+/* End Seat */
 
-.buttons {
-  margin: 10px 0 40px 0;
-}
-
+/* Dropdown */
 .dropdown {
   z-index: 9999;
   min-width: 180px;
   position: absolute;
   border-radius: 5px;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--backgroundColor);
   background-color: #222222;
 }
 
@@ -348,7 +384,7 @@ header input {
 
 .dropdown button {
   display: flex;
-  color: #ffffff;
+  color: var(--backgroundColor);
   font-size: 0.8em;
   text-align: left;
   align-items: center;
@@ -411,25 +447,9 @@ header input {
 .dropdown-form button:hover {
   background-color: #222222;
 }
+/* End Dropdown */
 
-.react-tooltip {
-  font-size: 0.7em !important;
-}
-
-.react-tooltip * {
-  font-size: 1.05em;
-  line-height: 160%;
-  text-align: center;
-}
-
-.drag-handle {
-  cursor: grab;
-}
-
-.drag-handle:active {
-  cursor: grabbing;
-}
-
+/* Preview */
 .close-button {
   top: 65px;
   right: 17px;
@@ -456,16 +476,31 @@ header input {
 .close-button button:active {
   opacity: 0.7;
 }
+/* End Preview */
+
+.buttons {
+  margin: 10px 0 40px 0;
+}
+
+.react-tooltip {
+  font-size: 0.7em !important;
+}
+
+.react-tooltip * {
+  font-size: 1.05em;
+  line-height: 160%;
+  text-align: center;
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
 
 @media (max-width: 600px) {
-  .buttons {
-    flex-direction: column;
-  }
-
-  .buttons .totals {
-    margin: 20px 0;
-  }
-
   header input {
     max-width: 180px;
     font-size: 0.9em;
@@ -473,5 +508,13 @@ header input {
 
   .stage input {
     max-width: 120px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons .totals {
+    margin: 20px 0;
   }
 }
