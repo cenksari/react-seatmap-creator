@@ -239,12 +239,10 @@ header input {
 .stage input {
   padding: 10px;
   border-radius: 5px;
-  text-align: center;
   background-color: var(--backgroundColor);
 }
 
 .stage button {
-  border-radius: 5px;
   background-color: var(--backgroundColor);
 }
 /* End Seatmap */
@@ -269,7 +267,6 @@ header input {
 }
 
 .row-label:not(button) span {
-  color: #777777;
   font-size: 1.1em;
 }
 

@@ -90,6 +90,17 @@ const Row = React.memo(
       }
     };
 
+    /**
+     * Handles the right-click event on the seat to toggle the menuOpened state.
+     *
+     * @param {React.MouseEvent} event - The event object from the right-click action.
+     */
+    const handleRightClick = (event: React.MouseEvent) => {
+      event.preventDefault();
+
+      setMenuOpened((prev) => !prev);
+    };
+
     return (
       <div className='flex flex-gap-small row'>
         {!empty ? (
@@ -102,6 +113,7 @@ const Row = React.memo(
                     type='button'
                     data-tooltip-id='description'
                     data-tooltip-content='Edit row'
+                    onContextMenu={handleRightClick}
                     onClick={() => setMenuOpened((prev) => !prev)}
                     className={menuOpened ? 'mini-button active' : 'mini-button'}
                   >

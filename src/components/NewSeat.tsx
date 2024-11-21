@@ -37,12 +37,22 @@ const NewSeat = ({ seat, rowIndex, addSeat, addSpace }: IProps): React.JSX.Eleme
     setMenuOpened(false);
   };
 
+  /**
+   * Handles the right-click event on the seat to toggle the menuOpened state.
+   *
+   * @param {React.MouseEvent} event - The event object from the right-click action.
+   */
+  const handleRightClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+
+    setMenuOpened((prev) => !prev);
+  };
+
   return (
     <div ref={ref} className='relative seat-buttons'>
       <button
         type='button'
-        data-tooltip-id='description'
-        data-tooltip-content='Add new seat'
+        onContextMenu={handleRightClick}
         onClick={() => setMenuOpened((prev) => !prev)}
         className={`mini-button ${menuOpened ? 'active' : ''}`}
       >

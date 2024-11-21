@@ -38,7 +38,7 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
 
   return (
     <>
-      <div className='close-button'>
+      <div className='close-button' onContextMenu={(e) => e.preventDefault()}>
         <button
           type='button'
           data-tooltip-id='description'
@@ -58,7 +58,7 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
           <span className='material-symbols-outlined'>my_location</span>
         </button>
       </div>
-      <div className='canvas'>
+      <div className='canvas' onContextMenu={(e) => e.preventDefault()}>
         <MapInteractionCSS
           showControls
           value={props}

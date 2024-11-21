@@ -398,7 +398,7 @@ const App = (): React.JSX.Element => {
 
       <Stage text={seatMap?.stageText} editStageName={editStageName} />
 
-      <div ref={seatsRef} className='seatmap'>
+      <div ref={seatsRef} className='seatmap' onContextMenu={(e) => e.preventDefault()}>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='rows' direction='vertical'>
             {(droppableProvided) => (
