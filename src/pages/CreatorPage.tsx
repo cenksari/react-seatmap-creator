@@ -23,7 +23,7 @@ import NewSeat from '../components/NewSeat';
 import Preview from '../components/Preview';
 
 // types
-import type { ISeat, ISeatMap } from '../types/types';
+import type { ISeat, ISeatMap, ISeatType, IDirection } from '../types/types';
 
 const CreatorPage = (): React.JSX.Element => {
   const seatsRef = React.useRef<HTMLDivElement>(null);
@@ -66,11 +66,11 @@ const CreatorPage = (): React.JSX.Element => {
    *
    * @param {string} row The row identifier for the seat.
    * @param {string} seatId The id of the seat to insert the new seat next to.
-   * @param {'left' | 'right'} direction The direction of the insertion.
-   * @param {'space' | 'seat'} seatType The type of the new seat.
+   * @param {IDirection} direction The direction of the insertion.
+   * @param {ISeatType} seatType The type of the new seat.
    */
   const addSeatAction = React.useCallback(
-    (row: string, seatId: string, direction: 'left' | 'right', seatType: 'space' | 'seat') => {
+    (row: string, seatId: string, direction: IDirection, seatType: ISeatType) => {
       setSeatData((prevSeatData) => {
         const newSeatData = new Map(prevSeatData);
         const seatsInRow = newSeatData.get(row) || [];
@@ -108,29 +108,16 @@ const CreatorPage = (): React.JSX.Element => {
   );
 
   /**
-   * Adds a new space to the specified row and seat ID in the given direction.
-   *
-   * @param {string} row - The row identifier where the seat will be added.
-   * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
-   * @param {'left' | 'right'} direction - The direction relative to the specified seat ID to add the new seat.
-   */
-  const addSpace = React.useCallback(
-    (row: string, seatId: string, direction: 'left' | 'right') => {
-      addSeatAction(row, seatId, direction, 'space');
-    },
-    [addSeatAction]
-  );
-
-  /**
    * Adds a new seat to the specified row and seat ID in the given direction.
    *
    * @param {string} row - The row identifier where the seat will be added.
    * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
-   * @param {'left' | 'right'} direction - The direction relative to the specified seat ID to add the new seat.
+   * @param {IDirection} direction - The direction relative to the specified seat ID to add the new seat.
+   * @param {ISeatType} type - The type of the new seat to add.
    */
   const addSeat = React.useCallback(
-    (row: string, seatId: string, direction: 'left' | 'right') => {
-      addSeatAction(row, seatId, direction, 'seat');
+    (row: string, seatId: string, direction: IDirection, type: ISeatType) => {
+      addSeatAction(row, seatId, direction, type);
     },
     [addSeatAction]
   );
@@ -422,14 +409,13 @@ const CreatorPage = (): React.JSX.Element => {
                               seat={seat}
                               key={seat.id}
                               rowIndex={index}
-                              addSpace={addSpace}
+                              addSpace={addSeat}
                               deleteSeat={deleteSeat}
                               editSeatName={editSeatName}
                             />
                           ))}
                           <NewSeat
                             rowIndex={index}
-                            addSpace={addSpace}
                             addSeat={addSeat}
                             seat={seatsInRow[seatsInRow.length - 1]}
                           />

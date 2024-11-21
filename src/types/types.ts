@@ -15,3 +15,7 @@ export interface ISeat {
   type: string;
   label: string;
 }
+
+export type ISeatType = 'seat' | 'space';
+
+export type IDirection = 'left' | 'right';

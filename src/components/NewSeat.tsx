@@ -4,17 +4,16 @@ import React from 'react';
 import useClickOutside from '../hooks/useClickOutside';
 
 // types
-import type { ISeat } from '../types/types';
+import type { ISeat, ISeatType, IDirection } from '../types/types';
 
 // interfaces
 interface IProps {
   seat: ISeat;
   rowIndex: number;
-  addSeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
-  addSpace?: (row: string, seatId: string, direction: 'left' | 'right') => void;
+  addSeat?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void;
 }
 
-const NewSeat = ({ seat, rowIndex, addSeat, addSpace }: IProps): React.JSX.Element => {
+const NewSeat = ({ seat, rowIndex, addSeat }: IProps): React.JSX.Element => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
@@ -26,13 +25,14 @@ const NewSeat = ({ seat, rowIndex, addSeat, addSpace }: IProps): React.JSX.Eleme
    * and toggling the menuOpened state.
    *
    * @param {() => void} [callback] The callback function to call when the button is clicked.
-   * @param {'left' | 'right'} direction The direction to pass to the callback function.
+   * @param {IDirection} direction The direction to pass to the callback function.
    */
   const handleSeatAction = (
-    direction: 'left' | 'right',
-    callback?: (row: string, seatId: string, direction: 'left' | 'right') => void
+    direction: IDirection,
+    type: ISeatType,
+    callback?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void
   ) => {
-    if (callback) callback(seat.row, seat.id, direction);
+    if (callback) callback(seat.row, seat.id, direction, type);
 
     setMenuOpened(false);
   };
@@ -67,11 +67,11 @@ const NewSeat = ({ seat, rowIndex, addSeat, addSpace }: IProps): React.JSX.Eleme
               : 'flex flex-gap flex-column dropdown bottom-left'
           }
         >
-          <button type='button' onClick={() => handleSeatAction('right', addSeat)}>
+          <button type='button' onClick={() => handleSeatAction('right', 'seat', addSeat)}>
             <span className='material-symbols-outlined'>event_seat</span>
             Add new seat
           </button>
-          <button type='button' onClick={() => handleSeatAction('right', addSpace)}>
+          <button type='button' onClick={() => handleSeatAction('right', 'space', addSeat)}>
             <span className='material-symbols-outlined'>check_box_outline_blank</span>
             Add new space
           </button>

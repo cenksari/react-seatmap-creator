@@ -4,7 +4,7 @@ import React from 'react';
 import useClickOutside from '../hooks/useClickOutside';
 
 // types
-import type { ISeat } from '../types/types';
+import type { ISeat, ISeatType, IDirection } from '../types/types';
 
 // interfaces
 interface IProps {
@@ -13,7 +13,7 @@ interface IProps {
   rowIndex: number;
   deleteSeat?: (row: string, seatId: string) => void;
   editSeatName?: (row: string, seatId: string, name: string) => void;
-  addSpace?: (row: string, seatId: string, direction: 'left' | 'right') => void;
+  addSpace?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void;
 }
 
 interface IFormProps {
@@ -49,8 +49,8 @@ const Seat = React.memo(
      *
      * @param {string} direction The direction of the space to be added.
      */
-    const handleOnClick = (direction: 'left' | 'right') => {
-      addSpace?.(seat.row, seat.id, direction);
+    const handleOnClick = (direction: IDirection) => {
+      addSpace?.(seat.row, seat.id, direction, 'space');
 
       setMenuOpened((prev) => !prev);
     };
