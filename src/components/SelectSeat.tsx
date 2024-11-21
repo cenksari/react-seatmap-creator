@@ -6,14 +6,11 @@ import type { ISeat } from '../types/types';
 // interfaces
 interface IProps {
   seat: ISeat;
-  onSelect?: () => void;
+  selected: boolean;
+  onSelect: () => void;
 }
 
-const SelectSeat = React.memo(({ seat, onSelect }: IProps): React.JSX.Element => {
-  const handleOnSelect = () => {
-    onSelect?.();
-  };
-
+const SelectSeat = React.memo(({ seat, selected, onSelect }: IProps): React.JSX.Element => {
   return (
     <div>
       {seat.type === 'seat' ? (
@@ -21,8 +18,8 @@ const SelectSeat = React.memo(({ seat, onSelect }: IProps): React.JSX.Element =>
           tabIndex={0}
           role='button'
           onKeyDown={() => {}}
-          className={`${seat.type}`}
-          onClick={() => handleOnSelect()}
+          className={`${seat.type} ${selected ? 'active' : ''}`}
+          onClick={() => onSelect()}
           title={seat.type === 'seat' ? `${seat.row} ${seat.label}` : ''}
         >
           {seat.type === 'seat' && seat.label}

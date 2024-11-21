@@ -457,7 +457,7 @@ const CreatorPage = (): React.JSX.Element => {
             Reset
           </button>
           <button type='button' className='button black' onClick={() => saveData()}>
-            Save chart
+            Save seat map
           </button>
         </div>
       </div>

@@ -8,8 +8,8 @@ import useWindowDimensions from '../hooks/useWindowDimensions';
 
 // components
 import Row from './Row';
-import Seat from './Seat';
 import Stage from './Stage';
+import SelectSeat from './SelectSeat';
 
 // types
 import type { ISeat } from '../types/types';
@@ -31,10 +31,28 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
   const { width, height } = useWindowDimensions();
 
   const [props, setProps] = React.useState(defaultValues);
+  const [selectedSeats, setSelectedSeats] = React.useState<ISeat[]>([]);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  /**
+   * Handles the selection of a seat by logging the seat data to the console.
+   * Intended to be replaced with a callback function that performs the actual
+   * logic for selecting a seat.
+   *
+   * @param {ISeat} seat The seat object to be selected.
+   */
+  const handleSelect = (seat: ISeat) => {
+    setSelectedSeats((prev) => {
+      if (prev.includes(seat)) {
+        return prev.filter((s) => s.id !== seat.id);
+      }
+
+      return [...prev, seat];
+    });
+  };
 
   return (
     <>
@@ -79,7 +97,12 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
               empty={row.startsWith('empty-')}
             >
               {seatsInRow.map((seat) => (
-                <Seat preview seat={seat} key={seat.id} rowIndex={index} />
+                <SelectSeat
+                  seat={seat}
+                  key={seat.id}
+                  onSelect={() => handleSelect(seat)}
+                  selected={selectedSeats.includes(seat)}
+                />
               ))}
             </Row>
           ))}
