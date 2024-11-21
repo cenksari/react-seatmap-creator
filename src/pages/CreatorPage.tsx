@@ -384,6 +384,8 @@ const CreatorPage = (): React.JSX.Element => {
    */
   const togglePreview = React.useCallback(() => setPreview((prev) => !prev), []);
 
+  const rows = React.useMemo(() => Array.from(seatData?.entries()), [seatData]);
+
   if (loading) {
     return <div className='container'>Loading... Please wait.</div>;
   }
@@ -403,7 +405,7 @@ const CreatorPage = (): React.JSX.Element => {
           <Droppable droppableId='rows' direction='vertical'>
             {(droppableProvided) => (
               <div ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
-                {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
+                {rows?.map(([row, seatsInRow], index) => (
                   <Draggable key={row} index={index} draggableId={row}>
                     {(draggableProvided) => (
                       <div ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>

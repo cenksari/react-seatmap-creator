@@ -44,15 +44,13 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
    *
    * @param {ISeat} seat The seat object to be selected.
    */
-  const handleSelect = (seat: ISeat) => {
-    setSelectedSeats((prev) => {
-      if (prev.includes(seat)) {
-        return prev.filter((s) => s.id !== seat.id);
-      }
+  const handleSelect = React.useCallback((seat: ISeat) => {
+    setSelectedSeats((prev) =>
+      prev.includes(seat) ? prev.filter((s) => s.id !== seat.id) : [...prev, seat]
+    );
+  }, []);
 
-      return [...prev, seat];
-    });
-  };
+  const rows = React.useMemo(() => Array.from(seatData?.entries()), [seatData]);
 
   return (
     <>
@@ -87,7 +85,7 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
         >
           <Stage preview text={text} />
 
-          {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
+          {rows?.map(([row, seatsInRow], index) => (
             <Row
               preview
               row={row}

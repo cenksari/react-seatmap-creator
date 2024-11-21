@@ -11,25 +11,40 @@ interface IProps {
 }
 
 const SelectSeat = React.memo(({ seat, selected, onSelect }: IProps): React.JSX.Element => {
+  const isSeat = seat.type === 'seat';
+  const title = isSeat ? `${seat.row} ${seat.label}` : '';
+  const classNames = `${seat.type} ${selected && isSeat ? 'active' : ''}`;
+
+  /**
+   * Handles the key down event for the seat element. If the 'Enter' or space key is pressed,
+   * it prevents the default action and triggers the onSelect callback.
+   *
+   * @param {React.KeyboardEvent<HTMLDivElement>} event - The keyboard event object.
+   */
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      onSelect();
+    }
+  };
+
   return (
     <div>
-      {seat.type === 'seat' ? (
+      {isSeat ? (
         <div
           tabIndex={0}
           role='button'
-          onKeyDown={() => {}}
-          className={`${seat.type} ${selected ? 'active' : ''}`}
-          onClick={() => onSelect()}
-          title={seat.type === 'seat' ? `${seat.row} ${seat.label}` : ''}
+          title={title}
+          onClick={onSelect}
+          className={classNames}
+          onKeyDown={handleKeyDown}
         >
-          {seat.type === 'seat' && seat.label}
+          {seat.label}
         </div>
       ) : (
-        <div
-          className={`preview ${seat.type}`}
-          title={seat.type === 'seat' ? `${seat.row} ${seat.label}` : ''}
-        >
-          {seat.type === 'seat' && seat.label}
+        <div className={`preview ${seat.type}`} title={title}>
+          {seat.label}
         </div>
       )}
     </div>
