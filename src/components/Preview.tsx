@@ -107,6 +107,21 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
         </MapInteractionCSS>
       </div>
 
+      <div className='flex flex-gap-large flex-v-center legend'>
+        <div>
+          <strong>Legend</strong>
+        </div>
+        <div className='flex flex-gap-small flex-v-center'>
+          <div className='seat' /> Available
+        </div>
+        <div className='flex flex-gap-small flex-v-center'>
+          <div className='seat active' /> Selected
+        </div>
+        <div className='flex flex-gap-small flex-v-center'>
+          <div className='seat occupied' /> Not available
+        </div>
+      </div>
+
       <Tooltip id='description' />
     </>
   );

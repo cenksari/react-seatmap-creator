@@ -348,7 +348,42 @@ header input {
   opacity: 1;
   background-color: var(--backgroundColor);
 }
+
+.seat.occupied {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 /* End Seat */
+
+/* Legend */
+.legend {
+  left: 20px;
+  bottom: 20px;
+  padding: 10px;
+  user-select: none;
+  position: absolute;
+  border-radius: 10px;
+  --webkit-user-select: none;
+  background-color: var(--hoverColor);
+}
+
+.legend * {
+  font-size: 0.8em;
+}
+
+.legend strong {
+  font-size: 1em;
+}
+
+.legend .seat {
+  cursor: default;
+}
+
+.legend .seat:active {
+  opacity: 1;
+}
+/* End Legend */
 
 /* Dropdown */
 .dropdown {

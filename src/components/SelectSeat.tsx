@@ -12,6 +12,7 @@ interface IProps {
 
 const SelectSeat = React.memo(({ seat, selected, onSelect }: IProps): React.JSX.Element => {
   const isSeat = seat.type === 'seat';
+
   const title = isSeat ? `${seat.row} ${seat.label}` : '';
   const classNames = `${seat.type} ${selected && isSeat ? 'active' : ''}`;
 
@@ -29,24 +30,20 @@ const SelectSeat = React.memo(({ seat, selected, onSelect }: IProps): React.JSX.
     }
   };
 
-  return (
-    <div>
-      {isSeat ? (
-        <div
-          tabIndex={0}
-          role='button'
-          title={title}
-          onClick={onSelect}
-          className={classNames}
-          onKeyDown={handleKeyDown}
-        >
-          {seat.label}
-        </div>
-      ) : (
-        <div className={`preview ${seat.type}`} title={title}>
-          {seat.label}
-        </div>
-      )}
+  return isSeat ? (
+    <div
+      tabIndex={0}
+      role='button'
+      title={title}
+      onClick={onSelect}
+      className={classNames}
+      onKeyDown={handleKeyDown}
+    >
+      {seat.label}
+    </div>
+  ) : (
+    <div className={`preview ${seat.type}`} title={title}>
+      {seat.label}
     </div>
   );
 });
