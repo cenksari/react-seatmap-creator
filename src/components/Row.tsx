@@ -15,7 +15,7 @@ interface IProps {
   children?: React.ReactNode;
   deleteRow?: (row: string) => void;
   editRowName?: (row: string, oldName: string) => void;
-  dragHandleProps: DraggableProvidedDragHandleProps | null;
+  dragHandleProps?: DraggableProvidedDragHandleProps | null;
 }
 
 interface IFormProps {
@@ -66,6 +66,8 @@ const Row = React.memo(
       if (!name || name.trim() === '') return;
 
       editRowName?.(name, oldName);
+
+      resetAll();
     };
 
     /**

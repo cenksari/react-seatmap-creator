@@ -1,25 +1,25 @@
 import React from 'react';
 
 import { Tooltip } from 'react-tooltip';
+import { useNavigate } from 'react-router-dom';
 import { MapInteractionCSS } from 'react-map-interaction';
 
 // hooks
 import useWindowDimensions from '../hooks/useWindowDimensions';
 
+// styles
+import '../styles/creator.css';
+
+// data
+import data from '../data/data.json';
+
 // components
-import Row from './Row';
-import Seat from './Seat';
-import Stage from './Stage';
+import Row from '../components/Row';
+import Stage from '../components/Stage';
+import SelectSeat from '../components/SelectSeat';
 
 // types
-import type { ISeat } from '../types/types';
-
-// interfaces
-interface IProps {
-  text?: string;
-  seatData: Map<string, ISeat[]>;
-  togglePreview: () => void;
-}
+import type { ISeat, ISeatMap } from '../types/types';
 
 // variables
 const defaultValues = {
@@ -27,21 +27,53 @@ const defaultValues = {
   translation: { x: 20, y: 20 },
 };
 
-const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JSX.Element => {
+const SelectionPage = (): React.JSX.Element => {
+  const navigate = useNavigate();
+
   const { width, height } = useWindowDimensions();
 
   const [props, setProps] = React.useState(defaultValues);
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [seatMap, setSeatMap] = React.useState<ISeatMap | null>(null);
+  const [seatData, setSeatData] = React.useState<Map<string, ISeat[]>>(new Map());
+
+  /**
+   * Given an array of seat objects, groups the seats by their row and returns
+   * a new Map where each key is a row name and each value is an array of seats
+   * in that row.
+   *
+   * @param {ISeat[]} seats The array of seat objects to group.
+   */
+  const groupByRow = React.useCallback((seats: ISeat[]) => {
+    return seats.reduce((acc, seat) => {
+      const currentRow = acc.get(seat.row) || [];
+
+      acc.set(seat.row, [...currentRow, seat]);
+
+      return acc;
+    }, new Map<string, ISeat[]>());
+  }, []);
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const { seatMapData, ...restData } = data;
+
+    setSeatMap(restData);
+
+    setSeatData(groupByRow(seatMapData));
+
+    setLoading(false);
+  }, [groupByRow]);
+
+  if (loading) {
+    return <div className='container'>Loading... Please wait.</div>;
+  }
 
   return (
     <>
       <div className='close-button' onContextMenu={(e) => e.preventDefault()}>
         <button
           type='button'
-          onClick={() => togglePreview()}
+          onClick={() => navigate(-1)}
           className='button circle flex flex-v-center flex-h-center'
         >
           <span className='material-symbols-outlined'>close</span>
@@ -67,19 +99,12 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
           plusBtnContents={<span className='material-symbols-outlined'>zoom_in</span>}
           minusBtnContents={<span className='material-symbols-outlined'>zoom_out</span>}
         >
-          <Stage preview text={text} />
+          <Stage preview text={seatMap?.stageText} />
 
           {Array.from(seatData?.entries())?.map(([row, seatsInRow], index) => (
-            <Row
-              preview
-              row={row}
-              key={row}
-              rowIndex={index}
-              dragHandleProps={null}
-              empty={row.startsWith('empty-')}
-            >
+            <Row preview row={row} key={row} rowIndex={index} empty={row.startsWith('empty-')}>
               {seatsInRow.map((seat) => (
-                <Seat preview seat={seat} key={seat.id} rowIndex={index} />
+                <SelectSeat seat={seat} key={seat.id} />
               ))}
             </Row>
           ))}
@@ -89,8 +114,6 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
       <Tooltip id='description' />
     </>
   );
-});
+};
 
-Preview.displayName = 'Preview';
-
-export default Preview;
+export default SelectionPage;
