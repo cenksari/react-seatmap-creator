@@ -74,7 +74,7 @@ const Seat = React.memo(
 
       const { name } = formValues;
 
-      if (!name || name.trim() === '') return;
+      if (!name || name.trim() === '' || seat.label === name) return;
 
       editSeatName?.(seat.row, seat.id, formValues.name);
 
@@ -118,40 +118,29 @@ const Seat = React.memo(
               Edit seat label
             </button>
             {formOpened && (
-              <>
-                <form
-                  onSubmit={handleEditSeatLabel}
-                  className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
-                >
-                  <input
-                    type='text'
-                    id='seatName'
-                    maxLength={3}
-                    name='seatName'
-                    autoComplete='off'
-                    value={formValues.name}
-                    onKeyDown={handleKeyDown}
-                    placeholder='Enter seat label'
-                    onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
-                  />
-                  <button type='submit'>Update</button>
-                </form>
-
-                <button type='button' onClick={() => resetAll()}>
-                  <span className='material-symbols-outlined'>close</span>
-                  Exit editing
-                </button>
-              </>
+              <form
+                onSubmit={handleEditSeatLabel}
+                className='flex flex-gap-medium flex-column flex-v-center dropdown-form'
+              >
+                <input
+                  type='text'
+                  id='seatName'
+                  maxLength={3}
+                  name='seatName'
+                  autoComplete='off'
+                  value={formValues.name}
+                  onKeyDown={handleKeyDown}
+                  placeholder='Enter seat label'
+                  onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
+                />
+                <button type='submit'>Update</button>
+              </form>
             )}
-            <button type='button' onClick={() => handleOnClick('left')}>
-              <span className='material-symbols-outlined'>arrow_back</span>
-              Add space to the left
-            </button>
           </>
         )}
-        <button type='button' onClick={() => handleOnClick('right')}>
-          <span className='material-symbols-outlined'>arrow_forward</span>
-          Add space to the right
+        <button type='button' onClick={() => handleOnClick('left')}>
+          <span className='material-symbols-outlined'>arrow_back</span>
+          Add space to the left
         </button>
         <button type='button' onClick={() => handleOnDelete()}>
           <span className='material-symbols-outlined'>delete</span>

@@ -19,6 +19,9 @@ const useWindowDimensions = (): IDimensions => {
     React.useState<IDimensions>(getWindowDimensions());
 
   React.useLayoutEffect(() => {
+    /**
+     * Handles the window resize event by updating the state with the new window dimensions.
+     */
     const handleResize = (): void => {
       setWindowDimensions(getWindowDimensions());
     };

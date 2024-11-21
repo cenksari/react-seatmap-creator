@@ -219,6 +219,7 @@ header input {
 
 .seatmap {
   overflow: auto;
+  min-height: 500px;
   white-space: nowrap;
   padding-bottom: 10px;
 }
@@ -515,6 +516,6 @@ header input {
   }
 
   .buttons .totals {
-    margin: 20px 0;
+    margin-bottom: 20px;
   }
 }

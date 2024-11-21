@@ -52,7 +52,7 @@ const NewSeat = ({ seat, rowIndex, addSeat, addSpace }: IProps): React.JSX.Eleme
       {menuOpened && (
         <div
           className={
-            rowIndex > 8
+            rowIndex > 5
               ? 'flex flex-gap flex-column dropdown top-left'
               : 'flex flex-gap flex-column dropdown bottom-left'
           }

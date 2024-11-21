@@ -26,7 +26,8 @@ import Preview from './components/Preview';
 import type { ISeat, ISeatMap } from './types/types';
 
 const App = (): React.JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const seatsRef = React.useRef<HTMLDivElement>(null);
+
   const [loading, setLoading] = React.useState<boolean>(true);
   const [preview, setPreview] = React.useState<boolean>(false);
   const [seatMap, setSeatMap] = React.useState<ISeatMap | null>(null);
@@ -37,7 +38,7 @@ const App = (): React.JSX.Element => {
    * a new Map where each key is a row name and each value is an array of seats
    * in that row.
    *
-   * @param {ISeat[]} dataToGroup The array of seat objects to group.
+   * @param {ISeat[]} seats The array of seat objects to group.
    */
   const groupByRow = React.useCallback((seats: ISeat[]) => {
     return seats.reduce((acc, seat) => {
@@ -397,7 +398,7 @@ const App = (): React.JSX.Element => {
 
       <Stage text={seatMap?.stageText} editStageName={editStageName} />
 
-      <div className='seatmap'>
+      <div ref={seatsRef} className='seatmap'>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='rows' direction='vertical'>
             {(droppableProvided) => (

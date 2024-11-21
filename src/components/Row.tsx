@@ -154,10 +154,6 @@ const Row = React.memo(
                       <span className='material-symbols-outlined'>delete</span>
                       Delete row
                     </button>
-                    <button type='button' onClick={() => resetAll()}>
-                      <span className='material-symbols-outlined'>close</span>
-                      Exit editing
-                    </button>
                   </div>
                 )}
               </div>
