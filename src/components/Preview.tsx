@@ -27,7 +27,7 @@ const defaultValues = {
   translation: { x: 20, y: 20 },
 };
 
-const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element => {
+const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JSX.Element => {
   const { width, height } = useWindowDimensions();
 
   const [props, setProps] = React.useState(defaultValues);
@@ -109,6 +109,8 @@ const Preview = ({ text, seatData, togglePreview }: IProps): React.JSX.Element =
       <Tooltip id='description' />
     </>
   );
-};
+});
+
+Preview.displayName = 'Preview';
 
 export default Preview;

@@ -61,14 +61,14 @@ const App = (): React.JSX.Element => {
 
   /**
    * Adds a new seat to the seat data.
-   * Inserts a new empty or available seat to the left or right of a given seat.
+   * Inserts a new space or seat to the left or right of a given seat.
    *
    * @param {string} row The row identifier for the seat.
    * @param {string} seatId The id of the seat to insert the new seat next to.
    * @param {'left' | 'right'} direction The direction of the insertion.
-   * @param {'empty' | 'available'} seatType The type of the new seat.
+   * @param {'space' | 'seat'} seatType The type of the new seat.
    */
-  const addSeat = React.useCallback(
+  const addSeatAction = React.useCallback(
     (row: string, seatId: string, direction: 'left' | 'right', seatType: 'space' | 'seat') => {
       setSeatData((prevSeatData) => {
         const newSeatData = new Map(prevSeatData);
@@ -107,31 +107,31 @@ const App = (): React.JSX.Element => {
   );
 
   /**
-   * Adds a new empty seat to the specified row and seat ID in the given direction.
+   * Adds a new space to the specified row and seat ID in the given direction.
    *
    * @param {string} row - The row identifier where the seat will be added.
    * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
    * @param {'left' | 'right'} direction - The direction relative to the specified seat ID to add the new seat.
    */
-  const addEmptySeat = React.useCallback(
+  const addSpace = React.useCallback(
     (row: string, seatId: string, direction: 'left' | 'right') => {
-      addSeat(row, seatId, direction, 'space');
+      addSeatAction(row, seatId, direction, 'space');
     },
-    [addSeat]
+    [addSeatAction]
   );
 
   /**
-   * Adds a new available seat to the specified row and seat ID in the given direction.
+   * Adds a new seat to the specified row and seat ID in the given direction.
    *
    * @param {string} row - The row identifier where the seat will be added.
    * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
    * @param {'left' | 'right'} direction - The direction relative to the specified seat ID to add the new seat.
    */
-  const addAvailableSeat = React.useCallback(
+  const addSeat = React.useCallback(
     (row: string, seatId: string, direction: 'left' | 'right') => {
-      addSeat(row, seatId, direction, 'seat');
+      addSeatAction(row, seatId, direction, 'seat');
     },
-    [addSeat]
+    [addSeatAction]
   );
 
   /**
@@ -348,9 +348,9 @@ const App = (): React.JSX.Element => {
   };
 
   /**
-   * Calculates the total number of available seats across all rows.
+   * Calculates the total number of seats across all rows.
    */
-  const getTotalAvailableSeats = React.useMemo(
+  const getTotalSeats = React.useMemo(
     () =>
       Array.from(seatData.values())
         .flat()
@@ -419,15 +419,15 @@ const App = (): React.JSX.Element => {
                               seat={seat}
                               key={seat.id}
                               rowIndex={index}
+                              addSpace={addSpace}
                               deleteSeat={deleteSeat}
-                              addEmptySeat={addEmptySeat}
                               editSeatName={editSeatName}
                             />
                           ))}
                           <NewSeat
                             rowIndex={index}
-                            addEmptySeat={addEmptySeat}
-                            addAvailableSeat={addAvailableSeat}
+                            addSpace={addSpace}
+                            addSeat={addSeat}
                             seat={seatsInRow[seatsInRow.length - 1]}
                           />
                         </Row>
@@ -446,7 +446,7 @@ const App = (): React.JSX.Element => {
 
       <div className='flex flex-space-between flex-v-center buttons'>
         <div className='totals'>
-          Total seats: <strong>{getTotalAvailableSeats}</strong>
+          Total seats: <strong>{getTotalSeats}</strong>
         </div>
         <div className='flex flex-gap-medium'>
           <button type='button' className='button gray' onClick={() => togglePreview()}>

@@ -10,11 +10,11 @@ import type { ISeat } from '../types/types';
 interface IProps {
   seat: ISeat;
   rowIndex: number;
-  addEmptySeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
-  addAvailableSeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
+  addSeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
+  addSpace?: (row: string, seatId: string, direction: 'left' | 'right') => void;
 }
 
-const NewSeat = ({ seat, rowIndex, addEmptySeat, addAvailableSeat }: IProps): React.JSX.Element => {
+const NewSeat = ({ seat, rowIndex, addSeat, addSpace }: IProps): React.JSX.Element => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
@@ -57,11 +57,11 @@ const NewSeat = ({ seat, rowIndex, addEmptySeat, addAvailableSeat }: IProps): Re
               : 'flex flex-gap flex-column dropdown bottom-left'
           }
         >
-          <button type='button' onClick={() => handleSeatAction('right', addAvailableSeat)}>
+          <button type='button' onClick={() => handleSeatAction('right', addSeat)}>
             <span className='material-symbols-outlined'>event_seat</span>
             Add new seat
           </button>
-          <button type='button' onClick={() => handleSeatAction('right', addEmptySeat)}>
+          <button type='button' onClick={() => handleSeatAction('right', addSpace)}>
             <span className='material-symbols-outlined'>check_box_outline_blank</span>
             Add new space
           </button>

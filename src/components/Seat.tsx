@@ -13,7 +13,7 @@ interface IProps {
   rowIndex: number;
   deleteSeat?: (row: string, seatId: string) => void;
   editSeatName?: (row: string, seatId: string, name: string) => void;
-  addEmptySeat?: (row: string, seatId: string, direction: 'left' | 'right') => void;
+  addSpace?: (row: string, seatId: string, direction: 'left' | 'right') => void;
 }
 
 interface IFormProps {
@@ -22,14 +22,7 @@ interface IFormProps {
 }
 
 const Seat = React.memo(
-  ({
-    seat,
-    preview,
-    rowIndex,
-    addEmptySeat,
-    editSeatName,
-    deleteSeat,
-  }: IProps): React.JSX.Element => {
+  ({ seat, preview, rowIndex, addSpace, editSeatName, deleteSeat }: IProps): React.JSX.Element => {
     const ref = React.useRef<HTMLDivElement>(null);
 
     const [formOpened, setFormOpened] = React.useState<boolean>(false);
@@ -51,13 +44,13 @@ const Seat = React.memo(
     useClickOutside(ref, (): void => setMenuOpened(false));
 
     /**
-     * Handles the click event on the seat by calling addEmptySeat function if it exists
+     * Handles the click event on the seat by calling addSpace function if it exists
      * and toggling the menuOpened state.
      *
-     * @param {string} direction The direction of the empty seat to be added.
+     * @param {string} direction The direction of the space to be added.
      */
     const handleOnClick = (direction: 'left' | 'right') => {
-      addEmptySeat?.(seat.row, seat.id, direction);
+      addSpace?.(seat.row, seat.id, direction);
 
       setMenuOpened((prev) => !prev);
     };
