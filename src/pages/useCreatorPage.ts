@@ -358,25 +358,25 @@ const useCreatorPage = () => {
   const rows: [string, ISeat[]][] = useMemo(() => Array.from(seatData?.entries()), [seatData]);
 
   return {
+    rows,
     loading,
     preview,
     seatMap,
     seatData,
+    getTotalSeats,
     addSeat,
     deleteSeat,
     editSeatName,
-    addEmptyRow,
-    addSeatedRow,
     deleteRow,
     editRowName,
-    handleOnDragEnd,
+    addEmptyRow,
+    addSeatedRow,
     editMapName,
     editStageName,
-    getTotalSeats,
     saveData,
     resetData,
     togglePreview,
-    rows,
+    handleOnDragEnd,
   };
 };
 

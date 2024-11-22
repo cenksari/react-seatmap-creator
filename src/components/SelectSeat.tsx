@@ -14,7 +14,8 @@ const SelectSeat = memo(({ seat, selected, onSelect }: IProps): JSX.Element => {
   const isSeat = seat.type === 'seat';
 
   const title = isSeat ? `${seat.row} ${seat.label}` : '';
-  const classNames = `${seat.type} ${selected && isSeat ? 'active' : ''}`;
+
+  const classNames = `${seat.type} ${selected && isSeat ? 'active' : 'passive'}`;
 
   /**
    * Handles the key down event for the seat element. If the 'Enter' or space key is pressed,
@@ -42,9 +43,7 @@ const SelectSeat = memo(({ seat, selected, onSelect }: IProps): JSX.Element => {
       {seat.label}
     </div>
   ) : (
-    <div className={`preview ${seat.type}`} title={title}>
-      {seat.label}
-    </div>
+    <div className={`preview space`} />
   );
 });
 
