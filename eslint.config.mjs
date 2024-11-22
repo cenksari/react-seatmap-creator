@@ -4,7 +4,6 @@ import reactPlugin from 'eslint-plugin-react';
 import prettierPlugin from 'eslint-plugin-prettier';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
-import airbnbConfig from 'eslint-config-airbnb';
 
 export default [
   {
@@ -30,11 +29,12 @@ export default [
       import: importPlugin,
     },
     rules: {
-      ...airbnbConfig.rules,
+      'no-console': 'warn',
       'react/prop-types': 'off',
       'prettier/prettier': 'error',
+      'react/react-in-jsx-scope': 'off',
       'react/require-default-props': 'off',
-      'react/destructuring-assignment': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-throw-literal': 'off',
       '@typescript-eslint/lines-between-class-members': 'off',
       'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
