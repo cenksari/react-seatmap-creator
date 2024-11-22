@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo, useRef, useState } from 'react';
 
 // hooks
 import useClickOutside from '../hooks/useClickOutside';
@@ -21,14 +21,13 @@ interface IFormProps {
   name: string;
 }
 
-const Seat = React.memo(
-  ({ seat, preview, rowIndex, addSpace, editSeatName, deleteSeat }: IProps): React.JSX.Element => {
-    const ref = React.useRef<HTMLDivElement>(null);
+const Seat = memo(
+  ({ seat, preview, rowIndex, addSpace, editSeatName, deleteSeat }: IProps): JSX.Element => {
+    const ref = useRef<HTMLDivElement>(null);
 
-    const [formOpened, setFormOpened] = React.useState<boolean>(false);
-    const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
-
-    const [formValues, setFormValues] = React.useState<IFormProps>({
+    const [formOpened, setFormOpened] = useState<boolean>(false);
+    const [menuOpened, setMenuOpened] = useState<boolean>(false);
+    const [formValues, setFormValues] = useState<IFormProps>({
       id: seat.id,
       name: seat.label,
     });
@@ -103,7 +102,7 @@ const Seat = React.memo(
       setMenuOpened((prev) => !prev);
     };
 
-    const renderDropdown = (): React.JSX.Element => (
+    const renderDropdown = (): JSX.Element => (
       <div
         className={
           rowIndex > 4

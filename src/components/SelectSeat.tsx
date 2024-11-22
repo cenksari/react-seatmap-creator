@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 
 // types
 import type { ISeat } from '../types/types';
@@ -10,7 +10,7 @@ interface IProps {
   onSelect: () => void;
 }
 
-const SelectSeat = React.memo(({ seat, selected, onSelect }: IProps): React.JSX.Element => {
+const SelectSeat = memo(({ seat, selected, onSelect }: IProps): JSX.Element => {
   const isSeat = seat.type === 'seat';
 
   const title = isSeat ? `${seat.row} ${seat.label}` : '';

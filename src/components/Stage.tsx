@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 // interfaces
 interface IProps {
@@ -11,10 +11,9 @@ interface IFormProps {
   name: string;
 }
 
-const Stage = ({ text, preview, editStageName }: IProps): React.JSX.Element => {
-  const [editMode, setEditMode] = React.useState<boolean>(false);
-
-  const [formValues, setFormValues] = React.useState<IFormProps>({
+const Stage = ({ text, preview, editStageName }: IProps): JSX.Element => {
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [formValues, setFormValues] = useState<IFormProps>({
     name: text || '',
   });
 

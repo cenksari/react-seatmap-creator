@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo, useMemo, useState, useEffect, useCallback } from 'react';
 
 import { Tooltip } from 'react-tooltip';
 import { MapInteractionCSS } from 'react-map-interaction';
@@ -27,13 +27,13 @@ const defaultValues = {
   translation: { x: 20, y: 20 },
 };
 
-const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JSX.Element => {
+const Preview = memo(({ text, seatData, togglePreview }: IProps): JSX.Element => {
   const { width, height } = useWindowDimensions();
 
-  const [props, setProps] = React.useState(defaultValues);
-  const [selectedSeats, setSelectedSeats] = React.useState<ISeat[]>([]);
+  const [props, setProps] = useState(defaultValues);
+  const [selectedSeats, setSelectedSeats] = useState<ISeat[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -44,13 +44,13 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
    *
    * @param {ISeat} seat The seat object to be selected.
    */
-  const handleSelect = React.useCallback((seat: ISeat) => {
+  const handleSelect = useCallback((seat: ISeat) => {
     setSelectedSeats((prev) =>
       prev.includes(seat) ? prev.filter((s) => s.id !== seat.id) : [...prev, seat]
     );
   }, []);
 
-  const rows = React.useMemo(() => Array.from(seatData?.entries()), [seatData]);
+  const rows = useMemo(() => Array.from(seatData?.entries()), [seatData]);
 
   return (
     <>
@@ -118,7 +118,7 @@ const Preview = React.memo(({ text, seatData, togglePreview }: IProps): React.JS
           <div className='seat active' /> Selected
         </div>
         <div className='flex flex-gap-small flex-v-center'>
-          <div className='seat occupied' /> Not available
+          <div className='seat occupied' /> N/A
         </div>
       </div>
 

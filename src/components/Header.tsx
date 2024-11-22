@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 // import types
 import type { ISeatMap } from '../types/types';
@@ -13,8 +13,8 @@ interface IFormProps {
   name: string;
 }
 
-const Header = ({ seatMap, editMapName }: IProps): React.JSX.Element => {
-  const [formValues, setFormValues] = React.useState<IFormProps>({
+const Header = ({ seatMap, editMapName }: IProps): JSX.Element => {
+  const [formValues, setFormValues] = useState<IFormProps>({
     name: seatMap?.name || '',
   });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef, useState } from 'react';
 
 // hooks
 import useClickOutside from '../hooks/useClickOutside';
@@ -13,13 +13,12 @@ interface IFormProps {
   name: string;
 }
 
-const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): React.JSX.Element => {
-  const ref = React.useRef<HTMLDivElement>(null);
+const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): JSX.Element => {
+  const ref = useRef<HTMLDivElement>(null);
 
-  const [formOpened, setFormOpened] = React.useState<boolean>(false);
-  const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
-
-  const [formValues, setFormValues] = React.useState<IFormProps>({
+  const [formOpened, setFormOpened] = useState<boolean>(false);
+  const [menuOpened, setMenuOpened] = useState<boolean>(false);
+  const [formValues, setFormValues] = useState<IFormProps>({
     name: '',
   });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo, useRef, useState } from 'react';
 
 import { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
 
@@ -22,7 +22,7 @@ interface IFormProps {
   oldName: string;
 }
 
-const Row = React.memo(
+const Row = memo(
   ({
     row,
     empty,
@@ -32,12 +32,11 @@ const Row = React.memo(
     deleteRow,
     editRowName,
     dragHandleProps,
-  }: IProps): React.JSX.Element => {
-    const ref = React.useRef<HTMLDivElement>(null);
+  }: IProps): JSX.Element => {
+    const ref = useRef<HTMLDivElement>(null);
 
-    const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
-
-    const [formValues, setFormValues] = React.useState<IFormProps>({
+    const [menuOpened, setMenuOpened] = useState<boolean>(false);
+    const [formValues, setFormValues] = useState<IFormProps>({
       name: row || '',
       oldName: row || '',
     });

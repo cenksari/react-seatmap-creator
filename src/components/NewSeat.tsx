@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef, useState } from 'react';
 
 // hooks
 import useClickOutside from '../hooks/useClickOutside';
@@ -13,10 +13,10 @@ interface IProps {
   addSeat?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void;
 }
 
-const NewSeat = ({ seat, rowIndex, addSeat }: IProps): React.JSX.Element => {
-  const ref = React.useRef<HTMLDivElement>(null);
+const NewSeat = ({ seat, rowIndex, addSeat }: IProps): JSX.Element => {
+  const ref = useRef<HTMLDivElement>(null);
 
-  const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
+  const [menuOpened, setMenuOpened] = useState<boolean>(false);
 
   useClickOutside(ref, (): void => setMenuOpened(false));
 
