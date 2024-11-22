@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import toast, { Toaster } from 'react-hot-toast';
@@ -354,7 +353,6 @@ const CreatorPage = (): React.JSX.Element => {
 
     const mergeSeatMap: ISeatMap = { ...seatMap!, seatMapData: newSeatData };
 
-    // eslint-disable-next-line no-console
     console.log(mergeSeatMap);
   };
 
