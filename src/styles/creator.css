@@ -358,10 +358,13 @@ header input {
 /* Legend */
 .legend {
   left: 20px;
+  right: 20px;
   bottom: 20px;
   padding: 10px;
   user-select: none;
   position: absolute;
+  width: fit-content;
+  margin-inline: auto;
   border-radius: 10px;
   --webkit-user-select: none;
   background-color: var(--hoverColor);
@@ -377,6 +380,9 @@ header input {
 
 .legend .seat {
   cursor: default;
+  min-width: 25px;
+  min-height: 25px;
+  pointer-events: none;
 }
 
 .legend .seat:active {

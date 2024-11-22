@@ -1,4 +1,4 @@
-import { memo, useMemo, useState, useEffect, useCallback } from 'react';
+import { memo, useMemo, useState, useCallback } from 'react';
 
 import { Tooltip } from 'react-tooltip';
 import { MapInteractionCSS } from 'react-map-interaction';
@@ -9,6 +9,7 @@ import useWindowDimensions from '../hooks/useWindowDimensions';
 // components
 import Row from './Row';
 import Stage from './Stage';
+import Legend from './Legend';
 import SelectSeat from './SelectSeat';
 
 // types
@@ -32,10 +33,6 @@ const Preview = memo(({ text, seatData, togglePreview }: IProps): JSX.Element =>
 
   const [props, setProps] = useState(defaultValues);
   const [selectedSeats, setSelectedSeats] = useState<ISeat[]>([]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   /**
    * Handles the selection of a seat by logging the seat data to the console.
@@ -107,20 +104,7 @@ const Preview = memo(({ text, seatData, togglePreview }: IProps): JSX.Element =>
         </MapInteractionCSS>
       </div>
 
-      <div className='flex flex-gap-large flex-v-center legend'>
-        <div>
-          <strong>Legend</strong>
-        </div>
-        <div className='flex flex-gap-small flex-v-center'>
-          <div className='seat' /> Available
-        </div>
-        <div className='flex flex-gap-small flex-v-center'>
-          <div className='seat active' /> Selected
-        </div>
-        <div className='flex flex-gap-small flex-v-center'>
-          <div className='seat occupied' /> N/A
-        </div>
-      </div>
+      <Legend />
 
       <Tooltip id='description' />
     </>
