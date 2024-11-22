@@ -48,7 +48,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): JSX.Element => {
   /**
    * Handles the click event on the "Add Seated Row" button.
    *
-   * @param {React.FormEvent<HTMLFormElement>} e
+   * @param {React.FormEvent<HTMLFormElement>} e - The event object from the form submission.
    */
   const handleSeatedRowAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

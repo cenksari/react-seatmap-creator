@@ -42,7 +42,7 @@ const Preview = memo(({ text, seatData, togglePreview }: IProps): JSX.Element =>
    * Intended to be replaced with a callback function that performs the actual
    * logic for selecting a seat.
    *
-   * @param {ISeat} seat The seat object to be selected.
+   * @param {ISeat} seat - The seat object to be selected.
    */
   const handleSelect = useCallback((seat: ISeat) => {
     setSelectedSeats((prev) =>

@@ -22,7 +22,7 @@ const useCreatorPage = () => {
    * a new Map where each key is a row name and each value is an array of seats
    * in that row.
    *
-   * @param {ISeat[]} seats The array of seat objects to group.
+   * @param {ISeat[]} seats - The array of seat objects to group.
    */
   const groupByRow = useCallback((seats: ISeat[]) => {
     return seats.reduce((acc, seat) => {
@@ -48,13 +48,13 @@ const useCreatorPage = () => {
    * Adds a new seat to the seat data.
    * Inserts a new space or seat to the left or right of a given seat.
    *
-   * @param {string} row The row identifier for the seat.
-   * @param {string} seatId The id of the seat to insert the new seat next to.
-   * @param {IDirection} direction The direction of the insertion.
-   * @param {ISeatType} seatType The type of the new seat.
+   * @param {string} row - The row identifier for the seat.
+   * @param {string} seatId - The id of the seat to insert the new seat next to.
+   * @param {ISeatType} type - The type of the new seat.
+   * @param {IDirection} direction - The direction of the insertion.
    */
   const addSeatAction = useCallback(
-    (row: string, seatId: string, direction: IDirection, seatType: ISeatType) => {
+    (row: string, seatId: string, type: ISeatType, direction: IDirection) => {
       setSeatData((prevSeatData) => {
         const data = new Map(prevSeatData);
         const seats = data.get(row) || [];
@@ -66,7 +66,7 @@ const useCreatorPage = () => {
           id: v4(),
           row,
           label:
-            seatType === 'seat'
+            type === 'seat'
               ? (
                   Math.max(
                     ...seats
@@ -76,7 +76,7 @@ const useCreatorPage = () => {
                   ) + 1
                 ).toString()
               : '0',
-          type: seatType,
+          type: type,
         };
 
         seats.splice(index + (direction === 'right' ? 1 : 0), 0, newSeat);
@@ -86,7 +86,7 @@ const useCreatorPage = () => {
         return data;
       });
 
-      toast.success(`${seatType === 'seat' ? 'Seat' : 'Space'} added successfully`);
+      toast.success(`${type === 'seat' ? 'Seat' : 'Space'} added successfully`);
     },
     []
   );
@@ -96,12 +96,12 @@ const useCreatorPage = () => {
    *
    * @param {string} row - The row identifier where the seat will be added.
    * @param {string} seatId - The seat identifier adjacent to where the new seat will be added.
-   * @param {IDirection} direction - The direction relative to the specified seat ID to add the new seat.
    * @param {ISeatType} type - The type of the new seat to add.
+   * @param {IDirection} direction - The direction relative to the specified seat ID to add the new seat.
    */
   const addSeat = useCallback(
-    (row: string, seatId: string, direction: IDirection, type: ISeatType) => {
-      addSeatAction(row, seatId, direction, type);
+    (row: string, seatId: string, type: ISeatType, direction: IDirection) => {
+      addSeatAction(row, seatId, type, direction);
     },
     [addSeatAction]
   );

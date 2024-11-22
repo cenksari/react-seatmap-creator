@@ -13,7 +13,7 @@ interface IProps {
   rowIndex: number;
   deleteSeat?: (row: string, seatId: string) => void;
   editSeatName?: (row: string, seatId: string, name: string) => void;
-  addSpace?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void;
+  addSpace?: (row: string, seatId: string, type: ISeatType, direction: IDirection) => void;
 }
 
 interface IFormProps {
@@ -46,10 +46,10 @@ const Seat = memo(
      * Handles the click event on the seat by calling addSpace function if it exists
      * and toggling the menuOpened state.
      *
-     * @param {string} direction The direction of the space to be added.
+     * @param {string} direction - The direction of the space to be added.
      */
     const handleOnClick = (direction: IDirection) => {
-      addSpace?.(seat.row, seat.id, direction, 'space');
+      addSpace?.(seat.row, seat.id, 'space', direction);
 
       setMenuOpened((prev) => !prev);
     };

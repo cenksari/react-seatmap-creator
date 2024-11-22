@@ -54,7 +54,7 @@ const Row = memo(
     /**
      * Handles the click event on the "Edit row" button.
      *
-     * @param {React.FormEvent<HTMLFormElement>} e
+     * @param {React.FormEvent<HTMLFormElement>} e - The event object from the form submission.
      */
     const handleEditRowName = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();

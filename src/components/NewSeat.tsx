@@ -10,7 +10,7 @@ import type { ISeat, ISeatType, IDirection } from '../types/types';
 interface IProps {
   seat: ISeat;
   rowIndex: number;
-  addSeat?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void;
+  addSeat?: (row: string, seatId: string, type: ISeatType, direction: IDirection) => void;
 }
 
 const NewSeat = ({ seat, rowIndex, addSeat }: IProps): JSX.Element => {
@@ -24,15 +24,15 @@ const NewSeat = ({ seat, rowIndex, addSeat }: IProps): JSX.Element => {
    * Handles the click event on the button by calling the callback function if it exists
    * and toggling the menuOpened state.
    *
-   * @param {() => void} [callback] The callback function to call when the button is clicked.
-   * @param {IDirection} direction The direction to pass to the callback function.
+   * @param {() => void} [callback] - The callback function to call when the button is clicked.
+   * @param {IDirection} direction - The direction to pass to the callback function.
    */
   const handleSeatAction = (
     direction: IDirection,
     type: ISeatType,
-    callback?: (row: string, seatId: string, direction: IDirection, type: ISeatType) => void
+    callback?: (row: string, seatId: string, type: ISeatType, direction: IDirection) => void
   ) => {
-    if (callback) callback(seat.row, seat.id, direction, type);
+    if (callback) callback(seat.row, seat.id, type, direction);
 
     setMenuOpened(false);
   };
