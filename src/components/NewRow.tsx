@@ -27,7 +27,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): JSX.Element => {
    * This includes setting the menu and form to be closed, and resetting the form
    * values to their initial state.
    */
-  const resetAll = () => {
+  const resetAll = (): void => {
     setMenuOpened(false);
     setFormOpened(false);
     setFormValues({ ...formValues, name: '' });
@@ -39,7 +39,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): JSX.Element => {
    * Handles the click event on the button by calling the callback function if it exists
    * and toggling the menuOpened state.
    */
-  const handleEmptyRowAdd = () => {
+  const handleEmptyRowAdd = (): void => {
     addEmptyRow?.();
 
     resetAll();
@@ -50,7 +50,7 @@ const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): JSX.Element => {
    *
    * @param {React.FormEvent<HTMLFormElement>} e - The event object from the form submission.
    */
-  const handleSeatedRowAdd = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSeatedRowAdd = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const { name } = formValues;

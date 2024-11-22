@@ -45,7 +45,7 @@ const Row = memo(
      * Resets the state of the Row component back to its initial state.
      * This includes setting the menu to be closed.
      */
-    const resetAll = () => {
+    const resetAll = (): void => {
       setMenuOpened(false);
     };
 
@@ -56,7 +56,7 @@ const Row = memo(
      *
      * @param {React.FormEvent<HTMLFormElement>} e - The event object from the form submission.
      */
-    const handleEditRowName = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleEditRowName = (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault();
 
       const { name, oldName } = formValues;
@@ -73,7 +73,7 @@ const Row = memo(
      * Calls the callback function to delete the row if it exists and
      * toggles the menuOpened state.
      */
-    const handleDeleteRow = () => {
+    const handleDeleteRow = (): void => {
       deleteRow?.(row);
 
       resetAll();
@@ -95,7 +95,7 @@ const Row = memo(
      *
      * @param {React.MouseEvent} event - The event object from the right-click action.
      */
-    const handleRightClick = (event: React.MouseEvent) => {
+    const handleRightClick = (event: React.MouseEvent): void => {
       event.preventDefault();
 
       setMenuOpened((prev) => !prev);

@@ -22,7 +22,7 @@ const Stage = ({ text, preview, editStageName }: IProps): JSX.Element => {
    *
    * @param {React.FormEvent<HTMLFormElement>} e - The event object from the form submission.
    */
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const { name } = formValues;

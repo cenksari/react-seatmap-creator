@@ -22,7 +22,7 @@ const SelectSeat = memo(({ seat, selected, onSelect }: IProps): JSX.Element => {
    *
    * @param {React.KeyboardEvent<HTMLDivElement>} event - The keyboard event object.
    */
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
 

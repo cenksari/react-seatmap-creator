@@ -31,7 +31,7 @@ const NewSeat = ({ seat, rowIndex, addSeat }: IProps): JSX.Element => {
     direction: IDirection,
     type: ISeatType,
     callback?: (row: string, seatId: string, type: ISeatType, direction: IDirection) => void
-  ) => {
+  ): void => {
     if (callback) callback(seat.row, seat.id, type, direction);
 
     setMenuOpened(false);
@@ -42,7 +42,7 @@ const NewSeat = ({ seat, rowIndex, addSeat }: IProps): JSX.Element => {
    *
    * @param {React.MouseEvent} event - The event object from the right-click action.
    */
-  const handleRightClick = (event: React.MouseEvent) => {
+  const handleRightClick = (event: React.MouseEvent): void => {
     event.preventDefault();
 
     setMenuOpened((prev) => !prev);

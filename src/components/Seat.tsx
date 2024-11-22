@@ -35,7 +35,7 @@ const Seat = memo(
     /**
      * Resets the state of the Seat component back to its initial state.
      */
-    const resetAll = () => {
+    const resetAll = (): void => {
       setMenuOpened(false);
       setFormOpened(false);
     };
@@ -48,7 +48,7 @@ const Seat = memo(
      *
      * @param {string} direction - The direction of the space to be added.
      */
-    const handleOnClick = (direction: IDirection) => {
+    const handleOnClick = (direction: IDirection): void => {
       addSpace?.(seat.row, seat.id, 'space', direction);
 
       setMenuOpened((prev) => !prev);
@@ -57,7 +57,7 @@ const Seat = memo(
     /**
      * Handles the delete event on the seat by calling deleteSeat function if it exists.
      */
-    const handleOnDelete = () => {
+    const handleOnDelete = (): void => {
       deleteSeat?.(seat.row, seat.id);
 
       setMenuOpened((prev) => !prev);
@@ -96,7 +96,7 @@ const Seat = memo(
      *
      * @param {React.MouseEvent} event - The event object from the right-click action.
      */
-    const handleRightClick = (event: React.MouseEvent) => {
+    const handleRightClick = (event: React.MouseEvent): void => {
       event.preventDefault();
 
       setMenuOpened((prev) => !prev);

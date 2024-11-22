@@ -44,13 +44,13 @@ const Preview = memo(({ text, seatData, togglePreview }: IProps): JSX.Element =>
    *
    * @param {ISeat} seat - The seat object to be selected.
    */
-  const handleSelect = useCallback((seat: ISeat) => {
+  const handleSelect = useCallback((seat: ISeat): void => {
     setSelectedSeats((prev) =>
       prev.includes(seat) ? prev.filter((s) => s.id !== seat.id) : [...prev, seat]
     );
   }, []);
 
-  const rows = useMemo(() => Array.from(seatData?.entries()), [seatData]);
+  const rows: [string, ISeat[]][] = useMemo(() => Array.from(seatData?.entries()), [seatData]);
 
   return (
     <>
