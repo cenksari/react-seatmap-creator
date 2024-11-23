@@ -40,7 +40,6 @@ export default [
       'react/require-default-props': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'no-unused-vars': ['error', { args: 'none' }],
-      '@typescript-eslint/lines-between-class-members': 'off',
       'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     },
   },
