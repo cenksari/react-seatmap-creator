@@ -6,7 +6,7 @@ interface IProps {
   toggle: () => void;
 }
 
-const Buttons = ({ totals, save, reset, toggle }: IProps): JSX.Element => (
+const Buttons: React.FC<IProps> = ({ totals, save, reset, toggle }) => (
   <div className='flex flex-space-between flex-v-center buttons'>
     <div className='totals'>
       Total seats: <strong>{totals}</strong>

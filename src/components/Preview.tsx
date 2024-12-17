@@ -28,7 +28,7 @@ const defaultValues = {
   translation: { x: 20, y: 20 },
 };
 
-const Preview = memo(({ text, seatData, togglePreview }: IProps): JSX.Element => {
+const Preview: React.FC<IProps> = memo(({ text, seatData, togglePreview }) => {
   const { width, height } = useWindowDimensions();
 
   const [props, setProps] = useState(defaultValues);

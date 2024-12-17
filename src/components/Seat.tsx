@@ -20,7 +20,7 @@ interface IFormProps {
   name: string;
 }
 
-const Seat = memo(({ seat, rowIndex, addSpace, editSeatName, deleteSeat }: IProps): JSX.Element => {
+const Seat: React.FC<IProps> = memo(({ seat, rowIndex, addSpace, editSeatName, deleteSeat }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [formOpened, setFormOpened] = useState<boolean>(false);
@@ -100,7 +100,7 @@ const Seat = memo(({ seat, rowIndex, addSpace, editSeatName, deleteSeat }: IProp
     setMenuOpened((prev) => !prev);
   };
 
-  const renderDropdown = (): JSX.Element => (
+  const renderDropdown = () => (
     <div
       className={
         rowIndex > 4

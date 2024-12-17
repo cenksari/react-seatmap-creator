@@ -13,7 +13,7 @@ interface IFormProps {
   name: string;
 }
 
-const NewRow = ({ addEmptyRow, addSeatedRow }: IProps): JSX.Element => {
+const NewRow: React.FC<IProps> = ({ addEmptyRow, addSeatedRow }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [formOpened, setFormOpened] = useState<boolean>(false);

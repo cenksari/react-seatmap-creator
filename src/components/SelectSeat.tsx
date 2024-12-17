@@ -10,7 +10,7 @@ interface IProps {
   onSelect: () => void;
 }
 
-const SelectSeat = memo(({ seat, selected, onSelect }: IProps): JSX.Element => {
+const SelectSeat: React.FC<IProps> = memo(({ seat, selected, onSelect }) => {
   const isSeat = seat.type === 'seat';
 
   const title = isSeat ? `${seat.row} ${seat.label}` : '';

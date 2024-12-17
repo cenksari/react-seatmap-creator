@@ -11,7 +11,7 @@ interface IFormProps {
   name: string;
 }
 
-const Stage = ({ text, preview, editStageName }: IProps): JSX.Element => {
+const Stage: React.FC<IProps> = ({ text, preview, editStageName }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<IFormProps>({
     name: text || '',

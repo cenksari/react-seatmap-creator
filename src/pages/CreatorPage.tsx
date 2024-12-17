@@ -19,7 +19,7 @@ import NewSeat from '../components/NewSeat';
 import Preview from '../components/Preview';
 import Buttons from '../components/Buttons';
 
-const CreatorPage = (): JSX.Element => {
+const CreatorPage: React.FC = () => {
   const {
     rows,
     loading,

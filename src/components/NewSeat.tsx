@@ -13,7 +13,7 @@ interface IProps {
   addSeat?: (row: string, seatId: string, type: ISeatType, direction: IDirection) => void;
 }
 
-const NewSeat = ({ seat, rowIndex, addSeat }: IProps): JSX.Element => {
+const NewSeat: React.FC<IProps> = ({ seat, rowIndex, addSeat }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [menuOpened, setMenuOpened] = useState<boolean>(false);

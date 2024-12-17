@@ -1,4 +1,4 @@
-const Legend = (): JSX.Element => (
+const Legend: React.FC = () => (
   <div
     onContextMenu={(e) => e.preventDefault()}
     className='flex flex-gap-large flex-v-center legend'

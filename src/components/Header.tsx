@@ -13,7 +13,7 @@ interface IFormProps {
   name: string;
 }
 
-const Header = ({ seatMap, editMapName }: IProps): JSX.Element => {
+const Header: React.FC<IProps> = ({ seatMap, editMapName }) => {
   const [formValues, setFormValues] = useState<IFormProps>({
     name: seatMap?.name || '',
   });

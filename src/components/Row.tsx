@@ -22,17 +22,8 @@ interface IFormProps {
   oldName: string;
 }
 
-const Row = memo(
-  ({
-    row,
-    empty,
-    preview,
-    rowIndex,
-    children,
-    deleteRow,
-    editRowName,
-    dragHandleProps,
-  }: IProps): JSX.Element => {
+const Row: React.FC<IProps> = memo(
+  ({ row, empty, preview, rowIndex, children, deleteRow, editRowName, dragHandleProps }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     const [menuOpened, setMenuOpened] = useState<boolean>(false);
