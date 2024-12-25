@@ -1,4 +1,4 @@
-import { memo, useMemo, useState, useCallback } from 'react';
+import { useState } from 'react';
 
 import { Tooltip } from 'react-tooltip';
 import { MapInteractionCSS } from 'react-map-interaction';
@@ -28,7 +28,7 @@ const defaultValues = {
   translation: { x: 20, y: 20 },
 };
 
-const Preview: React.FC<IProps> = memo(({ text, seatData, togglePreview }) => {
+const Preview: React.FC<IProps> = ({ text, seatData, togglePreview }) => {
   const { width, height } = useWindowDimensions();
 
   const [props, setProps] = useState(defaultValues);
@@ -41,13 +41,13 @@ const Preview: React.FC<IProps> = memo(({ text, seatData, togglePreview }) => {
    *
    * @param {ISeat} seat - The seat object to be selected.
    */
-  const handleSelect = useCallback((seat: ISeat): void => {
+  const handleSelect = (seat: ISeat): void => {
     setSelectedSeats((prev) =>
       prev.includes(seat) ? prev.filter((s) => s.id !== seat.id) : [...prev, seat]
     );
-  }, []);
+  };
 
-  const rows: [string, ISeat[]][] = useMemo(() => Array.from(seatData?.entries()), [seatData]);
+  const rows: [string, ISeat[]][] = Array.from(seatData?.entries());
 
   return (
     <>
@@ -109,7 +109,7 @@ const Preview: React.FC<IProps> = memo(({ text, seatData, togglePreview }) => {
       <Tooltip id='description' />
     </>
   );
-});
+};
 
 Preview.displayName = 'Preview';
 

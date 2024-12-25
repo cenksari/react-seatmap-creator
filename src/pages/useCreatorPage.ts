@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
 
@@ -24,7 +24,7 @@ const useCreatorPage = () => {
    *
    * @param {ISeat[]} seats - The array of seat objects to group.
    */
-  const groupByRow = useCallback((seats: ISeat[]): Map<string, ISeat[]> => {
+  const groupByRow = (seats: ISeat[]): Map<string, ISeat[]> => {
     return seats.reduce((acc, seat) => {
       const currentRow = acc.get(seat.row) || [];
 
@@ -32,7 +32,7 @@ const useCreatorPage = () => {
 
       return acc;
     }, new Map<string, ISeat[]>());
-  }, []);
+  };
 
   useEffect(() => {
     const { seatMapData, ...restData } = data;
@@ -42,7 +42,7 @@ const useCreatorPage = () => {
     setSeatData(groupByRow(seatMapData));
 
     setLoading(false);
-  }, [groupByRow]);
+  }, []);
 
   /**
    * Adds a new seat to the seat data.
@@ -53,43 +53,45 @@ const useCreatorPage = () => {
    * @param {ISeatType} type - The type of the new seat.
    * @param {IDirection} direction - The direction of the insertion.
    */
-  const addSeatAction = useCallback(
-    (row: string, seatId: string, type: ISeatType, direction: IDirection): void => {
-      setSeatData((prevSeatData) => {
-        const data = new Map(prevSeatData);
-        const seats = data.get(row) || [];
-        const index = seats.findIndex((seat) => seat.id === seatId);
+  const addSeatAction = (
+    row: string,
+    seatId: string,
+    type: ISeatType,
+    direction: IDirection
+  ): void => {
+    setSeatData((prevSeatData) => {
+      const data = new Map(prevSeatData);
+      const seats = data.get(row) || [];
+      const index = seats.findIndex((seat) => seat.id === seatId);
 
-        if (index === -1) return prevSeatData;
+      if (index === -1) return prevSeatData;
 
-        const newSeat: ISeat = {
-          id: v4(),
-          row,
-          label:
-            type === 'seat'
-              ? (
-                  Math.max(
-                    ...seats
-                      .filter((seat) => seat.type === 'seat')
-                      .map((seat) => parseInt(seat.label, 10)),
-                    0
-                  ) + 1
-                ).toString()
-              : '0',
-          type: type,
-        };
+      const newSeat: ISeat = {
+        id: v4(),
+        row,
+        label:
+          type === 'seat'
+            ? (
+                Math.max(
+                  ...seats
+                    .filter((seat) => seat.type === 'seat')
+                    .map((seat) => parseInt(seat.label, 10)),
+                  0
+                ) + 1
+              ).toString()
+            : '0',
+        type: type,
+      };
 
-        seats.splice(index + (direction === 'right' ? 1 : 0), 0, newSeat);
+      seats.splice(index + (direction === 'right' ? 1 : 0), 0, newSeat);
 
-        data.set(row, [...seats]);
+      data.set(row, [...seats]);
 
-        return data;
-      });
+      return data;
+    });
 
-      toast.success(`${type === 'seat' ? 'Seat' : 'Space'} added successfully`);
-    },
-    []
-  );
+    toast.success(`${type === 'seat' ? 'Seat' : 'Space'} added successfully`);
+  };
 
   /**
    * Adds a new seat to the specified row and seat ID in the given direction.
@@ -99,12 +101,9 @@ const useCreatorPage = () => {
    * @param {ISeatType} type - The type of the new seat to add.
    * @param {IDirection} direction - The direction relative to the specified seat ID to add the new seat.
    */
-  const addSeat = useCallback(
-    (row: string, seatId: string, type: ISeatType, direction: IDirection): void => {
-      addSeatAction(row, seatId, type, direction);
-    },
-    [addSeatAction]
-  );
+  const addSeat = (row: string, seatId: string, type: ISeatType, direction: IDirection): void => {
+    addSeatAction(row, seatId, type, direction);
+  };
 
   /**
    * Updates the label of the seat with the given seat ID in the specified row.
@@ -114,7 +113,7 @@ const useCreatorPage = () => {
    * @param {string} seatId - The seat identifier of the seat to update.
    * @param {string} name - The new label for the seat.
    */
-  const editSeatName = useCallback((row: string, seatId: string, name: string): void => {
+  const editSeatName = (row: string, seatId: string, name: string): void => {
     setSeatData((prev) => {
       const updated = new Map(prev);
 
@@ -135,7 +134,7 @@ const useCreatorPage = () => {
 
       return updated;
     });
-  }, []);
+  };
 
   /**
    * Deletes a seat from the seat data.
@@ -144,7 +143,7 @@ const useCreatorPage = () => {
    * @param {string} row - The row identifier where the seat will be deleted.
    * @param {string} seatId - The seat identifier to delete.
    */
-  const deleteSeat = useCallback((row: string, seatId: string): void => {
+  const deleteSeat = (row: string, seatId: string): void => {
     setSeatData((prev) => {
       const updated = new Map(prev);
 
@@ -160,13 +159,13 @@ const useCreatorPage = () => {
     });
 
     toast.success('Item deleted successfully');
-  }, []);
+  };
 
   /**
    * Adds a new empty row to the seat data.
    * Generates a unique row identifier and inserts an empty row into the seat data state.
    */
-  const addEmptyRow = useCallback((): void => {
+  const addEmptyRow = (): void => {
     setSeatData((prevSeatData) => {
       const data = new Map(prevSeatData);
 
@@ -180,7 +179,7 @@ const useCreatorPage = () => {
     });
 
     toast.success('New row added successfully');
-  }, []);
+  };
 
   /**
    * Adds a new seated row to the seat data.
@@ -264,7 +263,7 @@ const useCreatorPage = () => {
    *
    * @param {string} row - The row identifier to delete.
    */
-  const deleteRow = useCallback((row: string): void => {
+  const deleteRow = (row: string): void => {
     setSeatData((prevSeatData) => {
       const data = new Map(prevSeatData);
 
@@ -278,7 +277,7 @@ const useCreatorPage = () => {
 
       return data;
     });
-  }, []);
+  };
 
   /**
    * Handles the drag end event by updating the seat data with the new row order.
@@ -322,13 +321,10 @@ const useCreatorPage = () => {
   /**
    * Calculates the total number of seats across all rows.
    */
-  const getTotalSeats = useMemo(
-    (): number =>
-      Array.from(seatData.values())
-        .flat()
-        .filter((seat) => seat.type === 'seat').length,
-    [seatData]
-  );
+  const getTotalSeats = (): number =>
+    Array.from(seatData.values())
+      .flat()
+      .filter((seat) => seat.type === 'seat').length;
 
   /**
    * Saves the seat data.
@@ -345,17 +341,14 @@ const useCreatorPage = () => {
   /**
    * Resets the seat data to the initial state.
    */
-  const resetData = useCallback(
-    (): void => setSeatData(groupByRow(data.seatMapData)),
-    [groupByRow]
-  );
+  const resetData = (): void => setSeatData(groupByRow(data.seatMapData));
 
   /**
    * Toggles the preview mode on or off.
    */
-  const togglePreview = useCallback((): void => setPreview((prev) => !prev), []);
+  const togglePreview = (): void => setPreview((prev) => !prev);
 
-  const rows: [string, ISeat[]][] = useMemo(() => Array.from(seatData?.entries()), [seatData]);
+  const rows: [string, ISeat[]][] = Array.from(seatData?.entries());
 
   return {
     rows,
