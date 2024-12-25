@@ -104,7 +104,7 @@ const CreatorPage: React.FC = () => {
 
       <NewRow addEmptyRow={addEmptyRow} addSeatedRow={addSeatedRow} />
 
-      <Buttons totals={getTotalSeats} save={saveData} reset={resetData} toggle={togglePreview} />
+      <Buttons totals={getTotalSeats()} save={saveData} reset={resetData} toggle={togglePreview} />
 
       <Toaster
         position='bottom-center'
