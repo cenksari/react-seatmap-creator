@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 // hooks
 import useClickOutside from '../hooks/useClickOutside';
@@ -20,7 +20,7 @@ interface IFormProps {
   name: string;
 }
 
-const Seat: React.FC<IProps> = memo(({ seat, rowIndex, addSpace, editSeatName, deleteSeat }) => {
+const Seat: React.FC<IProps> = ({ seat, rowIndex, addSpace, editSeatName, deleteSeat }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [formOpened, setFormOpened] = useState<boolean>(false);
@@ -162,8 +162,6 @@ const Seat: React.FC<IProps> = memo(({ seat, rowIndex, addSpace, editSeatName, d
       {menuOpened && renderDropdown()}
     </div>
   );
-});
-
-Seat.displayName = 'Seat';
+};
 
 export default Seat;

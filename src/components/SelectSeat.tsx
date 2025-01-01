@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 // types
 import type { ISeat } from '../types/types';
 
@@ -10,7 +8,7 @@ interface IProps {
   onSelect: () => void;
 }
 
-const SelectSeat: React.FC<IProps> = memo(({ seat, selected, onSelect }) => {
+const SelectSeat: React.FC<IProps> = ({ seat, selected, onSelect }) => {
   const isSeat = seat.type === 'seat';
 
   const title = isSeat ? `${seat.row} ${seat.label}` : '';
@@ -45,8 +43,6 @@ const SelectSeat: React.FC<IProps> = memo(({ seat, selected, onSelect }) => {
   ) : (
     <div className={`preview space`} />
   );
-});
-
-SelectSeat.displayName = 'SelectSeat';
+};
 
 export default SelectSeat;

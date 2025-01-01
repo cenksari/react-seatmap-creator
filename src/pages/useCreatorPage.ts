@@ -1,9 +1,8 @@
+import { v4 } from 'uuid';
 import { useState, useEffect } from 'react';
+import { DropResult } from '@hello-pangea/dnd';
 
 import toast from 'react-hot-toast';
-
-import { v4 } from 'uuid';
-import { DropResult } from '@hello-pangea/dnd';
 
 // data
 import data from '../data/data.json';

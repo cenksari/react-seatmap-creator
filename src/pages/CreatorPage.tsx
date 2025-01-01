@@ -1,6 +1,5 @@
-import { Toaster } from 'react-hot-toast';
-
 import { Tooltip } from 'react-tooltip';
+import { Toaster } from 'react-hot-toast';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 // styles

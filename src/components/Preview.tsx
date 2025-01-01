@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Tooltip } from 'react-tooltip';
 import { MapInteractionCSS } from 'react-map-interaction';
 
@@ -110,7 +109,5 @@ const Preview: React.FC<IProps> = ({ text, seatData, togglePreview }) => {
     </>
   );
 };
-
-Preview.displayName = 'Preview';
 
 export default Preview;

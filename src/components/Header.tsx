@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// import types
+// types
 import type { ISeatMap } from '../types/types';
 
 // interfaces
