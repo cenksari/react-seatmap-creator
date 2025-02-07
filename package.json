@@ -9,7 +9,7 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.1",
     "react-map-interaction": "^2.1.0",
-    "react-router-dom": "^7.1.1",
+    "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
     "react-tooltip": "^5.28.0",
     "typescript": "^5.7.3",
@@ -40,22 +40,22 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^22.10.6",
-    "@types/react": "^19.0.7",
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/react-tooltip": "^4.2.4",
     "@types/uuid": "^10.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
-    "eslint": "^9.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
+    "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "prettier": "^3.4.2",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.23.0"
   }
 }
